@@ -1,4 +1,4 @@
-package is;
+package is.Vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
