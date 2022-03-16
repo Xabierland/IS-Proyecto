@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/is/Menu.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/is/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/IS-Proyecto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/IS-Proyecto.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
