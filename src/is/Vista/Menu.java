@@ -9,8 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.sun.prism.Image;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -22,18 +20,10 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JSeparator;
-import javax.swing.JSplitPane;
 import javax.swing.ImageIcon;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
@@ -94,7 +84,7 @@ public class Menu extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Menu.class.getResource("/resource/icon.png")));
 		setTitle("Hundir la flota");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1037, 576);
+		setBounds(100, 100, 1280, 720);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
