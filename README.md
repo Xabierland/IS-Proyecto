@@ -10,9 +10,3 @@
 </ul>
 
 ### FAQ
-<ol>
- <li>Como ejecutarlo</li>
- <ol>
-  <li>Instalar</li>
- </ol>
-</ol>
