@@ -1,4 +1,5 @@
-package is.Vista;
+package is.vista;
+import is.controlador.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -27,16 +28,18 @@ import java.awt.Dimension;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Menu extends JFrame {
+public class Vista extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel tableros;
 	private JPanel arma_panel;
-	private JButton Radar;
-	private JButton Bomba;
-	private JButton Misil;
-	private JButton Escudo;
+	public static JButton Bomba;
+	public static JButton Misil;
+	public static JButton Radar;
+	public static JButton Escudo;
 	private JPanel tablero_jugador;
 	private JPanel tablero_ia;
 	private JPanel barco_panel;
@@ -67,7 +70,7 @@ public class Menu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Menu frame = new Menu();
+					Vista frame = new Vista();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -79,9 +82,9 @@ public class Menu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Menu() {
+	public Vista() {
 		setAlwaysOnTop(true);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Menu.class.getResource("/resource/icon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Vista.class.getResource("/resource/icon.png")));
 		setTitle("Hundir la flota");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -99,12 +102,31 @@ public class Menu extends JFrame {
 		grupo_barcos.add(boton_portaaviones);
 		grupo_barcos.add(boton_submarino);
 	}
-	private JLabel getCasilla()
+	
+	
+	public JLabel getCasilla(int x, int y)
 	{
 		JLabel casilla = new JLabel();
+		int pos_x=x;
+		int pos_y=y;
+		boolean disparado=false;
 		casilla.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		casilla.setOpaque(true);
 		casilla.setBackground(Color.blue);
+		if(Controlador.getControlador().getIfJugando() || !disparado)
+		{
+			casilla.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e)
+				{
+					System.out.println("x:" + x + " y:" + y);
+					switch(Controlador.getControlador().getArma())
+					{
+						case 0: casilla.setBackground(Color.red);break;
+						case 1: casilla.setBackground(Color.black);break;
+					}
+				}
+			});
+		}
 			
 		return casilla;
 	}
@@ -124,34 +146,38 @@ public class Menu extends JFrame {
 			arma_panel = new JPanel();
 			arma_panel.setLayout(new MigLayout("", "[130px]", "[][84px][84px][84px][84px]"));
 			arma_panel.add(getVerticalStrut(), "cell 0 0");
-			arma_panel.add(getRadar(), "cell 0 1,growx,aligny center");
-			arma_panel.add(getBomba(), "cell 0 2,growx,aligny center");
-			arma_panel.add(getMisil(), "cell 0 3,growx,aligny center");
+			arma_panel.add(getBomba(), "cell 0 1,growx,aligny center");
+			arma_panel.add(getMisil(), "cell 0 2,growx,aligny center");
+			arma_panel.add(getRadar(), "cell 0 3,growx,aligny center");
 			arma_panel.add(getEscudo(), "cell 0 4,growx,aligny center");
 		}
 		return arma_panel;
 	}
-	private JButton getRadar() {
-		if (Radar == null) {
-			Radar = new JButton("Radar");
-		}
-		return Radar;
-	}
-	private JButton getBomba() {
+	public JButton getBomba() {
 		if (Bomba == null) {
 			Bomba = new JButton("Bomba");
+			Bomba.addActionListener(Controlador.getControlador());
 		}
 		return Bomba;
 	}
 	private JButton getMisil() {
 		if (Misil == null) {
 			Misil = new JButton("Misil");
+			Misil.addActionListener(Controlador.getControlador());
 		}
 		return Misil;
+	}
+	private JButton getRadar() {
+		if (Radar == null) {
+			Radar = new JButton("Radar");
+			Radar.addActionListener(Controlador.getControlador());
+		}
+		return Radar;
 	}
 	private JButton getEscudo() {
 		if (Escudo == null) {
 			Escudo = new JButton("Escudo");
+			Escudo.addActionListener(Controlador.getControlador());
 		}
 		return Escudo;
 	}
@@ -163,7 +189,7 @@ public class Menu extends JFrame {
 			for(i=0;i<10;i++)
 				for(j=0; j<10;j++)
 				{
-					tablero_jugador.add(getCasilla());
+					tablero_jugador.add(getCasilla(i,j));
 				}
 		}
 		return tablero_jugador;
@@ -176,7 +202,7 @@ public class Menu extends JFrame {
 			for(i=0;i<10;i++)
 				for(j=0; j<10;j++)
 				{
-					tablero_ia.add(getCasilla());
+					tablero_ia.add(getCasilla(i,j));
 				}
 		}
 		return tablero_ia;
@@ -239,24 +265,24 @@ public class Menu extends JFrame {
 	private JLabel getFLECHA() {
 		if (FLECHA == null) {
 			FLECHA = new JLabel("");
-			FLECHA.setIcon(new ImageIcon(Menu.class.getResource("/resource/flecha_arr.png")));
+			FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_arr.png")));
 			//0 - arriba | 1 - derecha | 2 - abajo | 3 - izq
 			FLECHA.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent arg0) 
 				{
 					pos_flecha++;
-					if(pos_flecha==4)
+					if(pos_flecha>=4)
 					{
 						pos_flecha=0;
 					}
 					switch(pos_flecha)
 					{
-						case 0 : {FLECHA.setIcon(new ImageIcon(Menu.class.getResource("/resource/flecha_arr.png")));System.out.println("ARRIBA");break;}
-						case 1 : {FLECHA.setIcon(new ImageIcon(Menu.class.getResource("/resource/flecha_der.png")));System.out.println("DERECHA");break;}
-						case 2 : {FLECHA.setIcon(new ImageIcon(Menu.class.getResource("/resource/flecha_abj.png")));System.out.println("ABAJO");break;}
-						case 3 : {FLECHA.setIcon(new ImageIcon(Menu.class.getResource("/resource/flecha_izq.png")));System.out.println("IZQUIERDA");break;}
-						default : {FLECHA.setIcon(new ImageIcon(Menu.class.getResource("/resource/flecha_arr.png")));System.out.println("DEFAULT");break;}
+						case 0 : {FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_arr.png")));System.out.println("ARRIBA");break;}
+						case 1 : {FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_der.png")));System.out.println("DERECHA");break;}
+						case 2 : {FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_abj.png")));System.out.println("ABAJO");break;}
+						case 3 : {FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_izq.png")));System.out.println("IZQUIERDA");break;}
+						default : {FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_arr.png")));System.out.println("DEFAULT");break;}
 					}
 					System.out.println(pos_flecha);
 				}
@@ -325,7 +351,7 @@ public class Menu extends JFrame {
 	}
 	private Component getVerticalStrut() {
 		if (verticalStrut == null) {
-			verticalStrut = Box.createVerticalStrut(20);
+			verticalStrut = Box.createVerticalStrut(90);
 		}
 		return verticalStrut;
 	}

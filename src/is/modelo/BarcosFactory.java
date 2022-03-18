@@ -1,4 +1,4 @@
-package is.Modelo;
+package is.modelo;
 
 public class BarcosFactory {
     private static BarcosFactory miBarcosFactory;

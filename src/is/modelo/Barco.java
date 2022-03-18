@@ -1,4 +1,4 @@
-package is.Modelo;
+package is.modelo;
 
 public abstract class Barco {
     private int longitud;
