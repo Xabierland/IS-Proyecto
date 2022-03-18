@@ -301,9 +301,9 @@ public class Controlador implements ActionListener
 	{
 		switch (cheatCode)
 		{
-			case "seeall" :
+			case "see_all" :
 			{
-				System.out.println("CheatCode: seeall");
+				System.out.println("CheatCode: see_all");
 				Tablero_IA.getTableroIA().mostrarTablero();
 			}
 		}
