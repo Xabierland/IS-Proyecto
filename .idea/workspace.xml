@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/controlador/Controlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Tablero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Tablero_IA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Tablero_IA.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/vista/Vista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Vista.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -15,13 +15,19 @@ public class Controlador implements ActionListener
 	private boolean jugando;
 
 	private int arma=0;
+	private int Jbarco=0;
 
 	private int JtotalBarcos=10;
-	private int Jbarco=0;
 	private int JFragata=4;
 	private int JDestructor=3;
 	private int JSubmarino=2;
 	private int JPortavion=1;
+
+	private int ItotalBarcos=10;
+	private int IFragata=4;
+	private int IDestructor=3;
+	private int ISubmarino=2;
+	private int IPortavion=1;
 
 	private Controlador()
 	{
@@ -58,8 +64,53 @@ public class Controlador implements ActionListener
 
 	public void addBarcoIA()
 	{
-		//PORTAVIONES
-		Tablero_IA.getTableroIA().addBarco(getRandomInteger(3,0),1,getRandomInteger(10,0), getRandomInteger(10,0),true);
+		int pDir,pX,pY;
+		while(ItotalBarcos>0){
+			while (IFragata>0)
+			{
+				pDir=getRandomInteger(3,0);
+				pX=getRandomInteger(9,0);
+				pY=getRandomInteger(9,0);
+				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,1,pX,pY)){
+					Tablero_IA.getTableroIA().addBarco(pDir, 1, pX, pY, true);
+					IFragata--;
+					ItotalBarcos--;
+				}
+			}
+			while (IDestructor>0)
+			{
+				pDir=getRandomInteger(3,0);
+				pX=getRandomInteger(9,0);
+				pY=getRandomInteger(9,0);
+				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,2,pX,pY)){
+					Tablero_IA.getTableroIA().addBarco(pDir, 2, pX, pY, true);
+					IDestructor--;
+					ItotalBarcos--;
+				}
+			}
+			while (ISubmarino>0)
+			{
+				pDir=getRandomInteger(3,0);
+				pX=getRandomInteger(9,0);
+				pY=getRandomInteger(9,0);
+				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,3,pX,pY)){
+					Tablero_IA.getTableroIA().addBarco(pDir, 3, pX, pY, true);
+					ISubmarino--;
+					ItotalBarcos--;
+				}
+			}
+			while (IPortavion>0)
+			{
+				pDir=getRandomInteger(3,0);
+				pX=getRandomInteger(9,0);
+				pY=getRandomInteger(9,0);
+				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,4,pX,pY)){
+					Tablero_IA.getTableroIA().addBarco(pDir, 4, pX, pY, true);
+					IPortavion--;
+					ItotalBarcos--;
+				}
+			}
+		}
 	}
 
 	private void restarBarcos(int pBarco)
@@ -177,6 +228,7 @@ public class Controlador implements ActionListener
 	public void casillaJugadorClick(JLabel casilla, int x, int y)
 	{
 		System.out.printf("\nPLAYER|x:%d|y:%d\n",x,y);
+		Tablero_Jugador.getTableroJugador().getIfBarcoByPos(x,y,true);
 		if(!jugando) //COLOCANDO BARCOS
 		{
 			if(Jbarco !=0)

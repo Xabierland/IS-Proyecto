@@ -171,6 +171,7 @@ public class Vista extends JFrame {
 	private JButton getMisil() {
 		if (Misil == null) {
 			Misil = new JButton("Misil");
+			Misil.setEnabled(false);
 			Misil.addActionListener(Controlador.getControlador());
 		}
 		return Misil;
@@ -178,6 +179,7 @@ public class Vista extends JFrame {
 	private JButton getRadar() {
 		if (Radar == null) {
 			Radar = new JButton("Radar");
+			Radar.setEnabled(false);
 			Radar.addActionListener(Controlador.getControlador());
 		}
 		return Radar;
@@ -185,6 +187,7 @@ public class Vista extends JFrame {
 	private JButton getEscudo() {
 		if (Escudo == null) {
 			Escudo = new JButton("Escudo");
+			Escudo.setEnabled(false);
 			Escudo.addActionListener(Controlador.getControlador());
 		}
 		return Escudo;
@@ -214,7 +217,7 @@ public class Vista extends JFrame {
 				{
 					JLabel unaCasilla=getCasillaIA(j,i);
 					tablero_ia.add(unaCasilla);
-					Controlador.getControlador().addCasillaIA(unaCasilla,i,j);
+					Controlador.getControlador().addCasillaIA(unaCasilla,j,i);
 				}
 		}
 		return tablero_ia;
