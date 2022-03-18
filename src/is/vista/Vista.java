@@ -292,29 +292,29 @@ public class Vista extends JFrame {
 	private JRadioButton getBoton_portaaviones() {
 		if (boton_portaaviones == null) {
 			boton_portaaviones = new JRadioButton("Portaaviones");
+			boton_portaaviones.addActionListener(Controlador.getControlador());
 		}
-		boton_portaaviones.addActionListener(Controlador.getControlador());
 		return boton_portaaviones;
 	}
 	private JRadioButton getBoton_submarino() {
 		if (boton_submarino == null) {
 			boton_submarino = new JRadioButton("Submarino");
+			boton_submarino.addActionListener(Controlador.getControlador());
 		}
-		boton_submarino.addActionListener(Controlador.getControlador());
 		return boton_submarino;
 	}
 	private JRadioButton getBoton_destructor() {
 		if (boton_destructor == null) {
 			boton_destructor = new JRadioButton("Destructor");
+			boton_destructor.addActionListener(Controlador.getControlador());
 		}
-		boton_destructor.addActionListener(Controlador.getControlador());
 		return boton_destructor;
 	}
 	private JRadioButton getBoton_fragata() {
 		if (boton_fragata == null) {
 			boton_fragata = new JRadioButton("Fragata");
+			boton_fragata.addActionListener(Controlador.getControlador());
 		}
-		boton_fragata.addActionListener(Controlador.getControlador());
 		return boton_fragata;
 	}
 	private JTextField getTextField() {

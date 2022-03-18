@@ -11,23 +11,12 @@ public class BarcosFactory {
     }
     public Barco hacerBarco(int pTipo){
         Barco nBarco=null;
-        if(pTipo==1){
-            nBarco=new Fragata();
-        }
-        else{
-            if(pTipo==2){
-                nBarco=new Destructor();
-            }
-            else{
-                if(pTipo==3){
-                    nBarco=new Submarino();
-                }
-                else{
-                    if(pTipo==4){
-                        nBarco=new Portavion();
-                    }
-                }
-            }
+        switch (pTipo)
+        {
+            case 0: nBarco=new Fragata();break;
+            case 1: nBarco=new Destructor();break;
+            case 2: nBarco=new Submarino();break;
+            case 3: nBarco=new Portavion();break;
         }
         return nBarco;
     }

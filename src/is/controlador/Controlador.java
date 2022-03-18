@@ -13,8 +13,15 @@ public class Controlador implements ActionListener
 	private static Controlador controler =null;
 	private int pos_flecha=0;
 	private boolean jugando;
+
 	private int arma=0;
-	private int barco=0;
+
+	private int JtotalBarcos=10;
+	private int Jbarco=0;
+	private int JFragata=4;
+	private int JDestructor=3;
+	private int JSubmarino=2;
+	private int JPortavion=1;
 
 	private Controlador()
 	{
@@ -30,28 +37,84 @@ public class Controlador implements ActionListener
 		return controler;
 	}
 	
-	//True si estamos jugando
-	//False si estamos colocando los barcos
+	/*
+	* True si estamos jugando
+	* False si estamos colocando los barcos
+	*/
 	public void addCasillaJugador(JLabel casilla, int x, int y)
 	{
 		Tablero_Jugador.getTableroJugador().addCasilla(casilla,x,y);
 	}
 
-	private void addBarco(int x, int y)
+	private void addBarcoJugador(int x, int y)
 	{
-		if(barco!=0) {
-			if(Tablero_Jugador.getTableroJugador().sePuedeColocar(pos_flecha,barco,x,y))
-				Tablero_Jugador.getTableroJugador().addBarco(pos_flecha, barco, x, y);
-			//jugando=true;
+		Tablero_Jugador.getTableroJugador().addBarco(pos_flecha, Jbarco, x, y);
+	}
+
+	private void addBarcoIA(int x, int y)
+	{
+		//PORTAVIONES
+		Tablero_IA.getTableroIA().addBarco(getRandomInteger(3,0),1,getRandomInteger(10,0), getRandomInteger(10,0));
+	}
+
+	private void restarBarcos(int pBarco)
+	{
+		switch (pBarco)
+		{
+			case 1 :
+			{
+				JFragata--;
+				if(JFragata <=0)
+				{
+					Vista.boton_fragata.setEnabled(false);
+					Jbarco =0;
+				}
+				System.out.println("Fragata restante: "+ JFragata);
+				break;
+			}
+			case 2 :
+			{
+				JDestructor--;
+				if(JDestructor <=0)
+				{
+					Vista.boton_destructor.setEnabled(false);
+					Jbarco =0;
+				}
+				System.out.println("Destructor restante: "+ JDestructor);
+				break;
+			}
+			case 3 :
+			{
+				JSubmarino--;
+				if(JSubmarino <=0)
+				{
+					Vista.boton_submarino.setEnabled(false);
+					Jbarco =0;
+				}
+				System.out.println("Submarino restante: "+ JSubmarino);
+				break;
+			}
+			case 4 :
+			{
+				JPortavion--;
+				if(JPortavion <=0)
+				{
+					Vista.boton_portaaviones.setEnabled(false);
+					Jbarco =0;
+				}
+				System.out.println("Portavion restante: "+ JPortavion);
+				break;
+			}
 		}
-		else
-			System.out.println("SELECCIONA UN BARCO");
+		JtotalBarcos--;
+		if(JtotalBarcos <=0) {
+			jugando=true;
+		}
 	}
 
-	public boolean getIfBarcoByPos(int x, int y){
-		return Tablero_Jugador.getTableroJugador().getIfBarcoByPos(x,y);
-	}
-
+	/*
+	* Se activa al pulsar un boton en la vista
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource().equals(Vista.Bomba))
@@ -77,33 +140,45 @@ public class Controlador implements ActionListener
 		if(e.getSource().equals(Vista.boton_fragata))
 		{
 			System.out.println("FRAGATA SELECCIONADO");
-			barco=1;
+			Jbarco =1;
 		}
 		if(e.getSource().equals(Vista.boton_destructor))
 		{
 			System.out.println("DESTRUCTOR SELECCIONADO");
-			barco=2;
+			Jbarco =2;
 		}
 		if(e.getSource().equals(Vista.boton_portaaviones))
 		{
 			System.out.println("PORTAAVIONES SELECCIONADO");
-			barco=4;
+			Jbarco =4;
 		}
 		if(e.getSource().equals(Vista.boton_submarino))
 		{
 			System.out.println("SUBMARINO SELECCIONADO");
-			barco=3;
+			Jbarco =3;
 		}
 	}
 
+	/*
+	* Se activa al hacer click en una casilla del tablero del Jugador
+	 */
 	public void casillaJugadorClick(JLabel casilla, int x, int y)
 	{
-		System.out.printf("x:%d|y:%d\n",x,y);
+		System.out.printf("\nPLAYER|x:%d|y:%d\n",x,y);
 		if(!jugando) //COLOCANDO BARCOS
 		{
-			if(barco!=0);
+			if(Jbarco !=0)
 			{
-				addBarco(x,y);
+				if(Tablero_Jugador.getTableroJugador().sePuedeColocar(pos_flecha, Jbarco,x,y)){
+					addBarcoJugador(x,y);
+					restarBarcos(Jbarco);
+				}
+				else
+					System.out.println("NO SE PUEDE COLOR EN ESTA POSICION");
+			}
+			else
+			{
+				System.out.println("SELECCIONA UN BARCO");
 			}
 		}
 		else
@@ -112,9 +187,18 @@ public class Controlador implements ActionListener
 		}
 	}
 
+	/*
+	* SOLO SI YA HA EMPEZADO EL JUEGO
+	* Se activa al hacer click en una casilla del tablero de la IA
+	 */
 	public void casillaIAClick(JLabel casilla, int x, int y)
 	{
-		//JUGANDO
+		System.out.printf("\nIA    |x:%d|y:%d\n",x,y);
+		Tablero_IA.getTableroIA().getIfBarcoByPos(x,y);
+		if(jugando)
+		{
+
+		}
 	}
 
 	/*
@@ -142,5 +226,10 @@ public class Controlador implements ActionListener
 			default : {
 				Vista.flecha.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_arr.png")));System.out.println("DEFAULT");break;}
 		}
+	}
+
+	private static int getRandomInteger(int max, int min)
+	{
+		return ((int)(Math.random()*(max-min)))+min;
 	}
 }
