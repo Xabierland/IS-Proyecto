@@ -52,7 +52,7 @@ public class Vista extends JFrame {
 	public static JRadioButton boton_submarino;
 	public static JRadioButton boton_destructor;
 	public static JRadioButton boton_fragata;
-	private JTextField textField;
+	public static JTextField textField;
 	private JPanel panel;
 	private JLabel lblDinero;
 	private JButton btnNewButton;
@@ -214,7 +214,7 @@ public class Vista extends JFrame {
 				{
 					JLabel unaCasilla=getCasillaIA(j,i);
 					tablero_ia.add(unaCasilla);
-					//Controlador.getControlador().addCasillaIA(unaCasilla,i,j);
+					Controlador.getControlador().addCasillaIA(unaCasilla,i,j);
 				}
 		}
 		return tablero_ia;
@@ -321,6 +321,7 @@ public class Vista extends JFrame {
 		if (textField == null) {
 			textField = new JTextField();
 			textField.setColumns(10);
+			textField.addActionListener(Controlador.getControlador());
 		}
 		return textField;
 	}

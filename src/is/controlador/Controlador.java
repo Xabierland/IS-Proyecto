@@ -46,15 +46,20 @@ public class Controlador implements ActionListener
 		Tablero_Jugador.getTableroJugador().addCasilla(casilla,x,y);
 	}
 
-	private void addBarcoJugador(int x, int y)
+	public void addCasillaIA(JLabel casilla, int x, int y)
 	{
-		Tablero_Jugador.getTableroJugador().addBarco(pos_flecha, Jbarco, x, y);
+		Tablero_IA.getTableroIA().addCasilla(casilla,x,y);
 	}
 
-	private void addBarcoIA(int x, int y)
+	private void addBarcoJugador(int x, int y)
+	{
+		Tablero_Jugador.getTableroJugador().addBarco(pos_flecha, Jbarco, x, y,false);
+	}
+
+	public void addBarcoIA()
 	{
 		//PORTAVIONES
-		Tablero_IA.getTableroIA().addBarco(getRandomInteger(3,0),1,getRandomInteger(10,0), getRandomInteger(10,0));
+		Tablero_IA.getTableroIA().addBarco(getRandomInteger(3,0),1,getRandomInteger(10,0), getRandomInteger(10,0),true);
 	}
 
 	private void restarBarcos(int pBarco)
@@ -109,6 +114,7 @@ public class Controlador implements ActionListener
 		JtotalBarcos--;
 		if(JtotalBarcos <=0) {
 			jugando=true;
+			addBarcoIA();
 		}
 	}
 
@@ -157,6 +163,12 @@ public class Controlador implements ActionListener
 			System.out.println("SUBMARINO SELECCIONADO");
 			Jbarco =3;
 		}
+		if(e.getSource().equals(Vista.textField))
+		{
+			String cad=Vista.textField.getText();
+			Vista.textField.setText(null);
+			cheats(cad);
+		}
 	}
 
 	/*
@@ -194,7 +206,7 @@ public class Controlador implements ActionListener
 	public void casillaIAClick(JLabel casilla, int x, int y)
 	{
 		System.out.printf("\nIA    |x:%d|y:%d\n",x,y);
-		Tablero_IA.getTableroIA().getIfBarcoByPos(x,y);
+		Tablero_IA.getTableroIA().getIfBarcoByPos(x,y,true);
 		if(jugando)
 		{
 
@@ -231,5 +243,17 @@ public class Controlador implements ActionListener
 	private static int getRandomInteger(int max, int min)
 	{
 		return ((int)(Math.random()*(max-min)))+min;
+	}
+
+	private void cheats(String cheatCode)
+	{
+		switch (cheatCode)
+		{
+			case "seeall" :
+			{
+				System.out.println("CheatCode: seeall");
+				Tablero_IA.getTableroIA().mostrarTablero();
+			}
+		}
 	}
 }
