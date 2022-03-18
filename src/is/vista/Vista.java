@@ -28,8 +28,6 @@ import java.awt.Dimension;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Vista extends JFrame {
 
@@ -49,17 +47,16 @@ public class Vista extends JFrame {
 	private JLabel lblPlayer;
 	private JLabel lblIa;
 	private Component rigidArea;
-	private JLabel FLECHA;
-	private JRadioButton boton_portaaviones;
-	private JRadioButton boton_submarino;
-	private JRadioButton boton_destructor;
-	private JRadioButton boton_fragata;
+	public static JLabel flecha;
+	public static JRadioButton boton_portaaviones;
+	public static JRadioButton boton_submarino;
+	public static JRadioButton boton_destructor;
+	public static JRadioButton boton_fragata;
 	private JTextField textField;
 	private JPanel panel;
 	private JLabel lblDinero;
 	private JButton btnNewButton;
 	private Component horizontalStrut_1;
-	private int pos_flecha=0;
 	private Component verticalStrut;
 	private ButtonGroup grupo_barcos = new ButtonGroup();
 
@@ -104,31 +101,42 @@ public class Vista extends JFrame {
 	}
 	
 	
-	public JLabel getCasilla(int x, int y)
+	public JLabel getCasillaJugador(int x, int y)
 	{
-		JLabel casilla = new JLabel();
+		JLabel casillaJugador = new JLabel();
 		int pos_x=x;
 		int pos_y=y;
-		boolean disparado=false;
-		casilla.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-		casilla.setOpaque(true);
-		casilla.setBackground(Color.blue);
-		if(Controlador.getControlador().getIfJugando() || !disparado)
-		{
-			casilla.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent e)
-				{
-					System.out.println("x:" + x + " y:" + y);
-					switch(Controlador.getControlador().getArma())
-					{
-						case 0: casilla.setBackground(Color.red);break;
-						case 1: casilla.setBackground(Color.black);break;
-					}
-				}
-			});
-		}
-			
-		return casilla;
+		casillaJugador.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		casillaJugador.setOpaque(true);
+		casillaJugador.setBackground(Color.blue);
+
+		casillaJugador.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0)
+			{
+				Controlador.getControlador().casillaJugadorClick(casillaJugador,pos_x,pos_y);
+			}
+		});
+		return casillaJugador;
+	}
+
+	public JLabel getCasillaIA(int x, int y)
+	{
+		JLabel casillaIA = new JLabel();
+		int pos_x=x;
+		int pos_y=y;
+		casillaIA.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		casillaIA.setOpaque(true);
+		casillaIA.setBackground(Color.blue);
+
+		casillaIA.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0)
+			{
+				Controlador.getControlador().casillaIAClick(casillaIA,pos_x,pos_y);
+			}
+		});
+		return casillaIA;
 	}
 	
 	private JPanel getTableros() {
@@ -189,7 +197,9 @@ public class Vista extends JFrame {
 			for(i=0;i<10;i++)
 				for(j=0; j<10;j++)
 				{
-					tablero_jugador.add(getCasilla(i,j));
+					JLabel unaCasilla= getCasillaJugador(j,i);
+					tablero_jugador.add(unaCasilla);
+					Controlador.getControlador().addCasillaJugador(unaCasilla,j,i);
 				}
 		}
 		return tablero_jugador;
@@ -202,7 +212,9 @@ public class Vista extends JFrame {
 			for(i=0;i<10;i++)
 				for(j=0; j<10;j++)
 				{
-					tablero_ia.add(getCasilla(i,j));
+					JLabel unaCasilla=getCasillaIA(j,i);
+					tablero_ia.add(unaCasilla);
+					//Controlador.getControlador().addCasillaIA(unaCasilla,i,j);
 				}
 		}
 		return tablero_ia;
@@ -211,7 +223,7 @@ public class Vista extends JFrame {
 		if (barco_panel == null) {
 			barco_panel = new JPanel();
 			barco_panel.setLayout(new MigLayout("", "[130px]", "[84px][84px][84px][84px][84px]"));
-			barco_panel.add(getFLECHA(), "cell 0 0,alignx center,growy");
+			barco_panel.add(getFlecha(), "cell 0 0,alignx center,growy");
 			barco_panel.add(getBoton_portaaviones(), "cell 0 1,grow");
 			barco_panel.add(getBoton_submarino(), "cell 0 2,grow");
 			barco_panel.add(getBoton_destructor(), "cell 0 3,grow");
@@ -262,57 +274,47 @@ public class Vista extends JFrame {
 		}
 		return rigidArea;
 	}
-	private JLabel getFLECHA() {
-		if (FLECHA == null) {
-			FLECHA = new JLabel("");
-			FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_arr.png")));
-			//0 - arriba | 1 - derecha | 2 - abajo | 3 - izq
-			FLECHA.addMouseListener(new MouseAdapter() {
+	private JLabel getFlecha() {
+		if (flecha == null) {
+			flecha = new JLabel("");
+			flecha.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_arr.png")));
+			flecha.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent arg0) 
 				{
-					pos_flecha++;
-					if(pos_flecha>=4)
-					{
-						pos_flecha=0;
-					}
-					switch(pos_flecha)
-					{
-						case 0 : {FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_arr.png")));System.out.println("ARRIBA");break;}
-						case 1 : {FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_der.png")));System.out.println("DERECHA");break;}
-						case 2 : {FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_abj.png")));System.out.println("ABAJO");break;}
-						case 3 : {FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_izq.png")));System.out.println("IZQUIERDA");break;}
-						default : {FLECHA.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_arr.png")));System.out.println("DEFAULT");break;}
-					}
-					System.out.println(pos_flecha);
+					Controlador.getControlador().flechaClick();
 				}
 			});
 			
 		}
-		return FLECHA;
+		return flecha;
 	}
 	private JRadioButton getBoton_portaaviones() {
 		if (boton_portaaviones == null) {
 			boton_portaaviones = new JRadioButton("Portaaviones");
 		}
+		boton_portaaviones.addActionListener(Controlador.getControlador());
 		return boton_portaaviones;
 	}
 	private JRadioButton getBoton_submarino() {
 		if (boton_submarino == null) {
 			boton_submarino = new JRadioButton("Submarino");
 		}
+		boton_submarino.addActionListener(Controlador.getControlador());
 		return boton_submarino;
 	}
 	private JRadioButton getBoton_destructor() {
 		if (boton_destructor == null) {
 			boton_destructor = new JRadioButton("Destructor");
 		}
+		boton_destructor.addActionListener(Controlador.getControlador());
 		return boton_destructor;
 	}
 	private JRadioButton getBoton_fragata() {
 		if (boton_fragata == null) {
 			boton_fragata = new JRadioButton("Fragata");
 		}
+		boton_fragata.addActionListener(Controlador.getControlador());
 		return boton_fragata;
 	}
 	private JTextField getTextField() {
