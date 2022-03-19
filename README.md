@@ -1,5 +1,5 @@
-# IS-Proyecto - Hundir la flota
-<img src=/src/resource/icon128.png/>
+# IS-Proyecto - Hundir la flota <img src=/src/resource/icon128.png/>
+
 ### Programadores
 <ul>
  <li>Francisco Gonzalez</li>
