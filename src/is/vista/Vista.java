@@ -80,7 +80,7 @@ public class Vista extends JFrame {
 	 * Create the frame.
 	 */
 	public Vista() {
-		setAlwaysOnTop(true);
+		setAlwaysOnTop(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Vista.class.getResource("/resource/icon.png")));
 		setTitle("Hundir la flota");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -202,7 +202,7 @@ public class Vista extends JFrame {
 				{
 					JLabel unaCasilla= getCasillaJugador(j,i);
 					tablero_jugador.add(unaCasilla);
-					Controlador.getControlador().addCasillaJugador(unaCasilla,j,i);
+					Controlador.getControlador().addCasilla(0,unaCasilla,j,i);
 				}
 		}
 		return tablero_jugador;
@@ -217,7 +217,7 @@ public class Vista extends JFrame {
 				{
 					JLabel unaCasilla=getCasillaIA(j,i);
 					tablero_ia.add(unaCasilla);
-					Controlador.getControlador().addCasillaIA(unaCasilla,j,i);
+					Controlador.getControlador().addCasilla(1,unaCasilla,j,i);
 				}
 		}
 		return tablero_ia;

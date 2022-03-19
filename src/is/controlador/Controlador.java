@@ -3,6 +3,7 @@ import is.modelo.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
@@ -16,6 +17,7 @@ public class Controlador implements ActionListener
 
 	private int arma=0;
 	private int Jbarco=0;
+	private boolean Jturno=true;//True - Jugador|False - IA
 
 	private int JtotalBarcos=10;
 	private int JFragata=4;
@@ -42,19 +44,33 @@ public class Controlador implements ActionListener
 		}
 		return controler;
 	}
-	
-	/*
-	* True si estamos jugando
-	* False si estamos colocando los barcos
-	*/
-	public void addCasillaJugador(JLabel casilla, int x, int y)
+
+	public Tablero getTablero(int pTablero)
 	{
-		Tablero_Jugador.getTableroJugador().addCasilla(casilla,x,y);
+		Tablero t=null;
+		switch (pTablero)
+		{
+			case 0: //JUGADOR
+			{
+				t= Tablero_Jugador.getTableroJugador();
+				break;
+			}
+			case 1: //IA
+			{
+				t= Tablero_IA.getTableroIA();
+				break;
+			}
+			default:
+			{
+				System.out.println("ERROR en Controlador, getTablero()");
+			}
+		}
+		return t;
 	}
 
-	public void addCasillaIA(JLabel casilla, int x, int y)
+	public void addCasilla(int pTablero, JLabel casilla, int x, int y)
 	{
-		Tablero_IA.getTableroIA().addCasilla(casilla,x,y);
+		getTablero(pTablero).addCasilla(casilla,x,y);
 	}
 
 	private void addBarcoJugador(int x, int y)
@@ -66,25 +82,14 @@ public class Controlador implements ActionListener
 	{
 		int pDir,pX,pY;
 		while(ItotalBarcos>0){
-			while (IFragata>0)
+			while (IPortavion>0)
 			{
 				pDir=getRandomInteger(3,0);
 				pX=getRandomInteger(9,0);
 				pY=getRandomInteger(9,0);
-				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,1,pX,pY)){
-					Tablero_IA.getTableroIA().addBarco(pDir, 1, pX, pY, true);
-					IFragata--;
-					ItotalBarcos--;
-				}
-			}
-			while (IDestructor>0)
-			{
-				pDir=getRandomInteger(3,0);
-				pX=getRandomInteger(9,0);
-				pY=getRandomInteger(9,0);
-				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,2,pX,pY)){
-					Tablero_IA.getTableroIA().addBarco(pDir, 2, pX, pY, true);
-					IDestructor--;
+				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,4,pX,pY)){
+					Tablero_IA.getTableroIA().addBarco(pDir, 4, pX, pY, true);
+					IPortavion--;
 					ItotalBarcos--;
 				}
 			}
@@ -99,14 +104,25 @@ public class Controlador implements ActionListener
 					ItotalBarcos--;
 				}
 			}
-			while (IPortavion>0)
+			while (IDestructor>0)
 			{
 				pDir=getRandomInteger(3,0);
 				pX=getRandomInteger(9,0);
 				pY=getRandomInteger(9,0);
-				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,4,pX,pY)){
-					Tablero_IA.getTableroIA().addBarco(pDir, 4, pX, pY, true);
-					IPortavion--;
+				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,2,pX,pY)){
+					Tablero_IA.getTableroIA().addBarco(pDir, 2, pX, pY, true);
+					IDestructor--;
+					ItotalBarcos--;
+				}
+			}
+			while (IFragata>0)
+			{
+				pDir=getRandomInteger(3,0);
+				pX=getRandomInteger(9,0);
+				pY=getRandomInteger(9,0);
+				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,1,pX,pY)){
+					Tablero_IA.getTableroIA().addBarco(pDir, 1, pX, pY, true);
+					IFragata--;
 					ItotalBarcos--;
 				}
 			}
@@ -125,7 +141,7 @@ public class Controlador implements ActionListener
 					Vista.boton_fragata.setEnabled(false);
 					Jbarco =0;
 				}
-				System.out.println("Fragata restante: "+ JFragata);
+				System.out.println("Fragata restante: "+ JFragata+"\n");
 				break;
 			}
 			case 2 :
@@ -136,7 +152,7 @@ public class Controlador implements ActionListener
 					Vista.boton_destructor.setEnabled(false);
 					Jbarco =0;
 				}
-				System.out.println("Destructor restante: "+ JDestructor);
+				System.out.println("Destructor restante: "+ JDestructor+"\n");
 				break;
 			}
 			case 3 :
@@ -147,7 +163,7 @@ public class Controlador implements ActionListener
 					Vista.boton_submarino.setEnabled(false);
 					Jbarco =0;
 				}
-				System.out.println("Submarino restante: "+ JSubmarino);
+				System.out.println("Submarino restante: "+ JSubmarino+"\n");
 				break;
 			}
 			case 4 :
@@ -158,7 +174,7 @@ public class Controlador implements ActionListener
 					Vista.boton_portaaviones.setEnabled(false);
 					Jbarco =0;
 				}
-				System.out.println("Portavion restante: "+ JPortavion);
+				System.out.println("Portavion restante: "+ JPortavion+"\n");
 				break;
 			}
 		}
@@ -176,42 +192,42 @@ public class Controlador implements ActionListener
 	{
 		if(e.getSource().equals(Vista.Bomba))
 		{
-			System.out.println("BOMBA SELECCIONADA");
+			System.out.println("BOMBA SELECCIONADA\n");
 			arma=0;
 		}
 		if(e.getSource().equals(Vista.Misil))
 		{
-			System.out.println("MISIL SELECCIONADA");
+			System.out.println("MISIL SELECCIONADA\n");
 			arma=1;
 		}
 		if(e.getSource().equals(Vista.Radar))
 		{
-			System.out.println("RADAR SELECCIONADA");
+			System.out.println("RADAR SELECCIONADA\n");
 			arma=2;
 		}
 		if(e.getSource().equals(Vista.Escudo))
 		{
-			System.out.println("ESCUDO SELECCIONADA");
+			System.out.println("ESCUDO SELECCIONADA\n");
 			arma=3;
 		}
 		if(e.getSource().equals(Vista.boton_fragata))
 		{
-			System.out.println("FRAGATA SELECCIONADO");
+			System.out.println("FRAGATA SELECCIONADO\n");
 			Jbarco =1;
 		}
 		if(e.getSource().equals(Vista.boton_destructor))
 		{
-			System.out.println("DESTRUCTOR SELECCIONADO");
+			System.out.println("DESTRUCTOR SELECCIONADO\n");
 			Jbarco =2;
 		}
 		if(e.getSource().equals(Vista.boton_portaaviones))
 		{
-			System.out.println("PORTAAVIONES SELECCIONADO");
+			System.out.println("PORTAAVIONES SELECCIONADO\n");
 			Jbarco =4;
 		}
 		if(e.getSource().equals(Vista.boton_submarino))
 		{
-			System.out.println("SUBMARINO SELECCIONADO");
+			System.out.println("SUBMARINO SELECCIONADO\n");
 			Jbarco =3;
 		}
 		if(e.getSource().equals(Vista.textField))
@@ -227,7 +243,7 @@ public class Controlador implements ActionListener
 	 */
 	public void casillaJugadorClick(JLabel casilla, int x, int y)
 	{
-		System.out.printf("\nPLAYER|x:%d|y:%d\n",x,y);
+		System.out.printf("PLAYER|x:%d|y:%d\n",x,y);
 		Tablero_Jugador.getTableroJugador().getIfBarcoByPos(x,y,true);
 		if(!jugando) //COLOCANDO BARCOS
 		{
@@ -238,11 +254,11 @@ public class Controlador implements ActionListener
 					restarBarcos(Jbarco);
 				}
 				else
-					System.out.println("NO SE PUEDE COLOR EN ESTA POSICION");
+					System.out.println("NO SE PUEDE COLOR EN ESTA POSICION\n");
 			}
 			else
 			{
-				System.out.println("SELECCIONA UN BARCO");
+				System.out.println("SELECCIONA UN BARCO\n");
 			}
 		}
 		else
@@ -261,7 +277,23 @@ public class Controlador implements ActionListener
 		Tablero_IA.getTableroIA().getIfBarcoByPos(x,y,true);
 		if(jugando)
 		{
-
+			if(Jturno) {
+				getTablero(1).atacar(arma, x, y);
+				if(getTablero(1).getIfEndGame())
+				{
+					JFrame winMess=new JFrame();
+					JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
+					System.exit(0);
+				}
+				Jturno=false;
+			}
+			getTablero(0).atacar(0,getRandomInteger(9,0),getRandomInteger(9,0));
+			if(getTablero(0).getIfEndGame())
+			{
+				JFrame winMess=new JFrame();
+				JOptionPane.showMessageDialog(winMess, "LA IA GANA");
+			}
+			Jturno=true;
 		}
 	}
 
@@ -303,9 +335,11 @@ public class Controlador implements ActionListener
 		{
 			case "see_all" :
 			{
-				System.out.println("CheatCode: see_all");
+				System.out.println("CheatCode: "+cheatCode);
 				Tablero_IA.getTableroIA().mostrarTablero();
+				break;
 			}
 		}
+
 	}
 }
