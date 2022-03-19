@@ -1,4 +1,4 @@
-# IS-Proyecto - Hundir la flota <img src=/src/resource/icon128.png/>
+# IS-Proyecto - Hundir la flota <img src=/src/resource/icon32.png/>
 
 ### Programadores
 <ul>
