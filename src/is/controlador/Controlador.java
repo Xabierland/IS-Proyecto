@@ -90,10 +90,16 @@ public class Controlador implements ActionListener
 	}
 
 	/*
-	* Añade todos los barcos de la IA automaticamente
+	* Añade todos los barcos automaticamente
+	* 0 - Jugador; 1 - IA
 	 */
-	public void addBarcoIA()
+	public void addBarcoRandom(boolean ia)
 	{
+		int player=0;
+		if(ia)
+		{
+			player=1;
+		}
 		int pDir,pX,pY;
 		while(ItotalBarcos>0){
 			while (IPortavion>0)
@@ -101,8 +107,8 @@ public class Controlador implements ActionListener
 				pDir=getRandomInteger(3,0);
 				pX=getRandomInteger(10,0);
 				pY=getRandomInteger(10,0);
-				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,4,pX,pY)){
-					Tablero_IA.getTableroIA().addBarco(pDir, 4, pX, pY, true);
+				if(getTablero(player).sePuedeColocar(pDir,4,pX,pY)){
+					getTablero(player).addBarco(pDir, 4, pX, pY, ia);
 					IPortavion--;
 					ItotalBarcos--;
 				}
@@ -112,8 +118,8 @@ public class Controlador implements ActionListener
 				pDir=getRandomInteger(3,0);
 				pX=getRandomInteger(10,0);
 				pY=getRandomInteger(10,0);
-				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,3,pX,pY)){
-					Tablero_IA.getTableroIA().addBarco(pDir, 3, pX, pY, true);
+				if(getTablero(player).sePuedeColocar(pDir,3,pX,pY)){
+					getTablero(player).addBarco(pDir, 3, pX, pY, ia);
 					ISubmarino--;
 					ItotalBarcos--;
 				}
@@ -123,8 +129,8 @@ public class Controlador implements ActionListener
 				pDir=getRandomInteger(3,0);
 				pX=getRandomInteger(10,0);
 				pY=getRandomInteger(10,0);
-				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,2,pX,pY)){
-					Tablero_IA.getTableroIA().addBarco(pDir, 2, pX, pY, true);
+				if(getTablero(player).sePuedeColocar(pDir,2,pX,pY)){
+					getTablero(player).addBarco(pDir, 2, pX, pY, ia);
 					IDestructor--;
 					ItotalBarcos--;
 				}
@@ -134,11 +140,23 @@ public class Controlador implements ActionListener
 				pDir=getRandomInteger(3,0);
 				pX=getRandomInteger(10,0);
 				pY=getRandomInteger(10,0);
-				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,1,pX,pY)){
-					Tablero_IA.getTableroIA().addBarco(pDir, 1, pX, pY, true);
+				if(getTablero(player).sePuedeColocar(pDir,1,pX,pY)){
+					getTablero(player).addBarco(pDir, 1, pX, pY, ia);
 					IFragata--;
 					ItotalBarcos--;
 				}
+			}
+			if(!ia)
+			{
+				ItotalBarcos=10;
+				IFragata=4;
+				IDestructor=3;
+				ISubmarino=2;
+				IPortavion=1;
+
+				Vista.displayState.setText("Bombardea a tu enemigo");
+				jugando=true;
+				addBarcoRandom(true);
 			}
 		}
 	}
@@ -199,7 +217,7 @@ public class Controlador implements ActionListener
 		if(JtotalBarcos <=0) {
 			Vista.displayState.setText("Bombardea a tu enemigo");
 			jugando=true;
-			addBarcoIA();
+			addBarcoRandom(true);
 		}
 	}
 
@@ -379,7 +397,12 @@ public class Controlador implements ActionListener
 				Tablero_IA.getTableroIA().mostrarTablero();
 				break;
 			}
+			case "random" :
+			{
+				System.out.println("CheatCode: "+cheatCode);
+				addBarcoRandom(false);
+				break;
+			}
 		}
-
 	}
 }
