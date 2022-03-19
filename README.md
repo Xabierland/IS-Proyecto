@@ -12,8 +12,15 @@
 
 ### FAQ
 <ol>
- <li>¿Como juego al juego?</li>
+ <li>¿Como ejecuto el juego?</li>
+ <ul>
+  <li>Descarga el ultimo .jar de este <a href="https://github.com/Xabierland/IS-Proyecto/releases">link</a></li>
+ </ul>
+ <li>¿Cuales son los CheatCode?</li>
  <ol>
-  <li>Descarga el .jar del este <a href="https://github.com/Xabierland/IS-Proyecto/releases">link</a></li>
+  <li>see_all</li>
+  <ul>
+   <li>Muestra el tablero de la IA</li>
+  </ul>
  </ol>
 <ol>
