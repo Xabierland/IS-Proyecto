@@ -86,6 +86,7 @@ public class Controlador implements ActionListener
 	private void addBarcoJugador(int x, int y)
 	{
 		Tablero_Jugador.getTableroJugador().addBarco(pos_flecha, Jbarco, x, y,false);
+		
 	}
 
 	/*

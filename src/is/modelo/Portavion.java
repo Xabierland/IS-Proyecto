@@ -2,9 +2,12 @@ package is.modelo;
 
 public class Portavion extends Barco {
 
-    public Portavion() {
-        super(4,false,null);
-        //TODO Auto-generated constructor stub
+    public Portavion(int dir,int x, int y) {
+        super(dir,x,y);
+        super.longitud=4;
     }
-    
+    protected void getnombre() {
+        System.out.println("Portaavion");
+        
+    }
 }

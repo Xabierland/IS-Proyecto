@@ -7,6 +7,7 @@ public abstract class Tablero {
     protected boolean[][] tablero_barcos;
     protected JLabel[][] tablero_casilla;
     protected boolean[][] tablero_disparos;
+    protected Flota flota;
 
     public void addCasilla(JLabel casilla, int x, int y)
     {
@@ -19,6 +20,8 @@ public abstract class Tablero {
      */
     public void addBarco(int dir,int type, int x, int y,boolean ia)
     {
+        //ANNADIR BARCOS A LA FLOTA DEL JUGADOR
+        flota.annadirBarcos(dir, type, x, y);
         for(int i=0; i<type; i++)
         {
             switch (dir)
@@ -68,16 +71,28 @@ public abstract class Tablero {
                 if(getIfBarcoByPos(x,y,false))
                 {
                     tablero_casilla[x][y].setBackground(Color.red);
-                    tablero_disparos[x][y]=true;
+                    
                 }
                 else
                 {
                     tablero_casilla[x][y].setBackground(Color.white);
-                    tablero_disparos[x][y]=true;
                 }
+                tablero_disparos[x][y]=true;
+                break;
+            }
+            case 1://misil
+            if(getIfBarcoByPos(x,y,false))
+            {
+                for(Coordenadas c:flota.getBarcoporPos(x, y).calcularCoordenadas()){
+                tablero_casilla[c.getX()][c.getY()].setBackground(Color.red);
+                tablero_disparos[c.getX()][c.getY()]=true;
+                } 
+                
+                
             }
         }
-    }
+        }
+
 
     /*
     * Devuelve True si ha terminado y False si no ha terminado

@@ -178,7 +178,7 @@ public class Vista extends JFrame {
 	private JButton getMisil() {
 		if (Misil == null) {
 			Misil = new JButton("Misil");
-			Misil.setEnabled(false);
+			Misil.setEnabled(true);
 			Misil.addActionListener(Controlador.getControlador());
 		}
 		return Misil;

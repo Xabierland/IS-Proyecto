@@ -9,14 +9,14 @@ public class BarcosFactory {
         }
         return miBarcosFactory;
     }
-    public Barco hacerBarco(int pTipo){
+    public Barco hacerBarco(int dir,int type, int x, int y){
         Barco nBarco=null;
-        switch (pTipo)
+        switch (type)
         {
-            case 0: nBarco=new Fragata();break;
-            case 1: nBarco=new Destructor();break;
-            case 2: nBarco=new Submarino();break;
-            case 3: nBarco=new Portavion();break;
+            case 1: nBarco=new Fragata(dir,x,y);break;
+            case 2: nBarco=new Destructor(dir,x,y);break;
+            case 3: nBarco=new Submarino(dir,x,y);break;
+            case 4: nBarco=new Portavion(dir,x,y);break;
         }
         return nBarco;
     }
