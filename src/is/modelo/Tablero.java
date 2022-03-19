@@ -73,6 +73,7 @@ public abstract class Tablero {
                 else
                 {
                     tablero_casilla[x][y].setBackground(Color.white);
+                    tablero_disparos[x][y]=true;
                 }
             }
         }
@@ -319,6 +320,10 @@ public abstract class Tablero {
             {
                 atacable=true;
             }
+        }
+        else
+        {
+            System.out.println("NO SE PUEDE ATACAR");
         }
         return atacable;
     }

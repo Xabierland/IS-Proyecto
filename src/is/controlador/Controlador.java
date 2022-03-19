@@ -291,16 +291,22 @@ public class Controlador implements ActionListener
 				}
 			}
 			if(!Jturno) {
-				int pArma = 0;
-				int pX = getRandomInteger(9, 0);
-				int pY = getRandomInteger(9, 0);
-				if (getTablero(0).sePuedeAtacar(pArma, pX, pY)) {
-					getTablero(0).atacar(pArma, pX, pY);
-					if (getTablero(0).getIfEndGame()) {
-						JFrame winMess = new JFrame();
-						JOptionPane.showMessageDialog(winMess, "LA IA GANA");
+				boolean atacando=true;
+				while(atacando)
+				{
+					int pArma = 0;
+					int pX = getRandomInteger(9, 0);
+					int pY = getRandomInteger(9, 0);
+					if (getTablero(0).sePuedeAtacar(pArma, pX, pY)) {
+						getTablero(0).atacar(pArma, pX, pY);
+						atacando=false;
+						if (getTablero(0).getIfEndGame()) {
+							JFrame winMess = new JFrame();
+							JOptionPane.showMessageDialog(winMess, "LA IA GANA");
+							System.exit(0);
+						}
+						Jturno = true;
 					}
-					Jturno = true;
 				}
 			}
 		}
