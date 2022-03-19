@@ -277,23 +277,32 @@ public class Controlador implements ActionListener
 		Tablero_IA.getTableroIA().getIfBarcoByPos(x,y,true);
 		if(jugando)
 		{
-			if(Jturno) {
-				getTablero(1).atacar(arma, x, y);
-				if(getTablero(1).getIfEndGame())
-				{
-					JFrame winMess=new JFrame();
-					JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
-					System.exit(0);
-				}
-				Jturno=false;
-			}
-			getTablero(0).atacar(0,getRandomInteger(9,0),getRandomInteger(9,0));
-			if(getTablero(0).getIfEndGame())
+			if(Jturno)
 			{
-				JFrame winMess=new JFrame();
-				JOptionPane.showMessageDialog(winMess, "LA IA GANA");
+				if(getTablero(1).sePuedeAtacar(arma,x,y))
+				{
+					getTablero(1).atacar(arma, x, y);
+					if (getTablero(1).getIfEndGame()) {
+						JFrame winMess = new JFrame();
+						JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
+						System.exit(0);
+					}
+					Jturno = false;
+				}
 			}
-			Jturno=true;
+			if(!Jturno) {
+				int pArma = 0;
+				int pX = getRandomInteger(9, 0);
+				int pY = getRandomInteger(9, 0);
+				if (getTablero(0).sePuedeAtacar(pArma, pX, pY)) {
+					getTablero(0).atacar(pArma, pX, pY);
+					if (getTablero(0).getIfEndGame()) {
+						JFrame winMess = new JFrame();
+						JOptionPane.showMessageDialog(winMess, "LA IA GANA");
+					}
+					Jturno = true;
+				}
+			}
 		}
 	}
 

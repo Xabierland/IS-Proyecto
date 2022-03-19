@@ -67,13 +67,8 @@ public abstract class Tablero {
             {
                 if(getIfBarcoByPos(x,y,false))
                 {
-                    if(!tablero_disparos[x][y]) {
-                        tablero_casilla[x][y].setBackground(Color.red);
-                        tablero_disparos[x][y]=true;
-                    }
-                    else{
-                        System.out.println("Esta casilla ya ha sido disparada");
-                    }
+                    tablero_casilla[x][y].setBackground(Color.red);
+                    tablero_disparos[x][y]=true;
                 }
                 else
                 {
@@ -317,6 +312,14 @@ public abstract class Tablero {
      */
     public boolean sePuedeAtacar(int arma, int x, int y)
     {
-        return true;
+        boolean atacable=false;
+        if(!tablero_disparos[x][y])
+        {
+            if(arma!=3)
+            {
+                atacable=true;
+            }
+        }
+        return atacable;
     }
 }
