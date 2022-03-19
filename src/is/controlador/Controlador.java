@@ -45,6 +45,10 @@ public class Controlador implements ActionListener
 		return controler;
 	}
 
+	/*
+	* 0 - Tablero Jugador
+	* 1 - Tablero IA
+	 */
 	public Tablero getTablero(int pTablero)
 	{
 		Tablero t=null;
@@ -68,16 +72,25 @@ public class Controlador implements ActionListener
 		return t;
 	}
 
+	/*
+	* Añade la casilla al tablero correcto
+	 */
 	public void addCasilla(int pTablero, JLabel casilla, int x, int y)
 	{
 		getTablero(pTablero).addCasilla(casilla,x,y);
 	}
 
+	/*
+	* Añade los barcos de jugador en la posicion dada
+	 */
 	private void addBarcoJugador(int x, int y)
 	{
 		Tablero_Jugador.getTableroJugador().addBarco(pos_flecha, Jbarco, x, y,false);
 	}
 
+	/*
+	* Añade todos los barcos de la IA automaticamente
+	 */
 	public void addBarcoIA()
 	{
 		int pDir,pX,pY;
@@ -129,6 +142,9 @@ public class Controlador implements ActionListener
 		}
 	}
 
+	/*
+	* Va restando el numero de barcos hasta que queden 0 y empieze el juego
+	 */
 	private void restarBarcos(int pBarco)
 	{
 		switch (pBarco)
@@ -340,11 +356,18 @@ public class Controlador implements ActionListener
 		}
 	}
 
+	/*
+	* Da un numero aleatorio entre MAX y MIN
+	* Max no incluido!!!
+	 */
 	private static int getRandomInteger(int max, int min)
 	{
 		return ((int)(Math.random()*(max-min)))+min;
 	}
 
+	/*
+	* Lo uso para hacer pruebas ;)
+	 */
 	private void cheats(String cheatCode)
 	{
 		switch (cheatCode)
