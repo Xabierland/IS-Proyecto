@@ -8,7 +8,7 @@ public abstract class Barco {
     public Barco(int pdir,int px, int py){
         this.dir=pdir;
         this.hundido=false;
-        
+        this.coordenadas=new Coordenadas(px, py);
 
     }
     protected abstract void getnombre();
@@ -28,8 +28,10 @@ public abstract class Barco {
                     break;
                 case 2:
                     coor[i]=new Coordenadas(coordenadas.getX(),coordenadas.getY()+i);    
+                    break;
                 case 3:
                     coor[i]=new Coordenadas(coordenadas.getX()-i,coordenadas.getY());
+                    break;
                         
             }
         }

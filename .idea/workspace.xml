@@ -5,10 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Barco.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Barco.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/BarcosFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/BarcosFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Destructor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Destructor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Fragata.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Fragata.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Portavion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Portavion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Submarino.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Submarino.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero_IA.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero_IA.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero_Jugador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero_Jugador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/controlador/Controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Barco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Barco.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +33,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="UML Class" />
       </list>
     </option>
   </component>
@@ -38,13 +53,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultPlantUmlFileTemplate" value="UML Class" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/miglayout15-swing.jar" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="device.file.explorer" />
   </component>
   <component name="RunManager">
     <configuration name="Vista" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -74,8 +92,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1646846261884</updated>
+      <workItem from="1647730667287" duration="513000" />
+      <workItem from="1647731453763" duration="159000" />
+      <workItem from="1647731628072" duration="354000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -87,5 +111,10 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
