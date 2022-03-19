@@ -85,8 +85,8 @@ public class Controlador implements ActionListener
 			while (IPortavion>0)
 			{
 				pDir=getRandomInteger(3,0);
-				pX=getRandomInteger(9,0);
-				pY=getRandomInteger(9,0);
+				pX=getRandomInteger(10,0);
+				pY=getRandomInteger(10,0);
 				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,4,pX,pY)){
 					Tablero_IA.getTableroIA().addBarco(pDir, 4, pX, pY, true);
 					IPortavion--;
@@ -96,8 +96,8 @@ public class Controlador implements ActionListener
 			while (ISubmarino>0)
 			{
 				pDir=getRandomInteger(3,0);
-				pX=getRandomInteger(9,0);
-				pY=getRandomInteger(9,0);
+				pX=getRandomInteger(10,0);
+				pY=getRandomInteger(10,0);
 				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,3,pX,pY)){
 					Tablero_IA.getTableroIA().addBarco(pDir, 3, pX, pY, true);
 					ISubmarino--;
@@ -107,8 +107,8 @@ public class Controlador implements ActionListener
 			while (IDestructor>0)
 			{
 				pDir=getRandomInteger(3,0);
-				pX=getRandomInteger(9,0);
-				pY=getRandomInteger(9,0);
+				pX=getRandomInteger(10,0);
+				pY=getRandomInteger(10,0);
 				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,2,pX,pY)){
 					Tablero_IA.getTableroIA().addBarco(pDir, 2, pX, pY, true);
 					IDestructor--;
@@ -118,8 +118,8 @@ public class Controlador implements ActionListener
 			while (IFragata>0)
 			{
 				pDir=getRandomInteger(3,0);
-				pX=getRandomInteger(9,0);
-				pY=getRandomInteger(9,0);
+				pX=getRandomInteger(10,0);
+				pY=getRandomInteger(10,0);
 				if(Tablero_IA.getTableroIA().sePuedeColocar(pDir,1,pX,pY)){
 					Tablero_IA.getTableroIA().addBarco(pDir, 1, pX, pY, true);
 					IFragata--;
@@ -180,6 +180,7 @@ public class Controlador implements ActionListener
 		}
 		JtotalBarcos--;
 		if(JtotalBarcos <=0) {
+			Vista.displayState.setText("Bombardea a tu enemigo");
 			jugando=true;
 			addBarcoIA();
 		}
@@ -291,15 +292,15 @@ public class Controlador implements ActionListener
 				}
 			}
 			if(!Jturno) {
-				boolean atacando=true;
-				while(atacando)
+				boolean IAtacando=true;
+				while(IAtacando)
 				{
 					int pArma = 0;
-					int pX = getRandomInteger(9, 0);
-					int pY = getRandomInteger(9, 0);
+					int pX = getRandomInteger(10, 0);
+					int pY = getRandomInteger(10, 0);
 					if (getTablero(0).sePuedeAtacar(pArma, pX, pY)) {
 						getTablero(0).atacar(pArma, pX, pY);
-						atacando=false;
+						IAtacando=false;
 						if (getTablero(0).getIfEndGame()) {
 							JFrame winMess = new JFrame();
 							JOptionPane.showMessageDialog(winMess, "LA IA GANA");

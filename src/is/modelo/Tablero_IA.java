@@ -31,7 +31,14 @@ public class Tablero_IA extends Tablero
             {
                 if(getIfBarcoByPos(i,j,false))
                 {
-                    tablero_casilla[i][j].setBackground(Color.black);
+                	if(tablero_disparos[i][j])
+                	{
+                		tablero_casilla[i][j].setBackground(Color.red);
+                	}
+                	else
+                	{
+                    	tablero_casilla[i][j].setBackground(Color.black);
+                	}
                 }
                 else
                 {

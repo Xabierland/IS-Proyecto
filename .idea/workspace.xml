@@ -7,6 +7,7 @@
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Menu.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/controlador/Controlador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Tablero.java" afterDir="false" />

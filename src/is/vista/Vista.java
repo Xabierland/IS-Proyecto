@@ -28,6 +28,7 @@ import java.awt.Dimension;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
+import javax.swing.UIManager;
 
 public class Vista extends JFrame {
 
@@ -56,9 +57,15 @@ public class Vista extends JFrame {
 	private JPanel panel;
 	private JLabel lblDinero;
 	private JButton btnNewButton;
-	private Component horizontalStrut_1;
 	private Component verticalStrut;
 	private ButtonGroup grupo_barcos = new ButtonGroup();
+	private JPanel panel_1;
+	private JLabel lblNewLabel;
+	private Component horizontalStrut_1;
+	public static JLabel displayState;
+	private JPanel panel_2;
+	private JPanel panel_3;
+	private Component horizontalStrut_2;
 
 	/**
 	 * Launch the application.
@@ -247,9 +254,8 @@ public class Vista extends JFrame {
 		if (relleno_arriba == null) {
 			relleno_arriba = new JPanel();
 			relleno_arriba.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			relleno_arriba.add(getLblPlayer());
-			relleno_arriba.add(getRigidArea());
-			relleno_arriba.add(getLblIa());
+			relleno_arriba.add(getPanel_1());
+			relleno_arriba.add(getLblNewLabel());
 		}
 		return relleno_arriba;
 	}
@@ -273,7 +279,7 @@ public class Vista extends JFrame {
 	}
 	private Component getRigidArea() {
 		if (rigidArea == null) {
-			rigidArea = Box.createRigidArea(new Dimension(350, 30));
+			rigidArea = Box.createRigidArea(new Dimension(500, 30));
 		}
 		return rigidArea;
 	}
@@ -323,6 +329,8 @@ public class Vista extends JFrame {
 	private JTextField getTextField() {
 		if (textField == null) {
 			textField = new JTextField();
+			textField.setForeground(UIManager.getColor("Button.background"));
+			textField.setBackground(UIManager.getColor("Button.background"));
 			textField.setColumns(10);
 			textField.addActionListener(Controlador.getControlador());
 		}
@@ -331,15 +339,15 @@ public class Vista extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.add(getLblDinero());
-			panel.add(getHorizontalStrut_1());
-			panel.add(getBtnNewButton());
+			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+			panel.add(getPanel_2());
+			panel.add(getPanel_3());
 		}
 		return panel;
 	}
 	private JLabel getLblDinero() {
 		if (lblDinero == null) {
-			lblDinero = new JLabel("Dinero: 0000");
+			lblDinero = new JLabel("Dinero:");
 		}
 		return lblDinero;
 	}
@@ -349,16 +357,61 @@ public class Vista extends JFrame {
 		}
 		return btnNewButton;
 	}
-	private Component getHorizontalStrut_1() {
-		if (horizontalStrut_1 == null) {
-			horizontalStrut_1 = Box.createHorizontalStrut(500);
-		}
-		return horizontalStrut_1;
-	}
 	private Component getVerticalStrut() {
 		if (verticalStrut == null) {
 			verticalStrut = Box.createVerticalStrut(90);
 		}
 		return verticalStrut;
+	}
+	private JPanel getPanel_1() {
+		if (panel_1 == null) {
+			panel_1 = new JPanel();
+			panel_1.add(getLblPlayer());
+			panel_1.add(getRigidArea());
+			panel_1.add(getLblIa());
+		}
+		return panel_1;
+	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("");
+		}
+		return lblNewLabel;
+	}
+	private Component getHorizontalStrut_1_1() {
+		if (horizontalStrut_1 == null) {
+			horizontalStrut_1 = Box.createHorizontalStrut(20);
+		}
+		return horizontalStrut_1;
+	}
+	private JLabel getDisplayState() {
+		if (displayState == null) {
+			displayState = new JLabel("Coloca tu flota");
+			displayState.setForeground(Color.RED);
+		}
+		return displayState;
+	}
+	private JPanel getPanel_2() {
+		if (panel_2 == null) {
+			panel_2 = new JPanel();
+			panel_2.add(getLblDinero());
+			panel_2.add(getHorizontalStrut_1_1());
+			panel_2.add(getBtnNewButton());
+		}
+		return panel_2;
+	}
+	private JPanel getPanel_3() {
+		if (panel_3 == null) {
+			panel_3 = new JPanel();
+			panel_3.add(getDisplayState());
+			panel_3.add(getHorizontalStrut_2());
+		}
+		return panel_3;
+	}
+	private Component getHorizontalStrut_2() {
+		if (horizontalStrut_2 == null) {
+			horizontalStrut_2 = Box.createHorizontalStrut(80);
+		}
+		return horizontalStrut_2;
 	}
 }
