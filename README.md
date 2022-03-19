@@ -9,5 +9,3 @@
  <li>Diego Garcia</li>
  <li>Xabier Gabiña</li>
 </ul>
-
-### FAQ
