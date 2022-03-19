@@ -1,8 +1,6 @@
 package is.modelo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 
 public class Flota {
     private ArrayList<Barco> flota;
@@ -21,12 +19,12 @@ public class Flota {
 
     //todo optimizar
     public Barco getBarcoporPos(int x, int y){
-        Coordenadas c= new Coordenadas(x, y);
+        Coordena c= new Coordena(x, y);
       
         
         Barco nBarco=null;
         for (Barco barco : flota) {
-            for (Coordenadas i: barco.calcularCoordenadas()) {
+            for (Coordena i: barco.calcularCoordenadas()) {
                 if(i.mismaCoordenada(c)){
                     nBarco=barco;
                 }

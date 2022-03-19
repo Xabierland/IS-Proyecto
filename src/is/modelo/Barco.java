@@ -4,33 +4,33 @@ public abstract class Barco {
     protected int dir;
     protected int longitud;
     protected boolean hundido;
-    protected Coordenadas coordenadas;
+    protected Coordena coordena;
     public Barco(int pdir,int px, int py){
         this.dir=pdir;
         this.hundido=false;
-        this.coordenadas=new Coordenadas(px, py);
+        this.coordena =new Coordena(px, py);
 
     }
     protected abstract void getnombre();
-    protected Coordenadas getCoordenadas(){
-        return this.coordenadas;
+    protected Coordena getCoordenadas(){
+        return this.coordena;
     }
     
-    protected Coordenadas[] calcularCoordenadas(){
-        Coordenadas[] coor=new Coordenadas[longitud];
+    protected Coordena[] calcularCoordenadas(){
+        Coordena[] coor=new Coordena[longitud];
         for (int i=0; i<longitud;i++){
             switch(dir){
                 case 0:
-                    coor[i]=new Coordenadas(coordenadas.getX(),coordenadas.getY()-i);
+                    coor[i]=new Coordena(coordena.getX(), coordena.getY()-i);
                     break;
                 case 1:
-                    coor[i]=new Coordenadas(coordenadas.getX()+i,coordenadas.getY());    
+                    coor[i]=new Coordena(coordena.getX()+i, coordena.getY());
                     break;
                 case 2:
-                    coor[i]=new Coordenadas(coordenadas.getX(),coordenadas.getY()+i);
+                    coor[i]=new Coordena(coordena.getX(), coordena.getY()+i);
                     break;    
                 case 3:
-                    coor[i]=new Coordenadas(coordenadas.getX()-i,coordenadas.getY());
+                    coor[i]=new Coordena(coordena.getX()-i, coordena.getY());
                     break;
                         
             }

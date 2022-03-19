@@ -83,12 +83,10 @@ public abstract class Tablero {
             case 1://misil
             if(getIfBarcoByPos(x,y,false))
             {
-                for(Coordenadas c:flota.getBarcoporPos(x, y).calcularCoordenadas()){
+                for(Coordena c:flota.getBarcoporPos(x, y).calcularCoordenadas()){
                 tablero_casilla[c.getX()][c.getY()].setBackground(Color.red);
                 tablero_disparos[c.getX()][c.getY()]=true;
-                } 
-                
-                
+                }
             }
         }
         }
