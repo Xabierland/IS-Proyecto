@@ -88,6 +88,11 @@ public abstract class Tablero {
                 tablero_disparos[c.getX()][c.getY()]=true;
                 }
             }
+            else
+            {
+                tablero_casilla[x][y].setBackground(Color.white);
+                tablero_disparos[x][y]=true;
+            }
         }
         }
 
