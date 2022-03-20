@@ -81,20 +81,28 @@ public abstract class Tablero {
                 break;
             }
             case 1://misil
-            if(getIfBarcoByPos(x,y,false))
             {
-                for(Coordenada c:flota.getBarcoporPos(x, y).calcularCoordenadas()){
-                tablero_casilla[c.getX()][c.getY()].setBackground(Color.red);
-                tablero_disparos[c.getX()][c.getY()]=true;
+                if (getIfBarcoByPos(x, y, false))
+                {
+                    for (Coordenada c : flota.getBarcoporPos(x, y).calcularCoordenadas())
+                    {
+                        tablero_casilla[c.getX()][c.getY()].setBackground(Color.red);
+                        tablero_disparos[c.getX()][c.getY()] = true;
+                    }
                 }
+                else
+                {
+                    tablero_casilla[x][y].setBackground(Color.white);
+                    tablero_disparos[x][y] = true;
+                }
+                break;
             }
-            else
+            case 2://radar
             {
-                tablero_casilla[x][y].setBackground(Color.white);
-                tablero_disparos[x][y]=true;
+                break;
             }
         }
-        }
+    }
 
 
     /*
@@ -337,6 +345,10 @@ public abstract class Tablero {
             if(arma!=3)
             {
                 atacable=true;
+            }
+            else
+            {
+                System.out.println("NO SE PUEDE PONER ESCUDO AL ENEMIGO");
             }
         }
         else

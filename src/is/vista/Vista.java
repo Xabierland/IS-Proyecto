@@ -194,7 +194,7 @@ public class Vista extends JFrame {
 	private JButton getEscudo() {
 		if (Escudo == null) {
 			Escudo = new JButton("Escudo");
-			Escudo.setEnabled(false);
+			Escudo.setEnabled(true);
 			Escudo.addActionListener(Controlador.getControlador());
 		}
 		return Escudo;
