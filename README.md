@@ -2,11 +2,11 @@
 
 ### Programadores
 <ul>
- <li>Francisco Gonzalez</li>
+ <li>Francisco González</li>
  <li>Estefania Oñate</li>
  <li>Javier Criado</li>
  <li>Asier Samurott</li>
- <li>Diego Garcia</li>
+ <li>Diego García</li>
  <li>Xabier Gabiña</li>
 </ul>
 
