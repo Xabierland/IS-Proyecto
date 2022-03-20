@@ -1,9 +1,9 @@
 package is.modelo;
 
-public class Coordena {
+public class Coordenada {
     private int x;
     private int y;
-    public Coordena(int pX, int pY){
+    public Coordenada(int pX, int pY){
         x=pX;
         y=pY;
 
@@ -24,7 +24,7 @@ public class Coordena {
     public void setY(int y) {
         this.y = y;
     }
-    public boolean mismaCoordenada(Coordena pC){
+    public boolean mismaCoordenada(Coordenada pC){
         return (pC.getX()==this.x&&pC.getY()==this.y);
 
     }

@@ -19,12 +19,12 @@ public class Flota {
 
     //todo optimizar
     public Barco getBarcoporPos(int x, int y){
-        Coordena c= new Coordena(x, y);
+        Coordenada c= new Coordenada(x, y);
       
         
         Barco nBarco=null;
         for (Barco barco : flota) {
-            for (Coordena i: barco.calcularCoordenadas()) {
+            for (Coordenada i: barco.calcularCoordenadas()) {
                 if(i.mismaCoordenada(c)){
                     nBarco=barco;
                 }
