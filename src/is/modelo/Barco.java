@@ -5,13 +5,13 @@ public abstract class Barco {
     protected int longitud;
     protected boolean hundido;
     protected Coordenada coordena;
+    protected String name;
     public Barco(int pdir,int px, int py){
         this.dir=pdir;
         this.hundido=false;
         this.coordena =new Coordenada(px, py);
-
     }
-    protected abstract void getnombre();
+
     protected Coordenada getCoordenadas(){
         return this.coordena;
     }

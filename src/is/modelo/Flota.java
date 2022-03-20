@@ -11,17 +11,12 @@ public class Flota {
     public void annadirBarcos(int dir,int type, int x, int y){
         Barco nBarco=BarcosFactory.getBarcosFactory().hacerBarco(dir, type, x, y);
         this.flota.add(nBarco);
-        System.out.println("se ha añadido a la flota un");
-        nBarco.getnombre();
-
-
+        System.out.printf("Se ha añadido a la flota un %s\n",nBarco.name);
         }
 
     //todo optimizar
     public Barco getBarcoporPos(int x, int y){
         Coordenada c= new Coordenada(x, y);
-      
-        
         Barco nBarco=null;
         for (Barco barco : flota) {
             for (Coordenada i: barco.calcularCoordenadas()) {
