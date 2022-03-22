@@ -63,115 +63,128 @@ public abstract class Tablero {
     /*
     * Segun el tipo de arma seleccionada hace un ataque diferente
      */
-    public void atacar(int arma, int x, int y)
+    public void atacar(int arma, int x, int y,boolean ia)
     {
-        switch (arma)
-        {
-            case 0: //bomba
-            {
-                if(getIfBarcoByPos(x,y,false))
+        if(!tablero_escudo[x][y]) {
+            switch (arma) {
+                case 0: //bomba
                 {
-                    tablero_casilla[x][y].setBackground(Color.red);
-                    
-                }
-                else
-                {
-                    tablero_casilla[x][y].setBackground(Color.white);
-                }
-                tablero_disparos[x][y]=true;
-                break;
-            }
-            case 1://misil
-            {
-                if (getIfBarcoByPos(x, y, false))
-                {
-                    for (Coordenada c : flota.getBarcoporPos(x, y).calcularCoordenadas())
-                    {
-                        tablero_casilla[c.getX()][c.getY()].setBackground(Color.red);
-                        tablero_disparos[c.getX()][c.getY()] = true;
-                    }
-                }
-                else
-                {
-                    tablero_casilla[x][y].setBackground(Color.white);
-                    tablero_disparos[x][y] = true;
-                }
-                break;
-            }
-            case 2://radar
-            {
-                try {
                     if (getIfBarcoByPos(x, y, false)) {
-                        tablero_casilla[x][y].setBackground(Color.green);
+                        tablero_casilla[x][y].setBackground(Color.red);
+
                     } else {
                         tablero_casilla[x][y].setBackground(Color.white);
                     }
-                }catch (Exception ignore){}
-                try {
-                    if (getIfBarcoByPos(x + 1, y , false)) {
-                        tablero_casilla[x + 1][y].setBackground(Color.green);
-                    } else {
-                        tablero_casilla[x + 1][y].setBackground(Color.white);
-                    }
-                }catch (Exception ignore){}
-                try {
-                    if (getIfBarcoByPos(x, y + 1, false)) {
-                        tablero_casilla[x][y + 1].setBackground(Color.green);
-                    } else {
-                        tablero_casilla[x][y + 1].setBackground(Color.white);
-                    }
-                }catch (Exception ignore){}
-                try {
-                    if (getIfBarcoByPos(x - 1, y, false)) {
-                        tablero_casilla[x - 1][y].setBackground(Color.green);
-                    } else {
-                        tablero_casilla[x - 1][y].setBackground(Color.white);
-                    }
-                }catch (Exception ignore){}
-                try {
-                    if (getIfBarcoByPos(x, y - 1, false)) {
-                        tablero_casilla[x][y - 1].setBackground(Color.green);
-                    } else {
-                        tablero_casilla[x][y - 1].setBackground(Color.white);
-                    }
-                }catch (Exception ignore){}
-                try {
-                    if (getIfBarcoByPos(x + 1, y + 1, false)) {
-                        tablero_casilla[x + 1][y + 1].setBackground(Color.green);
-                    } else {
-                        tablero_casilla[x + 1][y + 1].setBackground(Color.white);
-                    }
-                }catch (Exception ignore){}
-                try {
-                    if (getIfBarcoByPos(x - 1, y - 1, false)) {
-                        tablero_casilla[x - 1][y - 1].setBackground(Color.green);
-                    } else {
-                        tablero_casilla[x - 1][y - 1].setBackground(Color.white);
-                    }
-                }catch (Exception ignore){}
-                try {
-                    if (getIfBarcoByPos(x + 1, y - 1, false)) {
-                        tablero_casilla[x + 1][y - 1].setBackground(Color.green);
-                    } else {
-                        tablero_casilla[x + 1][y - 1].setBackground(Color.white);
-                    }
-                }catch (Exception ignore){}
-                try {
-                    if (getIfBarcoByPos(x - 1, y + 1, false)) {
-                        tablero_casilla[x - 1][y + 1].setBackground(Color.green);
-                    } else {
-                        tablero_casilla[x - 1][y + 1].setBackground(Color.white);
-                    }
-                }catch (Exception ignore){}
-                break;
-            }
-            case 3://Escudo
-            {
-                for (Coordenada c : flota.getBarcoporPos(x,y).calcularCoordenadas())
-                {
-                    tablero_casilla[c.getX()][c.getY()].setBackground(Color.darkGray);
-                    tablero_escudo[c.getX()][c.getY()]=true;
+                    tablero_disparos[x][y] = true;
+                    break;
                 }
+                case 1://misil
+                {
+                    if (getIfBarcoByPos(x, y, false)) {
+                        for (Coordenada c : flota.getBarcoporPos(x, y).calcularCoordenadas()) {
+                            tablero_casilla[c.getX()][c.getY()].setBackground(Color.red);
+                            tablero_disparos[c.getX()][c.getY()] = true;
+                        }
+                    } else {
+                        tablero_casilla[x][y].setBackground(Color.white);
+                        tablero_disparos[x][y] = true;
+                    }
+                    break;
+                }
+                case 2://radar
+                {
+                    try {
+                        if (getIfBarcoByPos(x, y, false)) {
+                            tablero_casilla[x][y].setBackground(Color.green);
+                        } else {
+                            tablero_casilla[x][y].setBackground(Color.white);
+                        }
+                    } catch (Exception ignore) {
+                    }
+                    try {
+                        if (getIfBarcoByPos(x + 1, y, false)) {
+                            tablero_casilla[x + 1][y].setBackground(Color.green);
+                        } else {
+                            tablero_casilla[x + 1][y].setBackground(Color.white);
+                        }
+                    } catch (Exception ignore) {
+                    }
+                    try {
+                        if (getIfBarcoByPos(x, y + 1, false)) {
+                            tablero_casilla[x][y + 1].setBackground(Color.green);
+                        } else {
+                            tablero_casilla[x][y + 1].setBackground(Color.white);
+                        }
+                    } catch (Exception ignore) {
+                    }
+                    try {
+                        if (getIfBarcoByPos(x - 1, y, false)) {
+                            tablero_casilla[x - 1][y].setBackground(Color.green);
+                        } else {
+                            tablero_casilla[x - 1][y].setBackground(Color.white);
+                        }
+                    } catch (Exception ignore) {
+                    }
+                    try {
+                        if (getIfBarcoByPos(x, y - 1, false)) {
+                            tablero_casilla[x][y - 1].setBackground(Color.green);
+                        } else {
+                            tablero_casilla[x][y - 1].setBackground(Color.white);
+                        }
+                    } catch (Exception ignore) {
+                    }
+                    try {
+                        if (getIfBarcoByPos(x + 1, y + 1, false)) {
+                            tablero_casilla[x + 1][y + 1].setBackground(Color.green);
+                        } else {
+                            tablero_casilla[x + 1][y + 1].setBackground(Color.white);
+                        }
+                    } catch (Exception ignore) {
+                    }
+                    try {
+                        if (getIfBarcoByPos(x - 1, y - 1, false)) {
+                            tablero_casilla[x - 1][y - 1].setBackground(Color.green);
+                        } else {
+                            tablero_casilla[x - 1][y - 1].setBackground(Color.white);
+                        }
+                    } catch (Exception ignore) {
+                    }
+                    try {
+                        if (getIfBarcoByPos(x + 1, y - 1, false)) {
+                            tablero_casilla[x + 1][y - 1].setBackground(Color.green);
+                        } else {
+                            tablero_casilla[x + 1][y - 1].setBackground(Color.white);
+                        }
+                    } catch (Exception ignore) {
+                    }
+                    try {
+                        if (getIfBarcoByPos(x - 1, y + 1, false)) {
+                            tablero_casilla[x - 1][y + 1].setBackground(Color.green);
+                        } else {
+                            tablero_casilla[x - 1][y + 1].setBackground(Color.white);
+                        }
+                    } catch (Exception ignore) {
+                    }
+                    break;
+                }
+                case 3://Escudo
+                {
+                    for (Coordenada c : flota.getBarcoporPos(x, y).calcularCoordenadas()) {
+                        if(!ia)
+                            tablero_casilla[c.getX()][c.getY()].setBackground(Color.darkGray);
+                        tablero_escudo[c.getX()][c.getY()] = true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            System.out.println("ESCUDO DESACTIVADO");
+            for (Coordenada c: flota.getBarcoporPos(x,y).calcularCoordenadas())
+            {
+                if(ia)
+                    tablero_casilla[c.getX()][c.getY()].setBackground(Color.black);
+                tablero_escudo[c.getX()][c.getY()] = false;
             }
         }
     }
