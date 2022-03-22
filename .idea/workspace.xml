@@ -6,14 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Tienda.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Tienda.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Vista.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/resource/tienda.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/resource/tienda.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/controlador/Controlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/vista/Vista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Vista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/vista/Tienda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Tienda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/vista/Vista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resource/tienda.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resource/tienda.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +57,8 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager">
-    <configuration name="Vista" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="is.vista.Vista" />
+    <configuration name="Juego" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="is.vista.Juego" />
       <module name="IS-Proyecto" />
       <extension name="coverage">
         <pattern>
@@ -67,7 +72,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Vista" />
+        <item itemvalue="Application.Juego" />
       </list>
     </recent_temporary>
   </component>

@@ -39,6 +39,7 @@ public class Tienda extends JFrame {
 	 */
 	private Tienda() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Tienda.class.getResource("/resource/tienda.png")));
+		setTitle("Tienda");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 457, 311);
 		contentPane = new JPanel();

@@ -30,15 +30,15 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.UIManager;
 
-public class Vista extends JFrame {
+public class Juego extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel tableros;
 	private JPanel arma_panel;
-	private static JButton Bomba;
-	private static JButton Misil;
-	private static JButton Radar;
-	private static JButton Escudo;
+	private static JButton btn_bomba;
+	private static JButton btn_misil;
+	private static JButton btn_radar;
+	private static JButton btn_escudo;
 	private JPanel tablero_jugador;
 	private JPanel tablero_ia;
 	private JPanel barco_panel;
@@ -49,16 +49,16 @@ public class Vista extends JFrame {
 	private JLabel lblIa;
 	private Component rigidArea;
 	private static JLabel flecha;
-	private static JRadioButton boton_portaaviones;
-	private static JRadioButton boton_submarino;
-	private static JRadioButton boton_destructor;
-	private static JRadioButton boton_fragata;
-	private static JTextField textField;
+	private static JRadioButton btn_portavion;
+	private static JRadioButton btn_submarino;
+	private static JRadioButton btn_destructor;
+	private static JRadioButton btn_fragata;
+	private static JTextField cheatConsole;
 	private JPanel panel;
 	private static JLabel lblDinero;
-	private static JButton btnTienda;
+	private static JButton btn_tienda;
 	private Component verticalStrut;
-	private ButtonGroup grupo_barcos = new ButtonGroup();
+	private ButtonGroup grupo_btn_barcos = new ButtonGroup();
 	private JPanel panel_1;
 	private JLabel lblNewLabel;
 	private Component horizontalStrut_1;
@@ -74,7 +74,7 @@ public class Vista extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vista frame = new Vista();
+					Juego frame = new Juego();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -86,9 +86,9 @@ public class Vista extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Vista() {
+	public Juego() {
 		setAlwaysOnTop(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Vista.class.getResource("/resource/icon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Juego.class.getResource("/resource/icon.png")));
 		setTitle("Hundir la flota");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -101,10 +101,10 @@ public class Vista extends JFrame {
 		contentPane.add(getBarco_panel(), BorderLayout.EAST);
 		contentPane.add(getRelleno_abajo(), BorderLayout.SOUTH);
 		contentPane.add(getRelleno_arriba(), BorderLayout.NORTH);
-		grupo_barcos.add(boton_destructor);
-		grupo_barcos.add(boton_fragata);
-		grupo_barcos.add(boton_portaaviones);
-		grupo_barcos.add(boton_submarino);
+		grupo_btn_barcos.add(btn_destructor);
+		grupo_btn_barcos.add(btn_fragata);
+		grupo_btn_barcos.add(btn_portavion);
+		grupo_btn_barcos.add(btn_submarino);
 		Controlador.getControlador().actualizarDinero();
 	}
 	
@@ -162,43 +162,43 @@ public class Vista extends JFrame {
 			arma_panel = new JPanel();
 			arma_panel.setLayout(new MigLayout("", "[130px]", "[][84px][84px][84px][84px]"));
 			arma_panel.add(getVerticalStrut(), "cell 0 0");
-			arma_panel.add(getBomba(), "cell 0 1,growx,aligny center");
-			arma_panel.add(getMisil(), "cell 0 2,growx,aligny center");
-			arma_panel.add(getRadar(), "cell 0 3,growx,aligny center");
-			arma_panel.add(getEscudo(), "cell 0 4,growx,aligny center");
+			arma_panel.add(getBtn_bomba(), "cell 0 1,growx,aligny center");
+			arma_panel.add(getBtn_misil(), "cell 0 2,growx,aligny center");
+			arma_panel.add(getBtn_radar(), "cell 0 3,growx,aligny center");
+			arma_panel.add(getBtn_escudo(), "cell 0 4,growx,aligny center");
 		}
 		return arma_panel;
 	}
-	public static JButton getBomba() {
-		if (Bomba == null) {
-			Bomba = new JButton("Bomba");
-			Bomba.addActionListener(Controlador.getControlador());
+	public static JButton getBtn_bomba() {
+		if (btn_bomba == null) {
+			btn_bomba = new JButton("Bomba");
+			btn_bomba.addActionListener(Controlador.getControlador());
 		}
-		return Bomba;
+		return btn_bomba;
 	}
-	public JButton getMisil() {
-		if (Misil == null) {
-			Misil = new JButton("Misil");
-			Misil.setEnabled(false);
-			Misil.addActionListener(Controlador.getControlador());
+	public static JButton getBtn_misil() {
+		if (btn_misil == null) {
+			btn_misil = new JButton("Misil");
+			btn_misil.setEnabled(false);
+			btn_misil.addActionListener(Controlador.getControlador());
 		}
-		return Misil;
+		return btn_misil;
 	}
-	public JButton getRadar() {
-		if (Radar == null) {
-			Radar = new JButton("Radar");
-			Radar.setEnabled(false);
-			Radar.addActionListener(Controlador.getControlador());
+	public static JButton getBtn_radar() {
+		if (btn_radar == null) {
+			btn_radar = new JButton("Radar");
+			btn_radar.setEnabled(false);
+			btn_radar.addActionListener(Controlador.getControlador());
 		}
-		return Radar;
+		return btn_radar;
 	}
-	public JButton getEscudo() {
-		if (Escudo == null) {
-			Escudo = new JButton("Escudo");
-			Escudo.setEnabled(false);
-			Escudo.addActionListener(Controlador.getControlador());
+	public static JButton getBtn_escudo() {
+		if (btn_escudo == null) {
+			btn_escudo = new JButton("Escudo");
+			btn_escudo.setEnabled(false);
+			btn_escudo.addActionListener(Controlador.getControlador());
 		}
-		return Escudo;
+		return btn_escudo;
 	}
 	private JPanel getTablero_jugador() {
 		if (tablero_jugador == null) {
@@ -235,10 +235,10 @@ public class Vista extends JFrame {
 			barco_panel = new JPanel();
 			barco_panel.setLayout(new MigLayout("", "[130px]", "[84px][84px][84px][84px][84px]"));
 			barco_panel.add(getFlecha(), "cell 0 0,alignx center,growy");
-			barco_panel.add(getBoton_portaaviones(), "cell 0 1,grow");
-			barco_panel.add(getBoton_submarino(), "cell 0 2,grow");
-			barco_panel.add(getBoton_destructor(), "cell 0 3,grow");
-			barco_panel.add(getBoton_fragata(), "cell 0 4,grow");
+			barco_panel.add(getBtn_portavion(), "cell 0 1,grow");
+			barco_panel.add(getBtn_submarino(), "cell 0 2,grow");
+			barco_panel.add(getBtn_destructor(), "cell 0 3,grow");
+			barco_panel.add(getBtn_fragata(), "cell 0 4,grow");
 		}
 		return barco_panel;
 	}
@@ -247,7 +247,7 @@ public class Vista extends JFrame {
 			relleno_abajo = new JPanel();
 			relleno_abajo.setLayout(new GridLayout(0, 1, 0, 0));
 			relleno_abajo.add(getPanel());
-			relleno_abajo.add(getTextField());
+			relleno_abajo.add(getCheatConsole());
 		}
 		return relleno_abajo;
 	}
@@ -284,10 +284,10 @@ public class Vista extends JFrame {
 		}
 		return rigidArea;
 	}
-	private JLabel getFlecha() {
+	public static JLabel getFlecha() {
 		if (flecha == null) {
 			flecha = new JLabel("");
-			flecha.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_arr.png")));
+			flecha.setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_arr.png")));
 			flecha.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent arg0) 
@@ -299,43 +299,43 @@ public class Vista extends JFrame {
 		}
 		return flecha;
 	}
-	private JRadioButton getBoton_portaaviones() {
-		if (boton_portaaviones == null) {
-			boton_portaaviones = new JRadioButton("Portaaviones");
-			boton_portaaviones.addActionListener(Controlador.getControlador());
+	public static JRadioButton getBtn_portavion() {
+		if (btn_portavion == null) {
+			btn_portavion = new JRadioButton("Portaaviones");
+			btn_portavion.addActionListener(Controlador.getControlador());
 		}
-		return boton_portaaviones;
+		return btn_portavion;
 	}
-	private JRadioButton getBoton_submarino() {
-		if (boton_submarino == null) {
-			boton_submarino = new JRadioButton("Submarino");
-			boton_submarino.addActionListener(Controlador.getControlador());
+	public static JRadioButton getBtn_submarino() {
+		if (btn_submarino == null) {
+			btn_submarino = new JRadioButton("Submarino");
+			btn_submarino.addActionListener(Controlador.getControlador());
 		}
-		return boton_submarino;
+		return btn_submarino;
 	}
-	private JRadioButton getBoton_destructor() {
-		if (boton_destructor == null) {
-			boton_destructor = new JRadioButton("Destructor");
-			boton_destructor.addActionListener(Controlador.getControlador());
+	public static JRadioButton getBtn_destructor() {
+		if (btn_destructor == null) {
+			btn_destructor = new JRadioButton("Destructor");
+			btn_destructor.addActionListener(Controlador.getControlador());
 		}
-		return boton_destructor;
+		return btn_destructor;
 	}
-	private JRadioButton getBoton_fragata() {
-		if (boton_fragata == null) {
-			boton_fragata = new JRadioButton("Fragata");
-			boton_fragata.addActionListener(Controlador.getControlador());
+	public static JRadioButton getBtn_fragata() {
+		if (btn_fragata == null) {
+			btn_fragata = new JRadioButton("Fragata");
+			btn_fragata.addActionListener(Controlador.getControlador());
 		}
-		return boton_fragata;
+		return btn_fragata;
 	}
-	private JTextField getTextField() {
-		if (textField == null) {
-			textField = new JTextField();
-			textField.setForeground(UIManager.getColor("Button.background"));
-			textField.setBackground(UIManager.getColor("Button.background"));
-			textField.setColumns(10);
-			textField.addActionListener(Controlador.getControlador());
+	public static JTextField getCheatConsole() {
+		if (cheatConsole == null) {
+			cheatConsole = new JTextField();
+			cheatConsole.setForeground(UIManager.getColor("Button.background"));
+			cheatConsole.setBackground(UIManager.getColor("Button.background"));
+			cheatConsole.setColumns(10);
+			cheatConsole.addActionListener(Controlador.getControlador());
 		}
-		return textField;
+		return cheatConsole;
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -346,18 +346,18 @@ public class Vista extends JFrame {
 		}
 		return panel;
 	}
-	private JLabel getLblDinero() {
+	public static JLabel getLblDinero() {
 		if (lblDinero == null) {
 			lblDinero = new JLabel("GOLD:");
 		}
 		return lblDinero;
 	}
-	private JButton getBtnTienda() {
-		if (btnTienda == null) {
-			btnTienda = new JButton("Tienda");
-			btnTienda.addActionListener(Controlador.getControlador());
+	public static JButton getBtn_tienda() {
+		if (btn_tienda == null) {
+			btn_tienda = new JButton("Tienda");
+			btn_tienda.addActionListener(Controlador.getControlador());
 		}
-		return btnTienda;
+		return btn_tienda;
 	}
 	private Component getVerticalStrut() {
 		if (verticalStrut == null) {
@@ -386,7 +386,7 @@ public class Vista extends JFrame {
 		}
 		return horizontalStrut_1;
 	}
-	private JLabel getDisplayState() {
+	public static JLabel getDisplayState() {
 		if (displayState == null) {
 			displayState = new JLabel("Coloca tu flota");
 			displayState.setForeground(Color.RED);
@@ -398,7 +398,7 @@ public class Vista extends JFrame {
 			panel_2 = new JPanel();
 			panel_2.add(getLblDinero());
 			panel_2.add(getHorizontalStrut_1_1());
-			panel_2.add(getBtnTienda());
+			panel_2.add(getBtn_tienda());
 		}
 		return panel_2;
 	}

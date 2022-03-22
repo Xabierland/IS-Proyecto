@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import is.vista.Tienda;
-import is.vista.Vista;
+import is.vista.Juego;
 
 public class Controlador implements ActionListener
 {
@@ -61,53 +61,53 @@ public class Controlador implements ActionListener
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource().equals(Vista.getBomba()))
+		if(e.getSource().equals(Juego.getBtn_bomba()))
 		{
 			System.out.println("BOMBA SELECCIONADA\n");
 			arma=0;
 		}
-		if(e.getSource().equals(Vista.Misil))
+		if(e.getSource().equals(Juego.getBtn_misil()))
 		{
 			System.out.println("MISIL SELECCIONADA\n");
 			arma=1;
 		}
-		if(e.getSource().equals(Vista.Radar))
+		if(e.getSource().equals(Juego.getBtn_radar()))
 		{
 			System.out.println("RADAR SELECCIONADA\n");
 			arma=2;
 		}
-		if(e.getSource().equals(Vista.Escudo))
+		if(e.getSource().equals(Juego.getBtn_escudo()))
 		{
 			System.out.println("ESCUDO SELECCIONADA\n");
 			arma=3;
 		}
-		if(e.getSource().equals(Vista.boton_fragata))
+		if(e.getSource().equals(Juego.getBtn_fragata()))
 		{
 			System.out.println("FRAGATA SELECCIONADO\n");
 			Jbarco =1;
 		}
-		if(e.getSource().equals(Vista.boton_destructor))
+		if(e.getSource().equals(Juego.getBtn_destructor()))
 		{
 			System.out.println("DESTRUCTOR SELECCIONADO\n");
 			Jbarco =2;
 		}
-		if(e.getSource().equals(Vista.boton_portaaviones))
+		if(e.getSource().equals(Juego.getBtn_portavion()))
 		{
 			System.out.println("PORTAAVIONES SELECCIONADO\n");
 			Jbarco =4;
 		}
-		if(e.getSource().equals(Vista.boton_submarino))
+		if(e.getSource().equals(Juego.getBtn_submarino()))
 		{
 			System.out.println("SUBMARINO SELECCIONADO\n");
 			Jbarco =3;
 		}
-		if(e.getSource().equals(Vista.textField))
+		if(e.getSource().equals(Juego.getCheatConsole()))
 		{
-			String cad=Vista.textField.getText();
-			Vista.textField.setText(null);
+			String cad= Juego.getCheatConsole().getText();
+			Juego.getCheatConsole().setText(null);
 			cheats(cad);
 		}
-		if(e.getSource().equals(Vista.btnTienda))
+		if(e.getSource().equals(Juego.getBtn_tienda()))
 		{
 			Tienda tienda = Tienda.getTienda();
 			tienda.setVisible(true);
@@ -240,7 +240,7 @@ public class Controlador implements ActionListener
 				ISubmarino=2;
 				IPortavion=1;
 
-				Vista.displayState.setText("Bombardea a tu enemigo");
+				Juego.getDisplayState().setText("Bombardea a tu enemigo");
 				jugando=true;
 				addBarcoRandom(true);
 			}
@@ -259,7 +259,7 @@ public class Controlador implements ActionListener
 				JFragata--;
 				if(JFragata <=0)
 				{
-					Vista.boton_fragata.setEnabled(false);
+					Juego.getBtn_fragata().setEnabled(false);
 					Jbarco =0;
 				}
 				System.out.println("Fragata restante: "+ JFragata+"\n");
@@ -270,7 +270,7 @@ public class Controlador implements ActionListener
 				JDestructor--;
 				if(JDestructor <=0)
 				{
-					Vista.boton_destructor.setEnabled(false);
+					Juego.getBtn_destructor().setEnabled(false);
 					Jbarco =0;
 				}
 				System.out.println("Destructor restante: "+ JDestructor+"\n");
@@ -281,7 +281,7 @@ public class Controlador implements ActionListener
 				JSubmarino--;
 				if(JSubmarino <=0)
 				{
-					Vista.boton_submarino.setEnabled(false);
+					Juego.getBtn_submarino().setEnabled(false);
 					Jbarco =0;
 				}
 				System.out.println("Submarino restante: "+ JSubmarino+"\n");
@@ -292,7 +292,7 @@ public class Controlador implements ActionListener
 				JPortavion--;
 				if(JPortavion <=0)
 				{
-					Vista.boton_portaaviones.setEnabled(false);
+					Juego.getBtn_portavion().setEnabled(false);
 					Jbarco =0;
 				}
 				System.out.println("Portavion restante: "+ JPortavion+"\n");
@@ -301,7 +301,7 @@ public class Controlador implements ActionListener
 		}
 		JtotalBarcos--;
 		if(JtotalBarcos <=0) {
-			Vista.displayState.setText("Bombardea a tu enemigo");
+			Juego.getDisplayState().setText("Bombardea a tu enemigo");
 			jugando=true;
 			addBarcoRandom(true);
 		}
@@ -399,21 +399,21 @@ public class Controlador implements ActionListener
 		switch(pos_flecha)
 		{
 			case 0 : {
-				Vista.flecha.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_arr.png")));System.out.println("ARRIBA "+ pos_flecha);break;}
+				Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_arr.png")));System.out.println("ARRIBA "+ pos_flecha);break;}
 			case 1 : {
-				Vista.flecha.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_der.png")));System.out.println("DERECHA "+ pos_flecha);break;}
+				Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_der.png")));System.out.println("DERECHA "+ pos_flecha);break;}
 			case 2 : {
-				Vista.flecha.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_abj.png")));System.out.println("ABAJO "+ pos_flecha);break;}
+				Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_abj.png")));System.out.println("ABAJO "+ pos_flecha);break;}
 			case 3 : {
-				Vista.flecha.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_izq.png")));System.out.println("IZQUIERDA "+ pos_flecha);break;}
+				Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_izq.png")));System.out.println("IZQUIERDA "+ pos_flecha);break;}
 			default : {
-				Vista.flecha.setIcon(new ImageIcon(Vista.class.getResource("/resource/flecha_arr.png")));System.out.println("DEFAULT");break;}
+				Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_arr.png")));System.out.println("DEFAULT");break;}
 		}
 	}
 
 	public void actualizarDinero()
 	{
-		Vista.lblDinero.setText("GOLD: "+JDinero);
+		Juego.getLblDinero().setText("GOLD: "+JDinero);
 	}
 
 	public void actualizarArmas(int arma)
@@ -431,29 +431,29 @@ public class Controlador implements ActionListener
 	{
 		if(JMisil==0)
 		{
-			Vista.Misil.setEnabled(false);
+			Juego.getBtn_misil().setEnabled(false);
 			arma=0;
 		}
 		else
 		{
-			Vista.Misil.setEnabled(true);
+			Juego.getBtn_misil().setEnabled(true);
 		}
 		if(JRadar==0)
 		{
-			Vista.Radar.setEnabled(false);
+			Juego.getBtn_radar().setEnabled(false);
 			arma=0;
 		}
 		else {
-			Vista.Radar.setEnabled(true);
+			Juego.getBtn_radar().setEnabled(true);
 		}
 		if(JEscudo==0)
 		{
-			Vista.Escudo.setEnabled(false);
+			Juego.getBtn_escudo().setEnabled(false);
 			arma=0;
 		}
 		else
 		{
-			Vista.Escudo.setEnabled(true);
+			Juego.getBtn_escudo().setEnabled(true);
 		}
 	}
 
@@ -488,9 +488,9 @@ public class Controlador implements ActionListener
 			case "iddqd" : //ARMAS INFINITAS
 			{
 				System.out.println("CheatCode: "+cheatCode);
-				Vista.Misil.setEnabled(true);
-				Vista.Radar.setEnabled(true);
-				Vista.Escudo.setEnabled(true);
+				Juego.getBtn_misil().setEnabled(true);
+				Juego.getBtn_radar().setEnabled(true);
+				Juego.getBtn_escudo().setEnabled(true);
 				JMisil=-1;
 				JRadar=-1;
 				JEscudo=-1;
