@@ -99,6 +99,69 @@ public abstract class Tablero {
             }
             case 2://radar
             {
+                try {
+                    if (getIfBarcoByPos(x, y, false)) {
+                        tablero_casilla[x][y].setBackground(Color.green);
+                    } else {
+                        tablero_casilla[x][y].setBackground(Color.white);
+                    }
+                }catch (Exception ignore){}
+                try {
+                    if (getIfBarcoByPos(x + 1, y , false)) {
+                        tablero_casilla[x + 1][y].setBackground(Color.green);
+                    } else {
+                        tablero_casilla[x + 1][y].setBackground(Color.white);
+                    }
+                }catch (Exception ignore){}
+                try {
+                    if (getIfBarcoByPos(x, y + 1, false)) {
+                        tablero_casilla[x][y + 1].setBackground(Color.green);
+                    } else {
+                        tablero_casilla[x][y + 1].setBackground(Color.white);
+                    }
+                }catch (Exception ignore){}
+                try {
+                    if (getIfBarcoByPos(x - 1, y, false)) {
+                        tablero_casilla[x - 1][y].setBackground(Color.green);
+                    } else {
+                        tablero_casilla[x - 1][y].setBackground(Color.white);
+                    }
+                }catch (Exception ignore){}
+                try {
+                    if (getIfBarcoByPos(x, y - 1, false)) {
+                        tablero_casilla[x][y - 1].setBackground(Color.green);
+                    } else {
+                        tablero_casilla[x][y - 1].setBackground(Color.white);
+                    }
+                }catch (Exception ignore){}
+                try {
+                    if (getIfBarcoByPos(x + 1, y + 1, false)) {
+                        tablero_casilla[x + 1][y + 1].setBackground(Color.green);
+                    } else {
+                        tablero_casilla[x + 1][y + 1].setBackground(Color.white);
+                    }
+                }catch (Exception ignore){}
+                try {
+                    if (getIfBarcoByPos(x - 1, y - 1, false)) {
+                        tablero_casilla[x - 1][y - 1].setBackground(Color.green);
+                    } else {
+                        tablero_casilla[x - 1][y - 1].setBackground(Color.white);
+                    }
+                }catch (Exception ignore){}
+                try {
+                    if (getIfBarcoByPos(x + 1, y - 1, false)) {
+                        tablero_casilla[x + 1][y - 1].setBackground(Color.green);
+                    } else {
+                        tablero_casilla[x + 1][y - 1].setBackground(Color.white);
+                    }
+                }catch (Exception ignore){}
+                try {
+                    if (getIfBarcoByPos(x - 1, y + 1, false)) {
+                        tablero_casilla[x - 1][y + 1].setBackground(Color.green);
+                    } else {
+                        tablero_casilla[x - 1][y + 1].setBackground(Color.white);
+                    }
+                }catch (Exception ignore){}
                 break;
             }
         }

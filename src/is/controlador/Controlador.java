@@ -112,7 +112,7 @@ public class Controlador implements ActionListener
 			Tienda tienda = Tienda.getTienda();
 			tienda.setVisible(true);
 		}
-		if(e.getSource().equals(Tienda.comprarMisil))
+		if(e.getSource().equals(Tienda.getBtn_misil()))
 		{
 			if(JDinero >= 500)
 			{
@@ -120,12 +120,46 @@ public class Controlador implements ActionListener
 				actualizarDinero();
 				JMisil++;
 				actualizarArmasEstado();
-				Tienda.buy_msg.setText("Has comprado un misil");
+				Tienda.getLbl_compra().setText("Has comprado un misil");
 				System.out.println("Has comprado un misil");
 			}
 			else
 			{
-				Tienda.buy_msg.setText("No hay dinero suficiente");
+				Tienda.getLbl_compra().setText("No hay dinero suficiente");
+				System.out.println("No hay dinero suficiente");
+			}
+		}
+		if(e.getSource().equals(Tienda.getBtn_radar()))
+		{
+			if(JDinero >= 1000)
+			{
+				JDinero=JDinero-1000;
+				actualizarDinero();
+				JRadar++;
+				actualizarArmasEstado();
+				Tienda.getLbl_compra().setText("Has comprado un radar");
+				System.out.println("Has comprado un radar");
+			}
+			else
+			{
+				Tienda.getLbl_compra().setText("No hay dinero suficiente");
+				System.out.println("No hay dinero suficiente");
+			}
+		}
+		if(e.getSource().equals(Tienda.getBtn_escudo()))
+		{
+			if(JDinero >= 1000)
+			{
+				JDinero=JDinero-1000;
+				actualizarDinero();
+				JEscudo++;
+				actualizarArmasEstado();
+				Tienda.getLbl_compra().setText("Has comprado un escudo");
+				System.out.println("Has comprado un escudo");
+			}
+			else
+			{
+				Tienda.getLbl_compra().setText("No hay dinero suficiente");
 				System.out.println("No hay dinero suficiente");
 			}
 		}
@@ -248,68 +282,6 @@ public class Controlador implements ActionListener
 	}
 
 	/*
-	* Va restando el numero de barcos hasta que queden 0 y empieze el juego
-	 */
-	private void restarBarcos(int pBarco)
-	{
-		switch (pBarco)
-		{
-			case 1 :
-			{
-				JFragata--;
-				if(JFragata <=0)
-				{
-					Juego.getBtn_fragata().setEnabled(false);
-					Jbarco =0;
-				}
-				System.out.println("Fragata restante: "+ JFragata+"\n");
-				break;
-			}
-			case 2 :
-			{
-				JDestructor--;
-				if(JDestructor <=0)
-				{
-					Juego.getBtn_destructor().setEnabled(false);
-					Jbarco =0;
-				}
-				System.out.println("Destructor restante: "+ JDestructor+"\n");
-				break;
-			}
-			case 3 :
-			{
-				JSubmarino--;
-				if(JSubmarino <=0)
-				{
-					Juego.getBtn_submarino().setEnabled(false);
-					Jbarco =0;
-				}
-				System.out.println("Submarino restante: "+ JSubmarino+"\n");
-				break;
-			}
-			case 4 :
-			{
-				JPortavion--;
-				if(JPortavion <=0)
-				{
-					Juego.getBtn_portavion().setEnabled(false);
-					Jbarco =0;
-				}
-				System.out.println("Portavion restante: "+ JPortavion+"\n");
-				break;
-			}
-		}
-		JtotalBarcos--;
-		if(JtotalBarcos <=0) {
-			Juego.getDisplayState().setText("Bombardea a tu enemigo");
-			jugando=true;
-			addBarcoRandom(true);
-		}
-	}
-
-
-
-	/*
 	* Se activa al hacer click en una casilla del tablero del Jugador
 	 */
 	public void casillaJugadorClick(int x, int y)
@@ -322,7 +294,7 @@ public class Controlador implements ActionListener
 			{
 				if(Tablero_Jugador.getTableroJugador().sePuedeColocar(pos_flecha, Jbarco,x,y)){
 					addBarcoJugador(x,y);
-					restarBarcos(Jbarco);
+					actualizarBarco(Jbarco);
 				}
 				else
 					System.out.println("NO SE PUEDE COLOR EN ESTA POSICION\n");
@@ -411,12 +383,74 @@ public class Controlador implements ActionListener
 		}
 	}
 
+
+
 	public void actualizarDinero()
 	{
 		Juego.getLblDinero().setText("GOLD: "+JDinero);
 	}
 
-	public void actualizarArmas(int arma)
+	/*
+	 * Va restando el numero de barcos hasta que queden 0 y empieze el juego
+	 */
+	private void actualizarBarco(int pBarco)
+	{
+		switch (pBarco)
+		{
+			case 1 :
+			{
+				JFragata--;
+				if(JFragata <=0)
+				{
+					Juego.getBtn_fragata().setEnabled(false);
+					Jbarco =0;
+				}
+				System.out.println("Fragata restante: "+ JFragata+"\n");
+				break;
+			}
+			case 2 :
+			{
+				JDestructor--;
+				if(JDestructor <=0)
+				{
+					Juego.getBtn_destructor().setEnabled(false);
+					Jbarco =0;
+				}
+				System.out.println("Destructor restante: "+ JDestructor+"\n");
+				break;
+			}
+			case 3 :
+			{
+				JSubmarino--;
+				if(JSubmarino <=0)
+				{
+					Juego.getBtn_submarino().setEnabled(false);
+					Jbarco =0;
+				}
+				System.out.println("Submarino restante: "+ JSubmarino+"\n");
+				break;
+			}
+			case 4 :
+			{
+				JPortavion--;
+				if(JPortavion <=0)
+				{
+					Juego.getBtn_portavion().setEnabled(false);
+					Jbarco =0;
+				}
+				System.out.println("Portavion restante: "+ JPortavion+"\n");
+				break;
+			}
+		}
+		JtotalBarcos--;
+		if(JtotalBarcos <=0) {
+			Juego.getDisplayState().setText("Bombardea a tu enemigo");
+			jugando=true;
+			addBarcoRandom(true);
+		}
+	}
+
+	private void actualizarArmas(int arma)
 	{
 		switch (arma)
 		{
@@ -427,7 +461,7 @@ public class Controlador implements ActionListener
 		actualizarArmasEstado();
 	}
 
-	public void actualizarArmasEstado()
+	private void actualizarArmasEstado()
 	{
 		if(JMisil==0)
 		{
@@ -491,9 +525,9 @@ public class Controlador implements ActionListener
 				Juego.getBtn_misil().setEnabled(true);
 				Juego.getBtn_radar().setEnabled(true);
 				Juego.getBtn_escudo().setEnabled(true);
-				JMisil=-1;
-				JRadar=-1;
-				JEscudo=-1;
+				JMisil=-999;
+				JRadar=-999;
+				JEscudo=-999;
 				break;
 			}
 			case "motherlode" : //50.000 DE ORO

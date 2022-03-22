@@ -2,37 +2,34 @@ package is.vista;
 
 import is.controlador.Controlador;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
+import javax.swing.BoxLayout;
+import java.awt.BorderLayout;
 
 public class Tienda extends JFrame {
 
 	private static Tienda miTienda=null;
 
 	private JPanel contentPane;
-	private JLabel botonBuyMisil;
-	private JLabel botonBuyRadar;
-	private JLabel lblNewEscudo;
-	public static JButton comprarMisil;
-	public static JButton comprarRadar;
-	public static JButton comprarEscudo;
+	private JLabel lbl_misil;
+	private JLabel lbl_radar;
+	private JLabel lbl_escudo;
+	private static JButton btn_misil;
+	private static JButton btn_radar;
+	private static JButton btn_escudo;
 	private JLabel fotoMisil;
 	private JLabel fotoRadar;
 	private JLabel fotoEscudo;
-	public static JLabel buy_msg;
-	private JPanel EMPTY1;
-	private JPanel EMPTY2;
+	private static JLabel lbl_compra;
+	private JPanel panel;
 
 	/**
 	 * Create the frame.
@@ -45,19 +42,9 @@ public class Tienda extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(4, 3, 0, 0));
-		contentPane.add(getBotonBuyMisil());
-		contentPane.add(getFotoMisil());
-		contentPane.add(getComprarMisil());
-		contentPane.add(getBotonBuyRadar());
-		contentPane.add(getFotoRadar());
-		contentPane.add(getComprarRadar());
-		contentPane.add(getLblNewEscudo());
-		contentPane.add(getFotoEscudo());
-		contentPane.add(getComprarEscudo());
-		contentPane.add(getEMPTY1());
-		contentPane.add(getBuy_msg());
-		contentPane.add(getEMPTY2());
+		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.add(getPanel(), BorderLayout.CENTER);
+		contentPane.add(getLbl_compra(), BorderLayout.SOUTH);
 	}
 
 	public static Tienda getTienda()
@@ -69,44 +56,44 @@ public class Tienda extends JFrame {
 		return miTienda;
 	}
 
-	private JLabel getBotonBuyMisil() {
-		if (botonBuyMisil == null) {
-			botonBuyMisil = new JLabel("\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Misil");
+	private JLabel getLbl_misil() {
+		if (lbl_misil == null) {
+			lbl_misil = new JLabel("\u00A0\u00A0\u00A0Misil");
 		}
-		return botonBuyMisil;
+		return lbl_misil;
 	}
-	private JLabel getBotonBuyRadar() {
-		if (botonBuyRadar == null) {
-			botonBuyRadar = new JLabel("\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Radar");
+	private JLabel getLbl_radar() {
+		if (lbl_radar == null) {
+			lbl_radar = new JLabel("\u00A0\u00A0\u00A0Radar");
 		}
-		return botonBuyRadar;
+		return lbl_radar;
 	}
-	private JLabel getLblNewEscudo() {
-		if (lblNewEscudo == null) {
-			lblNewEscudo = new JLabel("\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Escudo");
+	private JLabel getLbl_escudo() {
+		if (lbl_escudo == null) {
+			lbl_escudo = new JLabel("\u00A0\u00A0\u00A0Escudo");
 		}
-		return lblNewEscudo;
+		return lbl_escudo;
 	}
-	private JButton getComprarMisil() {
-		if (comprarMisil == null) {
-			comprarMisil = new JButton("500g");
-			comprarMisil.addActionListener(Controlador.getControlador());
+	public static JButton getBtn_misil() {
+		if (btn_misil == null) {
+			btn_misil = new JButton("500g");
+			btn_misil.addActionListener(Controlador.getControlador());
 		}
-		return comprarMisil;
+		return btn_misil;
 	}
-	private JButton getComprarRadar() {
-		if (comprarRadar == null) {
-			comprarRadar = new JButton("1000g");
-			comprarRadar.addActionListener(Controlador.getControlador());
+	public static JButton getBtn_radar() {
+		if (btn_radar == null) {
+			btn_radar = new JButton("1000g");
+			btn_radar.addActionListener(Controlador.getControlador());
 		}
-		return comprarRadar;
+		return btn_radar;
 	}
-	private JButton getComprarEscudo() {
-		if (comprarEscudo == null) {
-			comprarEscudo = new JButton("1000g");
-			comprarEscudo.addActionListener(Controlador.getControlador());
+	public static JButton getBtn_escudo() {
+		if (btn_escudo == null) {
+			btn_escudo = new JButton("1000g");
+			btn_escudo.addActionListener(Controlador.getControlador());
 		}
-		return comprarEscudo;
+		return btn_escudo;
 	}
 	private JLabel getFotoMisil() {
 		if (fotoMisil == null) {
@@ -129,22 +116,26 @@ public class Tienda extends JFrame {
 		}
 		return fotoEscudo;
 	}
-	private JLabel getBuy_msg() {
-		if (buy_msg == null) {
-			buy_msg = new JLabel("");
+	public static JLabel getLbl_compra() {
+		if (lbl_compra == null) {
+			lbl_compra = new JLabel("Bienvenido a la tienda", SwingConstants.CENTER);
 		}
-		return buy_msg;
+		return lbl_compra;
 	}
-	private JPanel getEMPTY1() {
-		if (EMPTY1 == null) {
-			EMPTY1 = new JPanel();
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setLayout(new GridLayout(3, 3, 0, 0));
+			panel.add(getLbl_misil());
+			panel.add(getFotoMisil());
+			panel.add(getBtn_misil());
+			panel.add(getLbl_radar());
+			panel.add(getFotoRadar());
+			panel.add(getBtn_radar());
+			panel.add(getLbl_escudo());
+			panel.add(getFotoEscudo());
+			panel.add(getBtn_escudo());
 		}
-		return EMPTY1;
-	}
-	private JPanel getEMPTY2() {
-		if (EMPTY2 == null) {
-			EMPTY2 = new JPanel();
-		}
-		return EMPTY2;
+		return panel;
 	}
 }
