@@ -35,10 +35,10 @@ public class Vista extends JFrame {
 	private JPanel contentPane;
 	private JPanel tableros;
 	private JPanel arma_panel;
-	public static JButton Bomba;
-	public static JButton Misil;
-	public static JButton Radar;
-	public static JButton Escudo;
+	private static JButton Bomba;
+	private static JButton Misil;
+	private static JButton Radar;
+	private static JButton Escudo;
 	private JPanel tablero_jugador;
 	private JPanel tablero_ia;
 	private JPanel barco_panel;
@@ -48,21 +48,21 @@ public class Vista extends JFrame {
 	private JLabel lblPlayer;
 	private JLabel lblIa;
 	private Component rigidArea;
-	public static JLabel flecha;
-	public static JRadioButton boton_portaaviones;
-	public static JRadioButton boton_submarino;
-	public static JRadioButton boton_destructor;
-	public static JRadioButton boton_fragata;
-	public static JTextField textField;
+	private static JLabel flecha;
+	private static JRadioButton boton_portaaviones;
+	private static JRadioButton boton_submarino;
+	private static JRadioButton boton_destructor;
+	private static JRadioButton boton_fragata;
+	private static JTextField textField;
 	private JPanel panel;
-	private JLabel lblDinero;
-	private JButton btnNewButton;
+	private static JLabel lblDinero;
+	private static JButton btnTienda;
 	private Component verticalStrut;
 	private ButtonGroup grupo_barcos = new ButtonGroup();
 	private JPanel panel_1;
 	private JLabel lblNewLabel;
 	private Component horizontalStrut_1;
-	public static JLabel displayState;
+	private static JLabel displayState;
 	private JPanel panel_2;
 	private JPanel panel_3;
 	private Component horizontalStrut_2;
@@ -105,6 +105,7 @@ public class Vista extends JFrame {
 		grupo_barcos.add(boton_fragata);
 		grupo_barcos.add(boton_portaaviones);
 		grupo_barcos.add(boton_submarino);
+		Controlador.getControlador().actualizarDinero();
 	}
 	
 	
@@ -121,7 +122,7 @@ public class Vista extends JFrame {
 			@Override
 			public void mouseReleased(MouseEvent arg0)
 			{
-				Controlador.getControlador().casillaJugadorClick(casillaJugador,pos_x,pos_y);
+				Controlador.getControlador().casillaJugadorClick(pos_x,pos_y);
 			}
 		});
 		return casillaJugador;
@@ -140,7 +141,7 @@ public class Vista extends JFrame {
 			@Override
 			public void mouseReleased(MouseEvent arg0)
 			{
-				Controlador.getControlador().casillaIAClick(casillaIA,pos_x,pos_y);
+				Controlador.getControlador().casillaIAClick(pos_x,pos_y);
 			}
 		});
 		return casillaIA;
@@ -168,22 +169,22 @@ public class Vista extends JFrame {
 		}
 		return arma_panel;
 	}
-	public JButton getBomba() {
+	public static JButton getBomba() {
 		if (Bomba == null) {
 			Bomba = new JButton("Bomba");
 			Bomba.addActionListener(Controlador.getControlador());
 		}
 		return Bomba;
 	}
-	private JButton getMisil() {
+	public JButton getMisil() {
 		if (Misil == null) {
 			Misil = new JButton("Misil");
-			Misil.setEnabled(true);
+			Misil.setEnabled(false);
 			Misil.addActionListener(Controlador.getControlador());
 		}
 		return Misil;
 	}
-	private JButton getRadar() {
+	public JButton getRadar() {
 		if (Radar == null) {
 			Radar = new JButton("Radar");
 			Radar.setEnabled(false);
@@ -191,10 +192,10 @@ public class Vista extends JFrame {
 		}
 		return Radar;
 	}
-	private JButton getEscudo() {
+	public JButton getEscudo() {
 		if (Escudo == null) {
 			Escudo = new JButton("Escudo");
-			Escudo.setEnabled(true);
+			Escudo.setEnabled(false);
 			Escudo.addActionListener(Controlador.getControlador());
 		}
 		return Escudo;
@@ -347,15 +348,16 @@ public class Vista extends JFrame {
 	}
 	private JLabel getLblDinero() {
 		if (lblDinero == null) {
-			lblDinero = new JLabel("Dinero:");
+			lblDinero = new JLabel("GOLD:");
 		}
 		return lblDinero;
 	}
-	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("Tienda");
+	private JButton getBtnTienda() {
+		if (btnTienda == null) {
+			btnTienda = new JButton("Tienda");
+			btnTienda.addActionListener(Controlador.getControlador());
 		}
-		return btnNewButton;
+		return btnTienda;
 	}
 	private Component getVerticalStrut() {
 		if (verticalStrut == null) {
@@ -396,7 +398,7 @@ public class Vista extends JFrame {
 			panel_2 = new JPanel();
 			panel_2.add(getLblDinero());
 			panel_2.add(getHorizontalStrut_1_1());
-			panel_2.add(getBtnNewButton());
+			panel_2.add(getBtnTienda());
 		}
 		return panel_2;
 	}

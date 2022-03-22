@@ -3,33 +3,44 @@ import is.modelo.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
+import is.vista.Tienda;
 import is.vista.Vista;
 
 public class Controlador implements ActionListener
 {
 	private static Controlador controler =null;
+
+	//Variables Globales
 	private int pos_flecha=0;
 	private boolean jugando;
-
 	private int arma=0;
 	private int Jbarco=0;
 	private boolean Jturno=true;//True - Jugador|False - IA
 
+	//Variables Jugador
+	//Barcos
 	private int JtotalBarcos=10;
 	private int JFragata=4;
 	private int JDestructor=3;
 	private int JSubmarino=2;
 	private int JPortavion=1;
+	//Armas
+	private int JDinero=3000;
+	private int JMisil=0;
+	private int JRadar=0;
+	private int JEscudo=0;
 
+	//Variables IA
 	private int ItotalBarcos=10;
 	private int IFragata=4;
 	private int IDestructor=3;
 	private int ISubmarino=2;
 	private int IPortavion=1;
+	//Armas
+	private int IDinero=3000;
 
 	private Controlador()
 	{
@@ -43,6 +54,81 @@ public class Controlador implements ActionListener
 			controler = new Controlador();
 		}
 		return controler;
+	}
+
+	/*
+	 * Se activa al pulsar un boton en la vista
+	 */
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource().equals(Vista.getBomba()))
+		{
+			System.out.println("BOMBA SELECCIONADA\n");
+			arma=0;
+		}
+		if(e.getSource().equals(Vista.Misil))
+		{
+			System.out.println("MISIL SELECCIONADA\n");
+			arma=1;
+		}
+		if(e.getSource().equals(Vista.Radar))
+		{
+			System.out.println("RADAR SELECCIONADA\n");
+			arma=2;
+		}
+		if(e.getSource().equals(Vista.Escudo))
+		{
+			System.out.println("ESCUDO SELECCIONADA\n");
+			arma=3;
+		}
+		if(e.getSource().equals(Vista.boton_fragata))
+		{
+			System.out.println("FRAGATA SELECCIONADO\n");
+			Jbarco =1;
+		}
+		if(e.getSource().equals(Vista.boton_destructor))
+		{
+			System.out.println("DESTRUCTOR SELECCIONADO\n");
+			Jbarco =2;
+		}
+		if(e.getSource().equals(Vista.boton_portaaviones))
+		{
+			System.out.println("PORTAAVIONES SELECCIONADO\n");
+			Jbarco =4;
+		}
+		if(e.getSource().equals(Vista.boton_submarino))
+		{
+			System.out.println("SUBMARINO SELECCIONADO\n");
+			Jbarco =3;
+		}
+		if(e.getSource().equals(Vista.textField))
+		{
+			String cad=Vista.textField.getText();
+			Vista.textField.setText(null);
+			cheats(cad);
+		}
+		if(e.getSource().equals(Vista.btnTienda))
+		{
+			Tienda tienda = Tienda.getTienda();
+			tienda.setVisible(true);
+		}
+		if(e.getSource().equals(Tienda.comprarMisil))
+		{
+			if(JDinero >= 500)
+			{
+				JDinero=JDinero-500;
+				actualizarDinero();
+				JMisil++;
+				actualizarArmasEstado();
+				Tienda.buy_msg.setText("Has comprado un misil");
+				System.out.println("Has comprado un misil");
+			}
+			else
+			{
+				Tienda.buy_msg.setText("No hay dinero suficiente");
+				System.out.println("No hay dinero suficiente");
+			}
+		}
 	}
 
 	/*
@@ -221,69 +307,18 @@ public class Controlador implements ActionListener
 		}
 	}
 
-	/*
-	* Se activa al pulsar un boton en la vista
-	 */
-	public void actionPerformed(ActionEvent e)
-	{
-		if(e.getSource().equals(Vista.Bomba))
-		{
-			System.out.println("BOMBA SELECCIONADA\n");
-			arma=0;
-		}
-		if(e.getSource().equals(Vista.Misil))
-		{
-			System.out.println("MISIL SELECCIONADA\n");
-			arma=1;
-		}
-		if(e.getSource().equals(Vista.Radar))
-		{
-			System.out.println("RADAR SELECCIONADA\n");
-			arma=2;
-		}
-		if(e.getSource().equals(Vista.Escudo))
-		{
-			System.out.println("ESCUDO SELECCIONADA\n");
-			arma=3;
-		}
-		if(e.getSource().equals(Vista.boton_fragata))
-		{
-			System.out.println("FRAGATA SELECCIONADO\n");
-			Jbarco =1;
-		}
-		if(e.getSource().equals(Vista.boton_destructor))
-		{
-			System.out.println("DESTRUCTOR SELECCIONADO\n");
-			Jbarco =2;
-		}
-		if(e.getSource().equals(Vista.boton_portaaviones))
-		{
-			System.out.println("PORTAAVIONES SELECCIONADO\n");
-			Jbarco =4;
-		}
-		if(e.getSource().equals(Vista.boton_submarino))
-		{
-			System.out.println("SUBMARINO SELECCIONADO\n");
-			Jbarco =3;
-		}
-		if(e.getSource().equals(Vista.textField))
-		{
-			String cad=Vista.textField.getText();
-			Vista.textField.setText(null);
-			cheats(cad);
-		}
-	}
+
 
 	/*
 	* Se activa al hacer click en una casilla del tablero del Jugador
 	 */
-	public void casillaJugadorClick(JLabel casilla, int x, int y)
+	public void casillaJugadorClick(int x, int y)
 	{
 		System.out.printf("PLAYER|x:%d|y:%d\n",x,y);
 		Tablero_Jugador.getTableroJugador().getIfBarcoByPos(x,y,true);
 		if(!jugando) //COLOCANDO BARCOS
 		{
-			if(Jbarco !=0)
+			if(Jbarco!=0)
 			{
 				if(Tablero_Jugador.getTableroJugador().sePuedeColocar(pos_flecha, Jbarco,x,y)){
 					addBarcoJugador(x,y);
@@ -307,7 +342,7 @@ public class Controlador implements ActionListener
 	* SOLO SI YA HA EMPEZADO EL JUEGO
 	* Se activa al hacer click en una casilla del tablero de la IA
 	 */
-	public void casillaIAClick(JLabel casilla, int x, int y)
+	public void casillaIAClick(int x, int y)
 	{
 		System.out.printf("\nIA    |x:%d|y:%d\n",x,y);
 		Tablero_IA.getTableroIA().getIfBarcoByPos(x,y,true);
@@ -318,6 +353,7 @@ public class Controlador implements ActionListener
 				if(getTablero(1).sePuedeAtacar(arma,x,y))
 				{
 					getTablero(1).atacar(arma, x, y);
+					actualizarArmas(arma);
 					if (getTablero(1).getIfEndGame()) {
 						JFrame winMess = new JFrame();
 						JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
@@ -375,6 +411,52 @@ public class Controlador implements ActionListener
 		}
 	}
 
+	public void actualizarDinero()
+	{
+		Vista.lblDinero.setText("GOLD: "+JDinero);
+	}
+
+	public void actualizarArmas(int arma)
+	{
+		switch (arma)
+		{
+			case 1: JMisil--;break;
+			case 2: JRadar--;break;
+			case 3: JEscudo--;break;
+		}
+		actualizarArmasEstado();
+	}
+
+	public void actualizarArmasEstado()
+	{
+		if(JMisil==0)
+		{
+			Vista.Misil.setEnabled(false);
+			arma=0;
+		}
+		else
+		{
+			Vista.Misil.setEnabled(true);
+		}
+		if(JRadar==0)
+		{
+			Vista.Radar.setEnabled(false);
+			arma=0;
+		}
+		else {
+			Vista.Radar.setEnabled(true);
+		}
+		if(JEscudo==0)
+		{
+			Vista.Escudo.setEnabled(false);
+			arma=0;
+		}
+		else
+		{
+			Vista.Escudo.setEnabled(true);
+		}
+	}
+
 	/*
 	* Da un numero aleatorio entre MAX y MIN
 	* Max no incluido!!!
@@ -391,16 +473,34 @@ public class Controlador implements ActionListener
 	{
 		switch (cheatCode)
 		{
-			case "see_all" :
+			case "see_all" : //MUESTRA EL TABLERO ENEMIGO
 			{
 				System.out.println("CheatCode: "+cheatCode);
 				Tablero_IA.getTableroIA().mostrarTablero();
 				break;
 			}
-			case "random" :
+			case "random" : //COLOCA LOS BARCOS ALEATORIAMENTE
 			{
 				System.out.println("CheatCode: "+cheatCode);
 				addBarcoRandom(false);
+				break;
+			}
+			case "iddqd" : //ARMAS INFINITAS
+			{
+				System.out.println("CheatCode: "+cheatCode);
+				Vista.Misil.setEnabled(true);
+				Vista.Radar.setEnabled(true);
+				Vista.Escudo.setEnabled(true);
+				JMisil=-1;
+				JRadar=-1;
+				JEscudo=-1;
+				break;
+			}
+			case "motherlode" : //50.000 DE ORO
+			{
+				System.out.println("CheatCode: "+cheatCode);
+				JDinero=JDinero+50000;
+				actualizarDinero();
 				break;
 			}
 		}
