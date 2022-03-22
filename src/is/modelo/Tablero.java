@@ -7,6 +7,7 @@ public abstract class Tablero {
     protected boolean[][] tablero_barcos;
     protected JLabel[][] tablero_casilla;
     protected boolean[][] tablero_disparos;
+    protected boolean[][] tablero_escudo;
     protected Flota flota;
 
     public void addCasilla(JLabel casilla, int x, int y)
@@ -66,7 +67,7 @@ public abstract class Tablero {
     {
         switch (arma)
         {
-            case 0: //BOMBA
+            case 0: //bomba
             {
                 if(getIfBarcoByPos(x,y,false))
                 {
@@ -163,6 +164,14 @@ public abstract class Tablero {
                     }
                 }catch (Exception ignore){}
                 break;
+            }
+            case 3://Escudo
+            {
+                for (Coordenada c : flota.getBarcoporPos(x,y).calcularCoordenadas())
+                {
+                    tablero_casilla[c.getX()][c.getY()].setBackground(Color.darkGray);
+                    tablero_escudo[c.getX()][c.getY()]=true;
+                }
             }
         }
     }

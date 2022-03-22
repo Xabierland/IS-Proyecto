@@ -12,6 +12,7 @@ public class Tablero_IA extends Tablero
         tablero_barcos =new boolean[10][10];
         tablero_casilla=new JLabel[10][10];
         tablero_disparos=new boolean[10][10];
+        tablero_escudo=new boolean[10][10];
         flota=new Flota();
     }
 

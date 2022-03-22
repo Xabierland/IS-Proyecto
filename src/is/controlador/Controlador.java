@@ -306,7 +306,14 @@ public class Controlador implements ActionListener
 		}
 		else
 		{
-			//ESCUDOS ?
+			if(Jturno)
+			{
+				if(arma==3 && getTablero(0).getIfBarcoByPos(x,y,false)) {
+					getTablero(0).atacar(arma,x,y);
+					actualizarArmas(arma);
+					Jturno=false;
+				}
+			}
 		}
 	}
 
@@ -339,17 +346,28 @@ public class Controlador implements ActionListener
 				while(IAtacando)
 				{
 					int pArma = 0;
+					//int pArma = getRandomInteger(4, 0);
 					int pX = getRandomInteger(10, 0);
 					int pY = getRandomInteger(10, 0);
-					if (getTablero(0).sePuedeAtacar(pArma, pX, pY)) {
-						getTablero(0).atacar(pArma, pX, pY);
-						IAtacando=false;
-						if (getTablero(0).getIfEndGame()) {
-							JFrame winMess = new JFrame();
-							JOptionPane.showMessageDialog(winMess, "LA IA GANA");
-							System.exit(0);
+					if(pArma!=3)
+					{
+						if (getTablero(0).sePuedeAtacar(pArma, pX, pY)) {
+							getTablero(0).atacar(pArma, pX, pY);
+							IAtacando = false;
+							if (getTablero(0).getIfEndGame()) {
+								JFrame winMess = new JFrame();
+								JOptionPane.showMessageDialog(winMess, "LA IA GANA");
+								System.exit(0);
+							}
+							Jturno = true;
 						}
-						Jturno = true;
+					}
+					else
+					{
+						if(getTablero(1).getIfBarcoByPos(pX,pY,false)) {
+							getTablero(1).atacar(pArma, pX, pY);
+							IAtacando = false;
+						}
 					}
 				}
 			}
