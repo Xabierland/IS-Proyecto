@@ -3,6 +3,8 @@ import is.modelo.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.Visibility;
+import java.util.Locale;
 
 import javax.swing.*;
 
@@ -34,6 +36,7 @@ public class Controlador implements ActionListener
 	private int JEscudo=0;
 
 	//Variables IA
+	//Barcos
 	private int ItotalBarcos=10;
 	private int IFragata=4;
 	private int IDestructor=3;
@@ -41,6 +44,9 @@ public class Controlador implements ActionListener
 	private int IPortavion=1;
 	//Armas
 	private int IDinero=3000;
+	private int IMisil=0;
+	private int IRadar=0;
+	private int IEscudo=0;
 
 	private Controlador()
 	{
@@ -308,7 +314,7 @@ public class Controlador implements ActionListener
 		{
 			if(Jturno)
 			{
-				if(arma==3 && getTablero(0).getIfBarcoByPos(x,y,false)) {
+				if(arma==3 && getTablero(0).getIfBarcoByPos(x,y,false) && getTablero(0).sePuedeAtacar(0,x,y)) {
 					getTablero(0).atacar(arma,x,y,false);
 					actualizarArmas(arma);
 					Jturno=false;
@@ -341,6 +347,18 @@ public class Controlador implements ActionListener
 			{
 				getTablero(1).atacar(arma, x, y,false);
 				actualizarArmas(arma);
+				if(getTablero(1).getIfBarcoByPos(x,y,false)) {
+					Juego.getDisplayState().setText("TOCADO");
+					if (getTablero(1).barcoHundido(x, y)) {
+						JDinero += 500;
+						actualizarDinero();
+						Juego.getDisplayState().setText("TOCADO Y HUNDIDO");
+					}
+				}
+				else
+				{
+					Juego.getDisplayState().setText("AGUA");
+				}
 				if (getTablero(1).getIfEndGame()) {
 					JFrame winMess = new JFrame();
 					JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
@@ -411,8 +429,6 @@ public class Controlador implements ActionListener
 				Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_arr.png")));System.out.println("DEFAULT");break;}
 		}
 	}
-
-
 
 	public void actualizarDinero()
 	{
@@ -534,6 +550,7 @@ public class Controlador implements ActionListener
 	 */
 	private void cheats(String cheatCode)
 	{
+		cheatCode=cheatCode.toLowerCase(Locale.ROOT);
 		switch (cheatCode)
 		{
 			case "see_all" : //MUESTRA EL TABLERO ENEMIGO

@@ -1,5 +1,7 @@
 package is.modelo;
 
+import is.vista.Juego;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -71,7 +73,6 @@ public abstract class Tablero {
                 {
                     if (getIfBarcoByPos(x, y, false)) {
                         tablero_casilla[x][y].setBackground(Color.red);
-
                     } else {
                         tablero_casilla[x][y].setBackground(Color.white);
                     }
@@ -95,73 +96,91 @@ public abstract class Tablero {
                 {
                     try {
                         if (getIfBarcoByPos(x, y, false)) {
-                            tablero_casilla[x][y].setBackground(Color.green);
+                            if(!tablero_disparos[x][y])
+                                tablero_casilla[x][y].setBackground(Color.green);
                         } else {
                             tablero_casilla[x][y].setBackground(Color.white);
+                            tablero_disparos[x][y]=true;
                         }
                     } catch (Exception ignore) {
                     }
                     try {
                         if (getIfBarcoByPos(x + 1, y, false)) {
-                            tablero_casilla[x + 1][y].setBackground(Color.green);
+                            if(!tablero_disparos[x+1][y])
+                                tablero_casilla[x + 1][y].setBackground(Color.green);
                         } else {
                             tablero_casilla[x + 1][y].setBackground(Color.white);
+                            tablero_disparos[x+1][y]=true;
                         }
                     } catch (Exception ignore) {
                     }
                     try {
                         if (getIfBarcoByPos(x, y + 1, false)) {
-                            tablero_casilla[x][y + 1].setBackground(Color.green);
+                            if(!tablero_disparos[x][y+1])
+                                tablero_casilla[x][y + 1].setBackground(Color.green);
                         } else {
                             tablero_casilla[x][y + 1].setBackground(Color.white);
+                            tablero_disparos[x][y+1]=true;
                         }
                     } catch (Exception ignore) {
                     }
                     try {
                         if (getIfBarcoByPos(x - 1, y, false)) {
-                            tablero_casilla[x - 1][y].setBackground(Color.green);
+                            if(!tablero_disparos[x-1][y])
+                                tablero_casilla[x - 1][y].setBackground(Color.green);
                         } else {
                             tablero_casilla[x - 1][y].setBackground(Color.white);
+                            tablero_disparos[x-1][y]=true;
                         }
                     } catch (Exception ignore) {
                     }
                     try {
                         if (getIfBarcoByPos(x, y - 1, false)) {
-                            tablero_casilla[x][y - 1].setBackground(Color.green);
+                            if(!tablero_disparos[x][y-1])
+                                tablero_casilla[x][y - 1].setBackground(Color.green);
                         } else {
                             tablero_casilla[x][y - 1].setBackground(Color.white);
+                            tablero_disparos[x][y-1]=true;
                         }
                     } catch (Exception ignore) {
                     }
                     try {
                         if (getIfBarcoByPos(x + 1, y + 1, false)) {
-                            tablero_casilla[x + 1][y + 1].setBackground(Color.green);
+                            if(!tablero_disparos[x+1][y+1])
+                                tablero_casilla[x + 1][y + 1].setBackground(Color.green);
                         } else {
                             tablero_casilla[x + 1][y + 1].setBackground(Color.white);
+                            tablero_disparos[x+1][y+1]=true;
                         }
                     } catch (Exception ignore) {
                     }
                     try {
                         if (getIfBarcoByPos(x - 1, y - 1, false)) {
-                            tablero_casilla[x - 1][y - 1].setBackground(Color.green);
+                            if(!tablero_disparos[x-1][y-1])
+                                tablero_casilla[x - 1][y - 1].setBackground(Color.green);
                         } else {
                             tablero_casilla[x - 1][y - 1].setBackground(Color.white);
+                            tablero_disparos[x-1][y-1]=true;
                         }
                     } catch (Exception ignore) {
                     }
                     try {
                         if (getIfBarcoByPos(x + 1, y - 1, false)) {
-                            tablero_casilla[x + 1][y - 1].setBackground(Color.green);
+                            if(!tablero_disparos[x+1][y-1])
+                                tablero_casilla[x + 1][y - 1].setBackground(Color.green);
                         } else {
                             tablero_casilla[x + 1][y - 1].setBackground(Color.white);
+                            tablero_disparos[x+1][y-1]=true;
                         }
                     } catch (Exception ignore) {
                     }
                     try {
                         if (getIfBarcoByPos(x - 1, y + 1, false)) {
-                            tablero_casilla[x - 1][y + 1].setBackground(Color.green);
+                            if(!tablero_disparos[x-1][y+1])
+                                tablero_casilla[x - 1][y + 1].setBackground(Color.green);
                         } else {
                             tablero_casilla[x - 1][y + 1].setBackground(Color.white);
+                            tablero_disparos[x-1][y+1]=true;
                         }
                     } catch (Exception ignore) {
                     }
@@ -170,8 +189,16 @@ public abstract class Tablero {
                 case 3://Escudo
                 {
                     for (Coordenada c : flota.getBarcoporPos(x, y).calcularCoordenadas()) {
-                        if(!ia)
-                            tablero_casilla[c.getX()][c.getY()].setBackground(Color.darkGray);
+                        if(!ia) {
+                            if(!tablero_disparos[c.getX()][c.getY()])
+                            {
+                                tablero_casilla[c.getX()][c.getY()].setBackground(Color.darkGray);
+                            }
+                            else
+                            {
+                                tablero_casilla[c.getX()][c.getY()].setBackground(Color.lightGray);
+                            }
+                        }
                         tablero_escudo[c.getX()][c.getY()] = true;
                     }
                 }
@@ -182,13 +209,38 @@ public abstract class Tablero {
             System.out.println("ESCUDO DESACTIVADO");
             for (Coordenada c: flota.getBarcoporPos(x,y).calcularCoordenadas())
             {
-                if(ia)
-                    tablero_casilla[c.getX()][c.getY()].setBackground(Color.black);
+                if(ia) {
+                    if(!tablero_disparos[c.getX()][c.getY()])
+                    {
+                        tablero_casilla[c.getX()][c.getY()].setBackground(Color.black);
+                    }
+                    else
+                    {
+                        tablero_casilla[c.getX()][c.getY()].setBackground(Color.red);
+                    }
+                }
                 tablero_escudo[c.getX()][c.getY()] = false;
             }
         }
     }
 
+
+    public boolean barcoHundido(int x, int y)
+    {
+        boolean hundido=true;
+        boolean finBarco=false;
+        while(hundido && !finBarco) {
+            for (Coordenada c : flota.getBarcoporPos(x, y).calcularCoordenadas()) {
+                if (!tablero_disparos[c.getX()][c.getY()])
+                {
+                    hundido=false;
+                }
+            }
+            finBarco=true;
+        }
+
+        return hundido;
+    }
 
     /*
     * Devuelve True si ha terminado y False si no ha terminado
