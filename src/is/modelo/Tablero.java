@@ -10,8 +10,9 @@ import java.util.Observable;
 
 
 public abstract class Tablero extends Observable {
-    protected boolean[][] tablero_barcos;
+
     protected JLabel[][] tablero_casilla;
+    protected boolean[][] tablero_barcos;
     protected boolean[][] tablero_disparos;
     protected boolean[][] tablero_escudo;
     protected boolean changed=false;
@@ -499,15 +500,18 @@ public abstract class Tablero extends Observable {
         }
         return atacable;
     }
-    public void setChanged(){
+
+    public void setChanged()
+    {
         changed=true;
     }
-    public void notifyObservers(Object g){
-        if (changed == true) {
-        //para todos los observers{
-        Juego.getMiJuego().update(this, g);
-        
+    public void notifyObservers(Object g)
+    {
+        if (changed == true)
+        {
+
+            Juego.getMiJuego().update(this, g);
         }
         changed = false;
-}
+    }
 }
