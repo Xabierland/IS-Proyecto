@@ -20,6 +20,8 @@ import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import java.awt.Component;
@@ -30,8 +32,8 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.UIManager;
 
-public class Juego extends JFrame {
-
+public class Juego extends JFrame implements Observer {
+	private static Juego miJuego=null;
 	private JPanel contentPane;
 	private JPanel tableros;
 	private JPanel arma_panel;
@@ -74,7 +76,7 @@ public class Juego extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Juego frame = new Juego();
+					Juego frame = Juego.getMiJuego();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -86,7 +88,7 @@ public class Juego extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Juego() {
+	private Juego() {
 		setAlwaysOnTop(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Juego.class.getResource("/resource/icon.png")));
 		setTitle("Hundir la flota");
@@ -107,7 +109,13 @@ public class Juego extends JFrame {
 		grupo_btn_barcos.add(btn_submarino);
 		Controlador.getControlador().actualizarDinero();
 	}
-	
+	public static Juego getMiJuego()
+	{
+		if(Juego.miJuego==null){
+			Juego.miJuego=new Juego();
+		}
+		return miJuego;
+	}
 	
 	public JLabel getCasillaJugador(int x, int y)
 	{
@@ -415,5 +423,16 @@ public class Juego extends JFrame {
 			horizontalStrut_2 = Box.createHorizontalStrut(80);
 		}
 		return horizontalStrut_2;
+	}
+
+	@Override
+	public void update(Observable o,  Object arg)
+	 {
+		Object[] lista=(Object[]) arg;
+		JLabel label= (JLabel) lista[0];
+		Color color= (Color) lista[1];
+		int tab= (int) lista[2];
+		label.setBackground(color);
+		
 	}
 }

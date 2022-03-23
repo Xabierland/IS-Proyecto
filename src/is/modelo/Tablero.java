@@ -3,13 +3,18 @@ package is.modelo;
 import is.vista.Juego;
 
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.event.ChangeEvent;
 
-public abstract class Tablero {
+import java.awt.*;
+import java.util.Observable;
+
+
+public abstract class Tablero extends Observable {
     protected boolean[][] tablero_barcos;
     protected JLabel[][] tablero_casilla;
     protected boolean[][] tablero_disparos;
     protected boolean[][] tablero_escudo;
+    protected boolean changed=false;
     protected Flota flota;
 
     public void addCasilla(JLabel casilla, int x, int y)
@@ -494,4 +499,15 @@ public abstract class Tablero {
         }
         return atacable;
     }
+    public void setChanged(){
+        changed=true;
+    }
+    public void notifyObservers(Object g){
+        if (changed == true) {
+        //para todos los observers{
+        Juego.getMiJuego().update(this, g);
+        
+        }
+        changed = false;
+}
 }
