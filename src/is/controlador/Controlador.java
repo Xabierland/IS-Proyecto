@@ -376,7 +376,6 @@ public class Controlador implements ActionListener
 			while(IAtacando)
 			{
 				int pArma = 0;
-				//int pArma = getRandomInteger(4, 0);
 				int pX = getRandomInteger(10, 0);
 				int pY = getRandomInteger(10, 0);
 				if(pArma!=3)
