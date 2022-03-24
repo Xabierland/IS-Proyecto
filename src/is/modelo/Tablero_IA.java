@@ -36,20 +36,22 @@ public class Tablero_IA extends Tablero
                 	if(tablero_disparos[i][j])
                 	{
                         setChanged();
-                        Object[] objetos=new Object[3];
-                        objetos[0]=tablero_casilla[i][j];
-                        objetos[1]=Color.red;
-                        objetos[2]=1;
+                        Object[] objetos=new Object[4];
+                        objetos[0]="CASILLA";
+                        objetos[1]=tablero_casilla[i][j];
+                        objetos[2]=Color.red;
+                        objetos[3]=1;
                         this.notifyObservers(objetos);
                 		
                 	}
                 	else
                 	{
                         setChanged();
-                        Object[] objetos=new Object[3];
-                        objetos[0]=tablero_casilla[i][j];
-                        objetos[1]=Color.black;
-                        objetos[2]=1;
+                        Object[] objetos=new Object[4];
+                        objetos[0]="CASILLA";
+                        objetos[1]=tablero_casilla[i][j];
+                        objetos[2]=Color.black;
+                        objetos[3]=1;
                         this.notifyObservers(objetos);
                     	
                 	}
@@ -57,10 +59,11 @@ public class Tablero_IA extends Tablero
                 else
                 {
                     setChanged();
-                    Object[] objetos=new Object[3];
-                    objetos[0]=tablero_casilla[i][j];
-                    objetos[1]=Color.white;
-                    objetos[2]=1;
+                    Object[] objetos=new Object[4];
+                    objetos[0]="CASILLA";
+                    objetos[1]=tablero_casilla[i][j];
+                    objetos[2]=Color.white;
+                    objetos[3]=1;
                     this.notifyObservers(objetos);
                     
                 }

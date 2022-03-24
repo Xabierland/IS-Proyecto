@@ -5,7 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/is/modelo/Arma.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/is/modelo/Cheats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/is/modelo/Partida.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/is/modelo/Variables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero_IA.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero_IA.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/controlador/Controlador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Tablero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Tablero_IA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Tablero_IA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/vista/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/vista/Tienda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Tienda.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,16 +101,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/is/controlador/Controlador.java</url>
-          <line>336</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

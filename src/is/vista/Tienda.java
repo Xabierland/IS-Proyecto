@@ -1,6 +1,7 @@
 package is.vista;
 
 import is.controlador.Controlador;
+import is.modelo.Variables;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,8 +14,10 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Tienda extends JFrame {
+public class Tienda extends JFrame implements Observer {
 
 	private static Tienda miTienda=null;
 
@@ -76,21 +79,21 @@ public class Tienda extends JFrame {
 	}
 	public static JButton getBtn_misil() {
 		if (btn_misil == null) {
-			btn_misil = new JButton("500g");
+			btn_misil = new JButton(Variables.getMisVariables().getPrecioMisil() +"g");
 			btn_misil.addActionListener(Controlador.getControlador());
 		}
 		return btn_misil;
 	}
 	public static JButton getBtn_radar() {
 		if (btn_radar == null) {
-			btn_radar = new JButton("1000g");
+			btn_radar = new JButton(Variables.getMisVariables().getPrecioRadar() +"g");
 			btn_radar.addActionListener(Controlador.getControlador());
 		}
 		return btn_radar;
 	}
 	public static JButton getBtn_escudo() {
 		if (btn_escudo == null) {
-			btn_escudo = new JButton("1000g");
+			btn_escudo = new JButton(Variables.getMisVariables().getPrecioEscudo() +"g");
 			btn_escudo.addActionListener(Controlador.getControlador());
 		}
 		return btn_escudo;
@@ -137,5 +140,17 @@ public class Tienda extends JFrame {
 			panel.add(getBtn_escudo());
 		}
 		return panel;
+	}
+
+	@Override
+	public void update(Observable o, Object arg)
+	{
+		Object[] lista=(Object[]) arg;
+		String cad=(String) lista[0];
+
+		if(cad.equalsIgnoreCase("ARMA"))
+		{
+			((JLabel) lista[3]).setText((String) lista[4]);
+		}
 	}
 }

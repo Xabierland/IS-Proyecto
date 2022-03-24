@@ -29,6 +29,10 @@ import javax.swing.Box;
 import java.awt.Dimension;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import is.modelo.Tablero_IA;
+import is.modelo.Tablero_Jugador;
+import is.modelo.Variables;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.UIManager;
 
@@ -107,7 +111,6 @@ public class Juego extends JFrame implements Observer {
 		grupo_btn_barcos.add(btn_fragata);
 		grupo_btn_barcos.add(btn_portavion);
 		grupo_btn_barcos.add(btn_submarino);
-		Controlador.getControlador().actualizarDinero();
 	}
 	public static Juego getMiJuego()
 	{
@@ -211,14 +214,14 @@ public class Juego extends JFrame implements Observer {
 	private JPanel getTablero_jugador() {
 		if (tablero_jugador == null) {
 			tablero_jugador = new JPanel();
-			tablero_jugador.setLayout(new GridLayout(10, 10, 0, 0));
+			tablero_jugador.setLayout(new GridLayout(Variables.getMisVariables().getTamanoTablero(), Variables.getMisVariables().getTamanoTablero(), 0, 0));
 			int i,j;
-			for(i=0;i<10;i++)
-				for(j=0; j<10;j++)
+			for(i=0;i<Variables.getMisVariables().getTamanoTablero();i++)
+				for(j=0; j<Variables.getMisVariables().getTamanoTablero();j++)
 				{
 					JLabel unaCasilla= getCasillaJugador(j,i);
 					tablero_jugador.add(unaCasilla);
-					Controlador.getControlador().addCasilla(0,unaCasilla,j,i);
+					Tablero_Jugador.getTableroJugador().addCasilla(unaCasilla,j,i);
 				}
 		}
 		return tablero_jugador;
@@ -226,14 +229,14 @@ public class Juego extends JFrame implements Observer {
 	private JPanel getTablero_ia() {
 		if (tablero_ia == null) {
 			tablero_ia = new JPanel();
-			tablero_ia.setLayout(new GridLayout(10, 10, 0, 0));
+			tablero_ia.setLayout(new GridLayout(Variables.getMisVariables().getTamanoTablero(), Variables.getMisVariables().getTamanoTablero(), 0, 0));
 			int i,j;
-			for(i=0;i<10;i++)
-				for(j=0; j<10;j++)
+			for(i=0;i<Variables.getMisVariables().getTamanoTablero();i++)
+				for(j=0; j<Variables.getMisVariables().getTamanoTablero();j++)
 				{
 					JLabel unaCasilla=getCasillaIA(j,i);
 					tablero_ia.add(unaCasilla);
-					Controlador.getControlador().addCasilla(1,unaCasilla,j,i);
+					Tablero_IA.getTableroIA().addCasilla(unaCasilla,j,i);
 				}
 		}
 		return tablero_ia;
@@ -296,13 +299,7 @@ public class Juego extends JFrame implements Observer {
 		if (flecha == null) {
 			flecha = new JLabel("");
 			flecha.setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_arr.png")));
-			flecha.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseReleased(MouseEvent arg0) 
-				{
-					Controlador.getControlador().flechaClick();
-				}
-			});
+			flecha.addMouseListener(Controlador.getControlador());
 			
 		}
 		return flecha;
@@ -356,7 +353,7 @@ public class Juego extends JFrame implements Observer {
 	}
 	public static JLabel getLblDinero() {
 		if (lblDinero == null) {
-			lblDinero = new JLabel("GOLD:");
+			lblDinero = new JLabel("GOLD: "+Variables.getMisVariables().getDineroInicial());
 		}
 		return lblDinero;
 	}
@@ -429,10 +426,26 @@ public class Juego extends JFrame implements Observer {
 	public void update(Observable o,  Object arg)
 	 {
 		Object[] lista=(Object[]) arg;
-		JLabel label= (JLabel) lista[0];
-		Color color= (Color) lista[1];
-		int tab= (int) lista[2];
-		label.setBackground(color);
-		
+		String cad=(String) lista[0];
+
+		if(cad.equalsIgnoreCase("CASILLA"))
+		{
+			JLabel label = (JLabel) lista[1];
+			Color color = (Color) lista[2];
+			int tab = (int) lista[3];
+			label.setBackground(color);
+		}
+		if(cad.equalsIgnoreCase("BARCO"))
+		{
+			JRadioButton rBtn = (JRadioButton) lista[1];
+			boolean enable = (boolean) lista[2];
+			rBtn.setEnabled(enable);
+		}
+		if(cad.equalsIgnoreCase("ARMA"))
+		{
+			JButton btn = (JButton) lista[1];
+			boolean enable = (boolean) lista[2];
+			btn.setEnabled(enable);
+		}
 	}
 }
