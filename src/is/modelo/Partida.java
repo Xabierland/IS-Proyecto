@@ -51,6 +51,20 @@ public class Partida
         this.disparando = disparando;
     }
 
+    public Tablero getTablero(int pTablero)
+    {
+        Tablero tab=null;
+        if(pTablero==0)
+        {
+            tab=Tablero_Jugador.getTableroJugador();
+        }
+        else
+        {
+            tab=Tablero_IA.getTableroIA();
+        }
+        return tab;
+    }
+
     //FUNCIONES
     public void jugar(int pJugador, int pX, int pY)
     {
@@ -58,10 +72,10 @@ public class Partida
         {
             if(pJugador==0) //ES UN CLICK EN EL TABLERO JUGADOR
             {
-                Tablero_Jugador.getTableroJugador().addBarco(direccion,tipoBarco,pX,pY,false);
-                if(Tablero_Jugador.getTableroJugador().getIfPosibleIniciarJuego())
+                getTablero(0).addBarco(direccion,tipoBarco,pX,pY,false);
+                if(getTablero(0).getIfPosibleIniciarJuego())
                 {
-                    Tablero_IA.getTableroIA().addBarcoAutomatico(true);
+                    getTablero(1).addBarcoAutomatico(true);
                     disparando=true;
                 }
             }
@@ -105,34 +119,24 @@ public class Partida
 
     private void ataqueJugador(int pX, int pY)
     {
-        System.out.println("ATAQUE DEL JUGADOR \n");
-
-        if(Tablero_IA.getTableroIA().sePuedeAtacar(tipoArma,pX,pY))
+        if(getTablero(0).getArmamento().existeMunicion(tipoArma))
         {
-            Tablero_IA.getTableroIA().atacar(tipoArma,pX,pY,false);
-            if(Tablero_IA.getTableroIA().getIfEndGame())
-            {
-                JFrame winMess = new JFrame();
-                JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
-                System.exit(0);
+            if(getTablero(0).armamento.usarArma(tipoArma, 1, pX, pY)) {
+
+                if (getTablero(1).getIfEndGame()) {
+                    JFrame winMess = new JFrame();
+                    JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
+                    System.exit(0);
+                }
+                Jturno = false;
+                ataqueIA();
             }
-            Jturno=false;
-            ataqueIA();
         }
-        else
-        {
-            System.out.printf("No se puede ataque en x:%d y:%d\n",pX,pY);
-        }
-
-
     }
 
     private void ataqueIA()
     {
-        System.out.println("ATAQUE DE LA IA \n");
-
-
-        if(Tablero_IA.getTableroIA().getIfEndGame())
+        if(getTablero(0).getIfEndGame())
         {
             JFrame winMess = new JFrame();
             JOptionPane.showMessageDialog(winMess, "LA IA GANA");

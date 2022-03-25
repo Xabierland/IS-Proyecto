@@ -16,14 +16,10 @@ public class Controlador extends Observable implements ActionListener, MouseList
 {
 	private static Controlador controler =null;
 
-
-
 	private Tablero Jugador=Tablero_Jugador.getTableroJugador();
 	private Tablero IA=Tablero_IA.getTableroIA();
 	private Variables var=Variables.getMisVariables();
 	private Partida partida=Partida.getMiPartida();
-	private boolean changed=false;
-
 
 	private Controlador() {};
 	
@@ -91,21 +87,11 @@ public class Controlador extends Observable implements ActionListener, MouseList
 		}
 		if(e.getSource().equals(Tienda.getBtn_misil()))
 		{
-			if(Jugador.getDinero() >= var.getPrecioRadar())
+			if(Jugador.getDinero() >= var.getPrecioMisil())
 			{
 				Jugador.setDinero(Jugador.getDinero()-var.getPrecioMisil());
-				Jugador.anadirMisil();
+				Jugador.getArmamento().addArma(1, true);
 				String cad="Has comprado un misil";
-
-				setChanged();
-				Object[] lista= new Object[5];
-				lista[0]="ARMA";
-				lista[1]=Juego.getBtn_misil();
-				lista[2]=true;
-				lista[3]=Tienda.getLbl_compra();
-				lista[4]=cad;
-				notifyObservers(lista);
-				System.out.println(cad);
 			}
 			else
 			{
@@ -118,18 +104,8 @@ public class Controlador extends Observable implements ActionListener, MouseList
 			if(Jugador.getDinero() >= var.getPrecioRadar())
 			{
 				Jugador.setDinero(Jugador.getDinero()-var.getPrecioRadar());
-				Jugador.anadirRadar();
+				Jugador.getArmamento().addArma(2,true);
 				String cad="Has comprado un radar";
-
-				setChanged();
-				Object[] lista= new Object[5];
-				lista[0]="ARMA";
-				lista[1]=Juego.getBtn_radar();
-				lista[2]=true;
-				lista[3]=Tienda.getLbl_compra();
-				lista[4]=cad;
-				notifyObservers(lista);
-				System.out.println(cad);
 			}
 			else
 			{
@@ -142,18 +118,8 @@ public class Controlador extends Observable implements ActionListener, MouseList
 			if(Jugador.getDinero() >= var.getPrecioEscudo())
 			{
 				Jugador.setDinero(Jugador.getDinero()-var.getPrecioEscudo());
-				Jugador.anadirEscudo();
+				Jugador.getArmamento().addArma(3,true);
 				String cad="Has comprado un escudo";
-
-				setChanged();
-				Object[] lista= new Object[5];
-				lista[0]="ARMA";
-				lista[1]=Juego.getBtn_escudo();
-				lista[2]=true;
-				lista[3]=Tienda.getLbl_compra();
-				lista[4]=cad;
-				notifyObservers(lista);
-				System.out.println(cad);
 			}
 			else
 			{

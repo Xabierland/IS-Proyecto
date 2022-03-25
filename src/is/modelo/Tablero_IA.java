@@ -9,11 +9,12 @@ public class Tablero_IA extends Tablero
 
     private Tablero_IA()
     {
-        tablero_barcos =new boolean[10][10];
-        tablero_casilla=new JLabel[10][10];
-        tablero_disparos=new boolean[10][10];
-        tablero_escudo=new boolean[10][10];
+        tablero_barcos =new boolean[tTablero][tTablero];
+        tablero_casilla=new JLabel[tTablero][tTablero];
+        tablero_disparos=new boolean[tTablero][tTablero];
+        tablero_escudo=new boolean[tTablero][tTablero];
         flota=new Flota();
+        armamento=new Armamento();
     }
 
     public static Tablero_IA getTableroIA()
@@ -28,8 +29,8 @@ public class Tablero_IA extends Tablero
     public void mostrarTablero()
     {
         int i,j;
-        for(i=0;i<10;i++)
-            for(j=0; j<10;j++)
+        for(i=0;i<tTablero;i++)
+            for(j=0; j<tTablero;j++)
             {
                 if(getIfBarcoByPos(i,j,false))
                 {

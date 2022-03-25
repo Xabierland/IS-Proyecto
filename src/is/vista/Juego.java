@@ -73,21 +73,7 @@ public class Juego extends JFrame implements Observer {
 	private JPanel panel_3;
 	private Component horizontalStrut_2;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Juego frame = Juego.getMiJuego();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
@@ -432,7 +418,6 @@ public class Juego extends JFrame implements Observer {
 		{
 			JLabel label = (JLabel) lista[1];
 			Color color = (Color) lista[2];
-			int tab = (int) lista[3];
 			label.setBackground(color);
 		}
 		if(cad.equalsIgnoreCase("BARCO"))
@@ -446,6 +431,11 @@ public class Juego extends JFrame implements Observer {
 			JButton btn = (JButton) lista[1];
 			boolean enable = (boolean) lista[2];
 			btn.setEnabled(enable);
+		}
+		if(cad.equalsIgnoreCase("DINERO"))
+		{
+			JLabel label = (JLabel) lista[1];
+			label.setText((String) lista[2]);
 		}
 	}
 }

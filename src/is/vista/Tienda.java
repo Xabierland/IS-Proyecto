@@ -148,9 +148,9 @@ public class Tienda extends JFrame implements Observer {
 		Object[] lista=(Object[]) arg;
 		String cad=(String) lista[0];
 
-		if(cad.equalsIgnoreCase("ARMA"))
+		if(cad.equalsIgnoreCase("TIENDA"))
 		{
-			((JLabel) lista[3]).setText((String) lista[4]);
+			((JLabel) lista[1]).setText((String) lista[2]);
 		}
 	}
 }

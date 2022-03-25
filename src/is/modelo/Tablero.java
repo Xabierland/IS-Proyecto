@@ -11,18 +11,19 @@ import java.util.Observable;
 public abstract class Tablero extends Observable {
 
     //Variable tablero
+    protected int tTablero=Variables.getMisVariables().getTamanoTablero();
     protected JLabel[][] tablero_casilla;
     protected boolean[][] tablero_barcos;
     protected boolean[][] tablero_disparos;
     protected boolean[][] tablero_escudo;
     protected boolean changed=false;
-    protected Flota flota;
 
     //Variables armas
-    private int[] misArmas=new int[Variables.getMisVariables().getNumArmas()];
+    protected Armamento armamento;
     private int dinero=Variables.getMisVariables().getDineroInicial();
 
     //Barcos
+    protected Flota flota;
     private int totalBarcos=Variables.getMisVariables().getNumBarcos();
     private int fragata=Variables.getMisVariables().getNumFragata();
     private int destructor=Variables.getMisVariables().getNumDestructor();
@@ -55,11 +56,10 @@ public abstract class Tablero extends Observable {
                         tablero_barcos[x][y - i] = true;
                         if (!ia) {
                             setChanged();
-                            Object[] objetos = new Object[4];
+                            Object[] objetos = new Object[3];
                             objetos[0] = "CASILLA";
                             objetos[1] = tablero_casilla[x][y - i];
                             objetos[2] = Color.black;
-                            objetos[3] = 1;
                             this.notifyObservers(objetos);
                         }
                         break;
@@ -69,11 +69,10 @@ public abstract class Tablero extends Observable {
                         tablero_barcos[x + i][y] = true;
                         if (!ia) {
                             setChanged();
-                            Object[] objetos = new Object[4];
+                            Object[] objetos = new Object[3];
                             objetos[0] = "CASILLA";
                             objetos[1] = tablero_casilla[x + i][y];
                             objetos[2] = Color.black;
-                            objetos[3] = 1;
                             this.notifyObservers(objetos);
                         }
                         break;
@@ -83,11 +82,10 @@ public abstract class Tablero extends Observable {
                         tablero_barcos[x][y + i] = true;
                         if (!ia) {
                             setChanged();
-                            Object[] objetos = new Object[4];
+                            Object[] objetos = new Object[3];
                             objetos[0] = "CASILLA";
                             objetos[1] = tablero_casilla[x][y + i];
                             objetos[2] = Color.black;
-                            objetos[3] = 1;
                             this.notifyObservers(objetos);
                         }
                         break;
@@ -97,11 +95,10 @@ public abstract class Tablero extends Observable {
                         tablero_barcos[x - i][y] = true;
                         if (!ia) {
                             setChanged();
-                            Object[] objetos = new Object[4];
+                            Object[] objetos = new Object[3];
                             objetos[0] = "CASILLA";
                             objetos[1] = tablero_casilla[x - i][y];
                             objetos[2] = Color.black;
-                            objetos[3] = 1;
                             this.notifyObservers(objetos);
                         }
                         break;
@@ -123,8 +120,8 @@ public abstract class Tablero extends Observable {
             while (portavion>0)
             {
                 pDir=getRandomInteger(3,0);
-                pX=getRandomInteger(10,0);
-                pY=getRandomInteger(10,0);
+                pX=getRandomInteger(tTablero,0);
+                pY=getRandomInteger(tTablero,0);
                 if(sePuedeColocar(pDir,4,pX,pY)){
                     addBarco(pDir, 4, pX, pY, ia);
                 }
@@ -132,8 +129,8 @@ public abstract class Tablero extends Observable {
             while (submarino>0)
             {
                 pDir=getRandomInteger(3,0);
-                pX=getRandomInteger(10,0);
-                pY=getRandomInteger(10,0);
+                pX=getRandomInteger(tTablero,0);
+                pY=getRandomInteger(tTablero,0);
                 if(sePuedeColocar(pDir,3,pX,pY)){
                     addBarco(pDir, 3, pX, pY, ia);
                 }
@@ -141,8 +138,8 @@ public abstract class Tablero extends Observable {
             while (destructor>0)
             {
                 pDir=getRandomInteger(3,0);
-                pX=getRandomInteger(10,0);
-                pY=getRandomInteger(10,0);
+                pX=getRandomInteger(tTablero,0);
+                pY=getRandomInteger(tTablero,0);
                 if(sePuedeColocar(pDir,2,pX,pY)){
                     addBarco(pDir, 2, pX, pY, ia);
                 }
@@ -150,8 +147,8 @@ public abstract class Tablero extends Observable {
             while (fragata>0)
             {
                 pDir=getRandomInteger(3,0);
-                pX=getRandomInteger(10,0);
-                pY=getRandomInteger(10,0);
+                pX=getRandomInteger(tTablero,0);
+                pY=getRandomInteger(tTablero,0);
                 if(sePuedeColocar(pDir,1,pX,pY)){
                     addBarco(pDir, 1, pX, pY, ia);
                 }
@@ -253,6 +250,39 @@ public abstract class Tablero extends Observable {
         }
     }
 
+    public JLabel getCasilla(int x, int y)
+    {
+        return tablero_casilla[x][y];
+    }
+
+    public Flota getFlota()
+    {
+        return flota;
+    }
+    public Armamento getArmamento()
+    {
+        return armamento;
+    }
+
+    public boolean getIfEscudo(int x, int y)
+    {
+        return tablero_escudo[x][y];
+    }
+
+    public boolean getIfDisparo(int x, int y)
+    {
+        return  tablero_disparos[x][y];
+    }
+
+    public void setEscudo(boolean pEstado, int x, int y)
+    {
+        tablero_escudo[x][y]=pEstado;
+    }
+
+    public void setDisparo(boolean pEstado, int x, int y)
+    {
+        tablero_disparos[x][y]=pEstado;
+    }
     /*
      * Nos dice si en la posicion que se le pasa hay un barco o no
      * El print es para imprimir o no por consola
@@ -288,9 +318,9 @@ public abstract class Tablero extends Observable {
     public boolean getIfEndGame()
     {
         boolean termina=true;
-        for(int i=0;i<10;i++)
+        for(int i=0;i<tTablero;i++)
         {
-            for(int j=0;j<10;j++)
+            for(int j=0;j<tTablero;j++)
             {
                 if(tablero_barcos[j][i])
                 {
@@ -356,7 +386,7 @@ public abstract class Tablero extends Observable {
                 }
                 case 1:
                 {
-                    if (x + i <= 9)
+                    if (x + i <= tTablero-1)
                     {
                         if (!getIfBarcoByPos(x + i, y,false))
                             if(aguaAlrededor(x+i,y))
@@ -373,7 +403,7 @@ public abstract class Tablero extends Observable {
                     break;
                 }
                 case 2: {
-                    if (y + i <= 9)
+                    if (y + i <= tTablero-1)
                     {
                         if (!getIfBarcoByPos(x, y + i,false))
                         {
@@ -435,7 +465,7 @@ public abstract class Tablero extends Observable {
                         if (!getIfBarcoByPos(x + 1, y + 1,false))
                             sinAgua = true;
         }
-        else if(x==0&&y==9)
+        else if(x==0&&y==tTablero-1)
         {
             if (!getIfBarcoByPos(x, y,false))
                 if (!getIfBarcoByPos(x + 1, y,false))
@@ -443,7 +473,7 @@ public abstract class Tablero extends Observable {
                         if (!getIfBarcoByPos(x + 1, y - 1,false))
                             sinAgua = true;
         }
-        else if(x==9&&y==0)
+        else if(x==tTablero-1&&y==0)
         {
             if (!getIfBarcoByPos(x, y,false))
                 if (!getIfBarcoByPos(x, y + 1,false))
@@ -451,7 +481,7 @@ public abstract class Tablero extends Observable {
                         if (!getIfBarcoByPos(x - 1, y + 1,false))
                             sinAgua = true;
         }
-        else if(x==9&&y==9)
+        else if(x==tTablero-1&&y==tTablero-1)
         {
             if (!getIfBarcoByPos(x, y,false))
                 if (!getIfBarcoByPos(x - 1, y,false))
@@ -469,7 +499,7 @@ public abstract class Tablero extends Observable {
                                 if (!getIfBarcoByPos(x + 1, y - 1,false))
                                     sinAgua = true;
         }
-        else if(x==9)
+        else if(x==tTablero-1)
         {
             if (!getIfBarcoByPos(x, y,false))
                 if (!getIfBarcoByPos(x, y + 1,false))
@@ -489,7 +519,7 @@ public abstract class Tablero extends Observable {
                                 if (!getIfBarcoByPos(x - 1, y + 1,false))
                                     sinAgua = true;
         }
-        else if(y==9)
+        else if(y==tTablero-1)
         {
             if (!getIfBarcoByPos(x, y,false))
                 if (!getIfBarcoByPos(x + 1, y,false))
@@ -515,193 +545,6 @@ public abstract class Tablero extends Observable {
         return sinAgua;
     }
 
-    /*
-     * todo
-     * Segun el tipo de arma seleccionada hace un ataque diferente
-     */
-    public void atacar(int arma, int x, int y,boolean ia)
-    {
-        if(!tablero_escudo[x][y]) {
-            switch (arma) {
-                case 0: //bomba
-                {
-                    if (getIfBarcoByPos(x, y, false)) {
-                        tablero_casilla[x][y].setBackground(Color.red);
-                    } else {
-                        tablero_casilla[x][y].setBackground(Color.white);
-                    }
-                    tablero_disparos[x][y] = true;
-                    break;
-                }
-                case 1://misil
-                {
-                    if (getIfBarcoByPos(x, y, false)) {
-                        for (Coordenada c : flota.getBarcoporPos(x, y).calcularCoordenadas()) {
-                            tablero_casilla[c.getX()][c.getY()].setBackground(Color.red);
-                            tablero_disparos[c.getX()][c.getY()] = true;
-                        }
-                    } else {
-                        tablero_casilla[x][y].setBackground(Color.white);
-                        tablero_disparos[x][y] = true;
-                    }
-                    break;
-                }
-                case 2://radar
-                {
-                    try {
-                        if (getIfBarcoByPos(x, y, false)) {
-                            if(!tablero_disparos[x][y])
-                                tablero_casilla[x][y].setBackground(Color.green);
-                        } else {
-                            tablero_casilla[x][y].setBackground(Color.white);
-                            tablero_disparos[x][y]=true;
-                        }
-                    } catch (Exception ignore) {
-                    }
-                    try {
-                        if (getIfBarcoByPos(x + 1, y, false)) {
-                            if(!tablero_disparos[x+1][y])
-                                tablero_casilla[x + 1][y].setBackground(Color.green);
-                        } else {
-                            tablero_casilla[x + 1][y].setBackground(Color.white);
-                            tablero_disparos[x+1][y]=true;
-                        }
-                    } catch (Exception ignore) {
-                    }
-                    try {
-                        if (getIfBarcoByPos(x, y + 1, false)) {
-                            if(!tablero_disparos[x][y+1])
-                                tablero_casilla[x][y + 1].setBackground(Color.green);
-                        } else {
-                            tablero_casilla[x][y + 1].setBackground(Color.white);
-                            tablero_disparos[x][y+1]=true;
-                        }
-                    } catch (Exception ignore) {
-                    }
-                    try {
-                        if (getIfBarcoByPos(x - 1, y, false)) {
-                            if(!tablero_disparos[x-1][y])
-                                tablero_casilla[x - 1][y].setBackground(Color.green);
-                        } else {
-                            tablero_casilla[x - 1][y].setBackground(Color.white);
-                            tablero_disparos[x-1][y]=true;
-                        }
-                    } catch (Exception ignore) {
-                    }
-                    try {
-                        if (getIfBarcoByPos(x, y - 1, false)) {
-                            if(!tablero_disparos[x][y-1])
-                                tablero_casilla[x][y - 1].setBackground(Color.green);
-                        } else {
-                            tablero_casilla[x][y - 1].setBackground(Color.white);
-                            tablero_disparos[x][y-1]=true;
-                        }
-                    } catch (Exception ignore) {
-                    }
-                    try {
-                        if (getIfBarcoByPos(x + 1, y + 1, false)) {
-                            if(!tablero_disparos[x+1][y+1])
-                                tablero_casilla[x + 1][y + 1].setBackground(Color.green);
-                        } else {
-                            tablero_casilla[x + 1][y + 1].setBackground(Color.white);
-                            tablero_disparos[x+1][y+1]=true;
-                        }
-                    } catch (Exception ignore) {
-                    }
-                    try {
-                        if (getIfBarcoByPos(x - 1, y - 1, false)) {
-                            if(!tablero_disparos[x-1][y-1])
-                                tablero_casilla[x - 1][y - 1].setBackground(Color.green);
-                        } else {
-                            tablero_casilla[x - 1][y - 1].setBackground(Color.white);
-                            tablero_disparos[x-1][y-1]=true;
-                        }
-                    } catch (Exception ignore) {
-                    }
-                    try {
-                        if (getIfBarcoByPos(x + 1, y - 1, false)) {
-                            if(!tablero_disparos[x+1][y-1])
-                                tablero_casilla[x + 1][y - 1].setBackground(Color.green);
-                        } else {
-                            tablero_casilla[x + 1][y - 1].setBackground(Color.white);
-                            tablero_disparos[x+1][y-1]=true;
-                        }
-                    } catch (Exception ignore) {
-                    }
-                    try {
-                        if (getIfBarcoByPos(x - 1, y + 1, false)) {
-                            if(!tablero_disparos[x-1][y+1])
-                                tablero_casilla[x - 1][y + 1].setBackground(Color.green);
-                        } else {
-                            tablero_casilla[x - 1][y + 1].setBackground(Color.white);
-                            tablero_disparos[x-1][y+1]=true;
-                        }
-                    } catch (Exception ignore) {
-                    }
-                    break;
-                }
-                case 3://Escudo
-                {
-                    for (Coordenada c : flota.getBarcoporPos(x, y).calcularCoordenadas()) {
-                        if(!ia) {
-                            if(!tablero_disparos[c.getX()][c.getY()])
-                            {
-                                tablero_casilla[c.getX()][c.getY()].setBackground(Color.darkGray);
-                            }
-                            else
-                            {
-                                tablero_casilla[c.getX()][c.getY()].setBackground(Color.lightGray);
-                            }
-                        }
-                        tablero_escudo[c.getX()][c.getY()] = true;
-                    }
-                }
-            }
-        }
-        else
-        {
-            System.out.println("ESCUDO DESACTIVADO");
-            for (Coordenada c: flota.getBarcoporPos(x,y).calcularCoordenadas())
-            {
-                if(ia) {
-                    if(!tablero_disparos[c.getX()][c.getY()])
-                    {
-                        tablero_casilla[c.getX()][c.getY()].setBackground(Color.black);
-                    }
-                    else
-                    {
-                        tablero_casilla[c.getX()][c.getY()].setBackground(Color.red);
-                    }
-                }
-                tablero_escudo[c.getX()][c.getY()] = false;
-            }
-        }
-    }
-
-    /*
-    * Comprueba que se pueda atacar con ese arma en la cordenada pasada
-     */
-    public boolean sePuedeAtacar(int arma, int x, int y)
-    {
-        boolean atacable=false;
-        if(!tablero_disparos[x][y])
-        {
-            if(arma!=3)
-            {
-                atacable=true;
-            }
-            else
-            {
-                System.out.println("NO SE PUEDE PONER ESCUDO AL ENEMIGO");
-            }
-        }
-        else
-        {
-            System.out.println("NO SE PUEDE ATACAR");
-        }
-        return atacable;
-    }
-
     public int getDinero()
     {
         return dinero;
@@ -710,21 +553,6 @@ public abstract class Tablero extends Observable {
     public void setDinero(int pDinero)
     {
         dinero=pDinero;
-    }
-
-    public void anadirMisil()
-    {
-        misArmas[1]++;
-    }
-
-    public void anadirRadar()
-    {
-        misArmas[2]++;
-    }
-
-    public void anadirEscudo()
-    {
-        misArmas[3]++;
     }
 
     /*
@@ -736,12 +564,17 @@ public abstract class Tablero extends Observable {
         return ((int)(Math.random()*(max-min)))+min;
     }
 
-
+    /*
+    * Cambia la flag de cambio a true
+     */
     public void setChanged()
     {
         changed=true;
     }
 
+    /*
+    * Notifica de los cambios a la vista
+     */
     public void notifyObservers(Object g)
     {
         if (changed == true)

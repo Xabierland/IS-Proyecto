@@ -1,0 +1,205 @@
+package is.modelo;
+
+import is.vista.Juego;
+import is.vista.Tienda;
+
+import java.util.ArrayList;
+import java.util.Observable;
+
+public class Armamento extends Observable {
+    private ArrayList<Arma> armamento;
+    private boolean changeJuego =false;
+    private boolean changeTienda =false;
+
+    public Armamento()
+    {
+        armamento=new ArrayList<>();
+        addArma(0,false);
+    }
+
+    public void addArma(int tipoArma, boolean finita)
+    {
+        Arma nArma=ArmaFactory.getBarcosFactory().hacerArma(tipoArma,finita);
+        this.armamento.add(nArma);
+        System.out.printf("Se ha añadido el arma\n");
+
+        //ACTUALIZAR BOTONES DE ARMA Y TIENDA
+        actualizarArmamento(tipoArma);
+    }
+
+    public boolean usarArma(int tipoArma, int pTablero, int x, int y)
+    {
+        Arma nArma=getArma(tipoArma);
+        actualizarArmamento(tipoArma);
+        return nArma.atacar(pTablero,x,y);
+    }
+
+    public void deleteArma(Arma pArma)
+    {
+        if(pArma.finita) {
+            armamento.remove(pArma);
+        }
+    }
+
+    public Arma getArma(int tipoArma)
+    {
+        Arma nArma=null;
+        for(Arma a : armamento)
+        {
+            if(a.getTipoArma()==tipoArma)
+            {
+                nArma=a;
+                deleteArma(a);
+                break;
+            }
+        }
+        return nArma;
+    }
+
+    public boolean existeMunicion(int tipoArma)
+    {
+        boolean existe=false;
+        for(Arma a : armamento)
+        {
+            if(a.getTipoArma()==tipoArma)
+            {
+                existe=true;
+                break;
+            }
+        }
+        return existe;
+    }
+
+    private int numDeUnArma(int tipoArma)
+    {
+        int i=0;
+        for(Arma a: armamento)
+        {
+            if(a.getTipoArma()==tipoArma)
+            {
+                i++;
+            }
+        }
+        return i;
+    }
+
+    public void actualizarArmamento(int tipoArma)
+    {
+        switch (tipoArma)
+        {
+            case 1:
+            {
+                if(numDeUnArma(tipoArma) == 0)
+                {
+                    setChangedJuego();
+                    Object[] lista= new Object[3];
+                    lista[0]="ARMA";
+                    lista[1]=Juego.getBtn_misil();
+                    lista[2]=false;
+                    notifyObservers(lista);
+                    Partida.getMiPartida().setTipoArma(0);
+                }
+                else
+                {
+                    setChangedJuego();
+                    Object[] lista= new Object[3];
+                    lista[0]="ARMA";
+                    lista[1]=Juego.getBtn_misil();
+                    lista[2]=true;
+                    notifyObservers(lista);
+                }
+                break;
+            }
+            case 2:
+            {
+                if(numDeUnArma(tipoArma) == 0)
+                {
+                    setChangedJuego();
+                    Object[] lista= new Object[3];
+                    lista[0]="ARMA";
+                    lista[1]=Juego.getBtn_radar();
+                    lista[2]=false;
+                    notifyObservers(lista);
+                    Partida.getMiPartida().setTipoArma(0);
+                }
+                else
+                {
+                    setChangedJuego();
+                    Object[] lista= new Object[3];
+                    lista[0]="ARMA";
+                    lista[1]=Juego.getBtn_radar();
+                    lista[2]=true;
+                    notifyObservers(lista);
+                }
+                break;
+            }
+            case 3:
+            {
+                if(numDeUnArma(tipoArma) == 0)
+                {
+                    setChangedJuego();
+                    Object[] lista= new Object[3];
+                    lista[0]="ARMA";
+                    lista[1]=Juego.getBtn_escudo();
+                    lista[2]=false;
+                    notifyObservers(lista);
+                    Partida.getMiPartida().setTipoArma(0);
+                }
+                else
+                {
+                    setChangedJuego();
+                    Object[] lista= new Object[3];
+                    lista[0]="ARMA";
+                    lista[1]=Juego.getBtn_escudo();
+                    lista[2]=true;
+                    notifyObservers(lista);
+                }
+                break;
+            }
+        }
+    }
+
+    public void actualizarTienda(int tipoArma)
+    {
+        setChangedJuego();
+        Object[] lista=new Object[3];
+        lista[0]="DINERO";
+        lista[1]=Juego.getLblDinero();
+        lista[2]=
+        switch (tipoArma)
+        {
+            case 1:
+            {
+                setChangeTienda();
+            }
+            case 2:
+            {
+
+            }
+        }
+    }
+
+    public void setChangedJuego()
+    {
+        changeJuego =true;
+    }
+
+    public void setChangeTienda()
+    {
+        changeTienda=true;
+    }
+
+    public void notifyObservers(Object g)
+    {
+        if (changeJuego == true)
+        {
+            Juego.getMiJuego().update(this, g);
+        }
+        if (changeTienda == true)
+        {
+            Tienda.getTienda().update(this, g);
+        }
+        changeJuego = false;
+        changeTienda = false;
+    }
+}
