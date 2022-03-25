@@ -14,17 +14,19 @@ public class Armamento extends Observable {
     public Armamento()
     {
         armamento=new ArrayList<>();
-        addArma(0,false);
     }
 
-    public void addArma(int tipoArma, boolean finita)
+    public void addArma(int tipoArma, boolean finita, boolean ia)
     {
         Arma nArma=ArmaFactory.getBarcosFactory().hacerArma(tipoArma,finita);
         this.armamento.add(nArma);
         System.out.printf("Se ha añadido el arma\n");
 
         //ACTUALIZAR BOTONES DE ARMA Y TIENDA
-        actualizarArmamento(tipoArma);
+        if(!ia && tipoArma!=0) {
+            actualizarArmamento(tipoArma);
+            actualizarTienda(tipoArma);
+        }
     }
 
     public boolean usarArma(int tipoArma, int pTablero, int x, int y)
@@ -165,16 +167,39 @@ public class Armamento extends Observable {
         Object[] lista=new Object[3];
         lista[0]="DINERO";
         lista[1]=Juego.getLblDinero();
-        lista[2]=
+        lista[2]=Tablero_Jugador.getTableroJugador().getDinero();
+        notifyObservers(lista);
         switch (tipoArma)
         {
             case 1:
             {
                 setChangeTienda();
+                Object[] lista1 = new Object[3];
+                lista1[0]="TIENDA";
+                lista1[1]=Tienda.getLbl_compra();
+                lista1[2]="Has comprado un misil";
+                notifyObservers(lista1);
+                break;
             }
             case 2:
             {
-
+                setChangeTienda();
+                Object[] lista1 = new Object[3];
+                lista1[0]="TIENDA";
+                lista1[1]=Tienda.getLbl_compra();
+                lista1[2]="Has comprado un radar";
+                notifyObservers(lista1);
+                break;
+            }
+            case 3:
+            {
+                setChangeTienda();
+                Object[] lista1 = new Object[3];
+                lista1[0]="TIENDA";
+                lista1[1]=Tienda.getLbl_compra();
+                lista1[2]="Has comprado un escudo";
+                notifyObservers(lista1);
+                break;
             }
         }
     }

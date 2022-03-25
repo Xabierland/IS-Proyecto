@@ -13,6 +13,7 @@ public class Tablero_Jugador extends Tablero {
         tablero_escudo=new boolean[tTablero][tTablero];
         flota=new Flota();
         armamento=new Armamento();
+        armamento.addArma(0,false,false);
     }
 
     public static Tablero_Jugador getTableroJugador()

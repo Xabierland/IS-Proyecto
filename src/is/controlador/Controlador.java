@@ -90,7 +90,7 @@ public class Controlador extends Observable implements ActionListener, MouseList
 			if(Jugador.getDinero() >= var.getPrecioMisil())
 			{
 				Jugador.setDinero(Jugador.getDinero()-var.getPrecioMisil());
-				Jugador.getArmamento().addArma(1, true);
+				Jugador.getArmamento().addArma(1, true,false);
 				String cad="Has comprado un misil";
 			}
 			else
@@ -104,7 +104,7 @@ public class Controlador extends Observable implements ActionListener, MouseList
 			if(Jugador.getDinero() >= var.getPrecioRadar())
 			{
 				Jugador.setDinero(Jugador.getDinero()-var.getPrecioRadar());
-				Jugador.getArmamento().addArma(2,true);
+				Jugador.getArmamento().addArma(2,true,false);
 				String cad="Has comprado un radar";
 			}
 			else
@@ -118,7 +118,7 @@ public class Controlador extends Observable implements ActionListener, MouseList
 			if(Jugador.getDinero() >= var.getPrecioEscudo())
 			{
 				Jugador.setDinero(Jugador.getDinero()-var.getPrecioEscudo());
-				Jugador.getArmamento().addArma(3,true);
+				Jugador.getArmamento().addArma(3,true,false);
 				String cad="Has comprado un escudo";
 			}
 			else

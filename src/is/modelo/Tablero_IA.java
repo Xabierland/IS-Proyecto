@@ -15,6 +15,7 @@ public class Tablero_IA extends Tablero
         tablero_escudo=new boolean[tTablero][tTablero];
         flota=new Flota();
         armamento=new Armamento();
+        armamento.addArma(0,false,true);
     }
 
     public static Tablero_IA getTableroIA()

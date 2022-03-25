@@ -136,13 +136,23 @@ public class Partida
 
     private void ataqueIA()
     {
-        if(getTablero(0).getIfEndGame())
-        {
-            JFrame winMess = new JFrame();
-            JOptionPane.showMessageDialog(winMess, "LA IA GANA");
-            System.exit(0);
+        int pX,pY;
+        boolean atacado=false;
+        while(!atacado) {
+            pX = getRandomInteger(Variables.getMisVariables().getTamanoTablero(), 0);
+            pY = getRandomInteger(Variables.getMisVariables().getTamanoTablero(), 0);
+            if (getTablero(1).getArmamento().existeMunicion(0)) {
+                if (getTablero(1).armamento.usarArma(0, 0, pX, pY)) {
+                    atacado=true;
+                    if (getTablero(0).getIfEndGame()) {
+                        JFrame winMess = new JFrame();
+                        JOptionPane.showMessageDialog(winMess, "LA IA GANA");
+                        System.exit(0);
+                    }
+                    Jturno = true;
+                }
+            }
         }
-        Jturno=true;
     }
 
     /*
