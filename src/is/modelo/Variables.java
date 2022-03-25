@@ -18,6 +18,7 @@ public class Variables
     private final int precioMisil=500;
     private final int precioRadar=1000;
     private final int precioEscudo =1000;
+    private final int precioReparacion=1000;
 
     private Variables(){}
 
@@ -46,4 +47,5 @@ public class Variables
     public int getPrecioMisil(){return precioMisil;}
     public int getPrecioRadar(){return precioRadar;}
     public int getPrecioEscudo(){return precioEscudo;}
+    public int getPrecioReparacion(){return precioReparacion;}
 }

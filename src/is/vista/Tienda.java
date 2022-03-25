@@ -16,6 +16,7 @@ import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
 import java.util.Observable;
 import java.util.Observer;
+import java.awt.event.ActionListener;
 
 public class Tienda extends JFrame implements Observer {
 
@@ -33,6 +34,9 @@ public class Tienda extends JFrame implements Observer {
 	private JLabel fotoEscudo;
 	private static JLabel lbl_compra;
 	private JPanel panel;
+	private JLabel lblReparacion;
+	private JLabel fotoReparacion;
+	private JButton btn_reparacion;
 
 	/**
 	 * Create the frame.
@@ -41,7 +45,7 @@ public class Tienda extends JFrame implements Observer {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Tienda.class.getResource("/resource/tienda.png")));
 		setTitle("Tienda");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 457, 311);
+		setBounds(100, 100, 457, 357);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -128,7 +132,7 @@ public class Tienda extends JFrame implements Observer {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setLayout(new GridLayout(3, 3, 0, 0));
+			panel.setLayout(new GridLayout(4, 3, 0, 0));
 			panel.add(getLbl_misil());
 			panel.add(getFotoMisil());
 			panel.add(getBtn_misil());
@@ -138,6 +142,9 @@ public class Tienda extends JFrame implements Observer {
 			panel.add(getLbl_escudo());
 			panel.add(getFotoEscudo());
 			panel.add(getBtn_escudo());
+			panel.add(getLblReparacion());
+			panel.add(getFotoReparacion());
+			panel.add(getBtn_reparacion());
 		}
 		return panel;
 	}
@@ -152,5 +159,24 @@ public class Tienda extends JFrame implements Observer {
 		{
 			((JLabel) lista[1]).setText((String) lista[2]);
 		}
+	}
+	private JLabel getLblReparacion() {
+		if (lblReparacion == null) {
+			lblReparacion = new JLabel("\u00A0\u00A0Reparacion");
+		}
+		return lblReparacion;
+	}
+	private JLabel getFotoReparacion() {
+		if (fotoReparacion == null) {
+			fotoReparacion = new JLabel("");
+			fotoReparacion.setIcon(new ImageIcon(Tienda.class.getResource("/resource/repair64.png")));
+		}
+		return fotoReparacion;
+	}
+	private JButton getBtn_reparacion() {
+		if (btn_reparacion == null) {
+			btn_reparacion = new JButton(Variables.getMisVariables().getPrecioReparacion()+"g");
+		}
+		return btn_reparacion;
 	}
 }
