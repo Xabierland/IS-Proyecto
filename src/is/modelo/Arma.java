@@ -1,4 +1,6 @@
 package is.modelo;
 
-public abstract class Arma {
+public abstract class Arma
+{
+
 }
