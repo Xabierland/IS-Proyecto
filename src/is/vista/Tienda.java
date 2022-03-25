@@ -36,7 +36,7 @@ public class Tienda extends JFrame implements Observer {
 	private JPanel panel;
 	private JLabel lblReparacion;
 	private JLabel fotoReparacion;
-	private JButton btn_reparacion;
+	private static JButton btn_reparacion;
 
 	/**
 	 * Create the frame.
@@ -101,6 +101,13 @@ public class Tienda extends JFrame implements Observer {
 			btn_escudo.addActionListener(Controlador.getControlador());
 		}
 		return btn_escudo;
+	}
+	public static JButton getBtn_reparacion() {
+		if (btn_reparacion == null) {
+			btn_reparacion = new JButton(Variables.getMisVariables().getPrecioReparacion()+"g");
+			btn_reparacion.addActionListener(Controlador.getControlador());
+		}
+		return btn_reparacion;
 	}
 	private JLabel getFotoMisil() {
 		if (fotoMisil == null) {
@@ -173,10 +180,5 @@ public class Tienda extends JFrame implements Observer {
 		}
 		return fotoReparacion;
 	}
-	private JButton getBtn_reparacion() {
-		if (btn_reparacion == null) {
-			btn_reparacion = new JButton(Variables.getMisVariables().getPrecioReparacion()+"g");
-		}
-		return btn_reparacion;
-	}
+
 }

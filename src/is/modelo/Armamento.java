@@ -158,6 +158,29 @@ public class Armamento extends Observable {
                 }
                 break;
             }
+            case 4:
+            {
+                if(numDeUnArma(tipoArma) == 0)
+                {
+                    setChangedJuego();
+                    Object[] lista= new Object[3];
+                    lista[0]="ARMA";
+                    lista[1]=Juego.getBtn_reparacion();
+                    lista[2]=false;
+                    notifyObservers(lista);
+                    Partida.getMiPartida().setTipoArma(0);
+                }
+                else
+                {
+                    setChangedJuego();
+                    Object[] lista= new Object[3];
+                    lista[0]="ARMA";
+                    lista[1]=Juego.getBtn_reparacion();
+                    lista[2]=true;
+                    notifyObservers(lista);
+                }
+                break;
+            }
         }
     }
 
@@ -198,6 +221,16 @@ public class Armamento extends Observable {
                 lista1[0]="TIENDA";
                 lista1[1]=Tienda.getLbl_compra();
                 lista1[2]="Has comprado un escudo";
+                notifyObservers(lista1);
+                break;
+            }
+            case 4:
+            {
+                setChangeTienda();
+                Object[] lista1 = new Object[3];
+                lista1[0]="TIENDA";
+                lista1[1]=Tienda.getLbl_compra();
+                lista1[2]="Has comprado una reparacion";
                 notifyObservers(lista1);
                 break;
             }

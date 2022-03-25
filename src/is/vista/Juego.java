@@ -35,6 +35,7 @@ import is.modelo.Tablero_Jugador;
 import is.modelo.Variables;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
 
 public class Juego extends JFrame implements Observer {
 	private static Juego miJuego=null;
@@ -63,7 +64,6 @@ public class Juego extends JFrame implements Observer {
 	private JPanel panel;
 	private static JLabel lblDinero;
 	private static JButton btn_tienda;
-	private Component verticalStrut;
 	private ButtonGroup grupo_btn_barcos = new ButtonGroup();
 	private JPanel panel_1;
 	private JLabel lblNewLabel;
@@ -72,6 +72,8 @@ public class Juego extends JFrame implements Observer {
 	private JPanel panel_2;
 	private JPanel panel_3;
 	private Component horizontalStrut_2;
+	private static JButton btn_reparacion;
+	private Component verticalStrut;
 
 
 
@@ -157,12 +159,13 @@ public class Juego extends JFrame implements Observer {
 	private JPanel getArma_panel() {
 		if (arma_panel == null) {
 			arma_panel = new JPanel();
-			arma_panel.setLayout(new MigLayout("", "[130px]", "[][84px][84px][84px][84px]"));
+			arma_panel.setLayout(new MigLayout("", "[130px,center]", "[][90px,center][90px,center][90px,center][90px,center][90px,center]"));
 			arma_panel.add(getVerticalStrut(), "cell 0 0");
 			arma_panel.add(getBtn_bomba(), "cell 0 1,growx,aligny center");
 			arma_panel.add(getBtn_misil(), "cell 0 2,growx,aligny center");
 			arma_panel.add(getBtn_radar(), "cell 0 3,growx,aligny center");
 			arma_panel.add(getBtn_escudo(), "cell 0 4,growx,aligny center");
+			arma_panel.add(getBtn_reparacion(), "cell 0 5,growx,aligny center");
 		}
 		return arma_panel;
 	}
@@ -196,6 +199,14 @@ public class Juego extends JFrame implements Observer {
 			btn_escudo.addActionListener(Controlador.getControlador());
 		}
 		return btn_escudo;
+	}
+	public static JButton getBtn_reparacion() {
+		if (btn_reparacion == null) {
+			btn_reparacion = new JButton("Reparacion");
+			btn_reparacion.setEnabled(false);
+			btn_reparacion.addActionListener(Controlador.getControlador());
+		}
+		return btn_reparacion;
 	}
 	private JPanel getTablero_jugador() {
 		if (tablero_jugador == null) {
@@ -350,12 +361,6 @@ public class Juego extends JFrame implements Observer {
 		}
 		return btn_tienda;
 	}
-	private Component getVerticalStrut() {
-		if (verticalStrut == null) {
-			verticalStrut = Box.createVerticalStrut(90);
-		}
-		return verticalStrut;
-	}
 	private JPanel getPanel_1() {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
@@ -407,7 +412,12 @@ public class Juego extends JFrame implements Observer {
 		}
 		return horizontalStrut_2;
 	}
-
+	private Component getVerticalStrut() {
+		if (verticalStrut == null) {
+			verticalStrut = Box.createVerticalStrut(30);
+		}
+		return verticalStrut;
+	}
 	@Override
 	public void update(Observable o,  Object arg)
 	 {

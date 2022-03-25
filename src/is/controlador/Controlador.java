@@ -12,7 +12,7 @@ import javax.swing.*;
 import is.vista.Tienda;
 import is.vista.Juego;
 
-public class Controlador extends Observable implements ActionListener, MouseListener
+public class Controlador implements ActionListener, MouseListener
 {
 	private static Controlador controler =null;
 
@@ -87,45 +87,19 @@ public class Controlador extends Observable implements ActionListener, MouseList
 		}
 		if(e.getSource().equals(Tienda.getBtn_misil()))
 		{
-			if(Jugador.getDinero() >= var.getPrecioMisil())
-			{
-				Jugador.setDinero(Jugador.getDinero()-var.getPrecioMisil());
-				Jugador.getArmamento().addArma(1, true,false);
-				String cad="Has comprado un misil";
-			}
-			else
-			{
-				Tienda.getLbl_compra().setText("No hay dinero suficiente");
-				System.out.println("No hay dinero suficiente");
-			}
+			Shop.getTienda().comprarMisil(0);
 		}
 		if(e.getSource().equals(Tienda.getBtn_radar()))
 		{
-			if(Jugador.getDinero() >= var.getPrecioRadar())
-			{
-				Jugador.setDinero(Jugador.getDinero()-var.getPrecioRadar());
-				Jugador.getArmamento().addArma(2,true,false);
-				String cad="Has comprado un radar";
-			}
-			else
-			{
-				Tienda.getLbl_compra().setText("No hay dinero suficiente");
-				System.out.println("No hay dinero suficiente");
-			}
+			Shop.getTienda().comprarRadar(0);
 		}
 		if(e.getSource().equals(Tienda.getBtn_escudo()))
 		{
-			if(Jugador.getDinero() >= var.getPrecioEscudo())
-			{
-				Jugador.setDinero(Jugador.getDinero()-var.getPrecioEscudo());
-				Jugador.getArmamento().addArma(3,true,false);
-				String cad="Has comprado un escudo";
-			}
-			else
-			{
-				Tienda.getLbl_compra().setText("No hay dinero suficiente");
-				System.out.println("No hay dinero suficiente");
-			}
+			Shop.getTienda().comprarEscudo(0);
+		}
+		if(e.getSource().equals(Tienda.getBtn_reparacion()))
+		{
+			Shop.getTienda().comprarReparacion(0);
 		}
 		//CHEATS ===============================================================================================================================================================
 		if(e.getSource().equals(Juego.getCheatConsole()))

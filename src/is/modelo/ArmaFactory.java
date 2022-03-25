@@ -17,7 +17,7 @@ public class ArmaFactory {
             case 1: nArma=new Misil(type, finita);break;
             case 2: nArma=new Radar(type, finita);break;
             case 3: nArma=new Escudo(type, finita);break;
-            //case 4: nArma=new Reparar(type);break;
+            case 4: nArma=new Reparar(type,finita);break;
         }
         return nArma;
     }

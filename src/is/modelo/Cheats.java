@@ -44,7 +44,8 @@ public class Cheats
             case "iddqd" : //ARMAS INFINITAS
             {
                 System.out.println("CheatCode: "+cheatCode);
-
+                for(int i=1;i<Variables.getMisVariables().getNumArmas();i++)
+                    Tablero_Jugador.getTableroJugador().getArmamento().addArma(i,false,false);
                 break;
             }
             case "motherlode" : //50.000 DE ORO
