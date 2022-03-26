@@ -20,12 +20,23 @@ public class Radar extends Arma
             y=pY;
             if (tab.getIfBarcoByPos(x, y, false)) {
                 if(!tab.getIfDisparo(x,y)) {
-                    setChanged();
-                    Object[] objetos = new Object[3];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = tab.getCasilla(x, y);
-                    objetos[2] = Color.green;
-                    this.notifyObservers(objetos);
+                    if(!tab.getIfEscudo(x,y)) {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.green;
+                        this.notifyObservers(objetos);
+                    }
+                    else
+                    {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.magenta;
+                        this.notifyObservers(objetos);
+                    }
                 }
                 else
                 {
@@ -51,12 +62,23 @@ public class Radar extends Arma
             y=pY;
             if (tab.getIfBarcoByPos(x, y, false)) {
                 if(!tab.getIfDisparo(x,y)) {
-                    setChanged();
-                    Object[] objetos = new Object[3];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = tab.getCasilla(x, y);
-                    objetos[2] = Color.green;
-                    this.notifyObservers(objetos);
+                    if(!tab.getIfEscudo(x,y)) {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.green;
+                        this.notifyObservers(objetos);
+                    }
+                    else
+                    {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.magenta;
+                        this.notifyObservers(objetos);
+                    }
                 }
                 else
                 {
@@ -82,12 +104,23 @@ public class Radar extends Arma
             y=pY;
             if (tab.getIfBarcoByPos(x, y, false)) {
                 if(!tab.getIfDisparo(x,y)) {
-                    setChanged();
-                    Object[] objetos = new Object[3];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = tab.getCasilla(x, y);
-                    objetos[2] = Color.green;
-                    this.notifyObservers(objetos);
+                    if(!tab.getIfEscudo(x,y)) {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.green;
+                        this.notifyObservers(objetos);
+                    }
+                    else
+                    {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.magenta;
+                        this.notifyObservers(objetos);
+                    }
                 }
                 else
                 {
@@ -113,12 +146,23 @@ public class Radar extends Arma
             y=pY+1;
             if (tab.getIfBarcoByPos(x, y, false)) {
                 if(!tab.getIfDisparo(x,y)) {
-                    setChanged();
-                    Object[] objetos = new Object[3];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = tab.getCasilla(x, y);
-                    objetos[2] = Color.green;
-                    this.notifyObservers(objetos);
+                    if(!tab.getIfEscudo(x,y)) {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.green;
+                        this.notifyObservers(objetos);
+                    }
+                    else
+                    {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.magenta;
+                        this.notifyObservers(objetos);
+                    }
                 }
                 else
                 {
@@ -144,12 +188,23 @@ public class Radar extends Arma
             y=pY-1;
             if (tab.getIfBarcoByPos(x, y, false)) {
                 if(!tab.getIfDisparo(x,y)) {
-                    setChanged();
-                    Object[] objetos = new Object[3];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = tab.getCasilla(x, y);
-                    objetos[2] = Color.green;
-                    this.notifyObservers(objetos);
+                    if(!tab.getIfEscudo(x,y)) {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.green;
+                        this.notifyObservers(objetos);
+                    }
+                    else
+                    {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.magenta;
+                        this.notifyObservers(objetos);
+                    }
                 }
                 else
                 {
@@ -175,12 +230,23 @@ public class Radar extends Arma
             y=pY+1;
             if (tab.getIfBarcoByPos(x, y, false)) {
                 if(!tab.getIfDisparo(x,y)) {
-                    setChanged();
-                    Object[] objetos = new Object[3];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = tab.getCasilla(x, y);
-                    objetos[2] = Color.green;
-                    this.notifyObservers(objetos);
+                    if(!tab.getIfEscudo(x,y)) {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.green;
+                        this.notifyObservers(objetos);
+                    }
+                    else
+                    {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.magenta;
+                        this.notifyObservers(objetos);
+                    }
                 }
                 else
                 {
@@ -206,12 +272,23 @@ public class Radar extends Arma
             y=pY-1;
             if (tab.getIfBarcoByPos(x, y, false)) {
                 if(!tab.getIfDisparo(x,y)) {
-                    setChanged();
-                    Object[] objetos = new Object[3];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = tab.getCasilla(x, y);
-                    objetos[2] = Color.green;
-                    this.notifyObservers(objetos);
+                    if(!tab.getIfEscudo(x,y)) {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.green;
+                        this.notifyObservers(objetos);
+                    }
+                    else
+                    {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.magenta;
+                        this.notifyObservers(objetos);
+                    }
                 }
                 else
                 {
@@ -237,12 +314,23 @@ public class Radar extends Arma
             y=pY-1;
             if (tab.getIfBarcoByPos(x, y, false)) {
                 if(!tab.getIfDisparo(x,y)) {
-                    setChanged();
-                    Object[] objetos = new Object[3];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = tab.getCasilla(x, y);
-                    objetos[2] = Color.green;
-                    this.notifyObservers(objetos);
+                    if(!tab.getIfEscudo(x,y)) {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.green;
+                        this.notifyObservers(objetos);
+                    }
+                    else
+                    {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.magenta;
+                        this.notifyObservers(objetos);
+                    }
                 }
                 else
                 {
@@ -268,12 +356,23 @@ public class Radar extends Arma
             y=pY+1;
             if (tab.getIfBarcoByPos(x, y, false)) {
                 if(!tab.getIfDisparo(x,y)) {
-                    setChanged();
-                    Object[] objetos = new Object[3];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = tab.getCasilla(x, y);
-                    objetos[2] = Color.green;
-                    this.notifyObservers(objetos);
+                    if(!tab.getIfEscudo(x,y)) {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.green;
+                        this.notifyObservers(objetos);
+                    }
+                    else
+                    {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = tab.getCasilla(x, y);
+                        objetos[2] = Color.magenta;
+                        this.notifyObservers(objetos);
+                    }
                 }
                 else
                 {
