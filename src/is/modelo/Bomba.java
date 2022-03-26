@@ -107,12 +107,14 @@ public class Bomba extends Arma
             {
                 if(!afectado.getIfDisparo(c.getX(),c.getY()))
                 {
-                    setChanged();
-                    Object[] objetos = new Object[3];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = getTablero(pTablero).getCasilla(c.getX(), c.getY());
-                    objetos[2] = Color.black;
-                    this.notifyObservers(objetos);
+                    if(afectado instanceof Tablero_Jugador) {
+                        setChanged();
+                        Object[] objetos = new Object[3];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = getTablero(pTablero).getCasilla(c.getX(), c.getY());
+                        objetos[2] = Color.black;
+                        this.notifyObservers(objetos);
+                    }
                 }
                 else
                 {
