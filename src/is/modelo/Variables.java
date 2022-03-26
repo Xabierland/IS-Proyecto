@@ -6,7 +6,7 @@ public class Variables
     // TamanoTablero x TamanoTablero
     private final int TamanoTablero = 10;
     //IA - Cuanto mas grande el numero mas facil - Simpre mayor que 0
-    private final int dificultadIA=20;
+    private final int dificultadIA=3;
     // 0 - Bomba | 1 - Misil | 2 - Radar | 3 - Escudo | 4 - Reparar
     private final int NumArmas = 5;
     //Barcos
