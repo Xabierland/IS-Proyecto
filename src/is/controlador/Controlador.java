@@ -58,6 +58,11 @@ public class Controlador implements ActionListener, MouseListener
 			System.out.println("ESCUDO SELECCIONADA\n");
 			partida.setTipoArma(3);
 		}
+		if(e.getSource().equals(Juego.getBtn_reparacion()))
+		{
+			System.out.println("REPARACION SELECCIONADA\n");
+			partida.setTipoArma(4);
+		}
 		//BARCOS ===============================================================================================================================================================
 		if(e.getSource().equals(Juego.getBtn_fragata()))
 		{

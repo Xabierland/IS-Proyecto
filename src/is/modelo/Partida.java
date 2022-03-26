@@ -92,7 +92,7 @@ public class Partida
                 {
                     if(tipoArma==3 || tipoArma==4) //ESCUDO & REPARAR
                     {
-                        //defenderJugador(pX, pY);
+                        defenderJugador(pX, pY);
                     }
                 }
                 else        //TURNO DE LA IA
@@ -104,7 +104,7 @@ public class Partida
             {
                 if(Jturno)  //TURNO DEL JUGADOR
                 {
-                    if(tipoArma!=3 || tipoArma!=4) //ESCUDO & REPARAR
+                    if(tipoArma!=3 && tipoArma!=4) //ESCUDO & REPARAR
                     {
                         ataqueJugador(pX, pY);
                     }
@@ -116,6 +116,8 @@ public class Partida
             }
         }
     }
+
+
 
     private void ataqueJugador(int pX, int pY)
     {
@@ -129,6 +131,18 @@ public class Partida
                 }
                 Jturno = false;
                 ataqueIA();
+            }
+        }
+    }
+
+    private void defenderJugador(int pX, int pY)
+    {
+        if(getTablero(0).getIfBarcoByPos(pX,pY,false)) {
+            if (getTablero(0).getArmamento().existeMunicion(tipoArma)) {
+                if (getTablero(0).armamento.usarArma(tipoArma, 0, pX, pY)) {
+                    Jturno = false;
+                    ataqueIA();
+                }
             }
         }
     }
