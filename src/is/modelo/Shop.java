@@ -35,8 +35,9 @@ public class Shop extends Observable {
         }
     }
 
-    public void comprarMisil(int pTablero)
+    public boolean comprarMisil(int pTablero)
     {
+        boolean exito=true;
         if(getTablero(pTablero).getDinero() >= var.getPrecioMisil())
         {
             getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioMisil());
@@ -44,12 +45,17 @@ public class Shop extends Observable {
         }
         else
         {
-            dineroInsuficiente();
+            if(pTablero==0) {
+                dineroInsuficiente();
+            }
+            exito=false;
         }
+        return exito;
     }
 
-    public void comprarRadar(int pTablero)
+    public boolean comprarRadar(int pTablero)
     {
+        boolean exito=true;
         if(getTablero(pTablero).getDinero() >= var.getPrecioRadar())
         {
             getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioRadar());
@@ -57,12 +63,17 @@ public class Shop extends Observable {
         }
         else
         {
-            dineroInsuficiente();
+            if(pTablero==0) {
+                dineroInsuficiente();
+            }
+            exito=false;
         }
+        return exito;
     }
 
-    public void comprarEscudo(int pTablero)
+    public boolean comprarEscudo(int pTablero)
     {
+        boolean exito=true;
         if(getTablero(pTablero).getDinero() >= var.getPrecioEscudo())
         {
             getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioEscudo());
@@ -70,12 +81,17 @@ public class Shop extends Observable {
         }
         else
         {
-            dineroInsuficiente();
+            if(pTablero==0) {
+                dineroInsuficiente();
+            }
+            exito=false;
         }
+        return exito;
     }
 
-    public void comprarReparacion(int pTablero)
+    public boolean comprarReparacion(int pTablero)
     {
+        boolean exito=true;
         if(getTablero(pTablero).getDinero() >= var.getPrecioReparacion())
         {
             getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioReparacion());
@@ -83,8 +99,12 @@ public class Shop extends Observable {
         }
         else
         {
-            dineroInsuficiente();
+            if(pTablero==0) {
+                dineroInsuficiente();
+            }
+            exito=false;
         }
+        return exito;
     }
 
     private void dineroInsuficiente()

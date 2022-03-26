@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/controlador/Controlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Bomba.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Bomba.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Escudo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Escudo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Partida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Reparar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Reparar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Shop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Tablero_Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Tablero_Jugador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Variables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Variables.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,10 +96,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/is/modelo/Partida.java</url>
-          <line>140</line>
-          <option name="timeStamp" value="7" />
+          <line>211</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/is/modelo/Partida.java</url>
+          <line>232</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/workspace_xml$main.ic" NAME="main Coverage Results" MODIFIED="1648297678371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

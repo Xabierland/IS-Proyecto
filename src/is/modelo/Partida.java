@@ -147,25 +147,135 @@ public class Partida
         }
     }
 
-    private void ataqueIA()
-    {
-        int pX,pY;
-        boolean atacado=false;
-        while(!atacado) {
-            pX = getRandomInteger(Variables.getMisVariables().getTamanoTablero(), 0);
-            pY = getRandomInteger(Variables.getMisVariables().getTamanoTablero(), 0);
-            if (getTablero(1).getArmamento().existeMunicion(0)) {
-                if (getTablero(1).armamento.usarArma(0, 0, pX, pY)) {
-                    atacado=true;
-                    if (getTablero(0).getIfEndGame()) {
-                        JFrame winMess = new JFrame();
-                        JOptionPane.showMessageDialog(winMess, "LA IA GANA");
-                        System.exit(0);
+    private void ataqueIA() {
+        int pArma, tipoAtaque, cualCoor;
+        Coordenada c;
+        boolean atacado = false;
+        tipoAtaque = getRandomInteger(10, 0);
+        cualCoor = getRandomInteger(Variables.getMisVariables().getDificultadIA(), 0);
+        while (!atacado)
+        {
+            switch (tipoAtaque)
+            {
+                default: //BOMBA 60%
+                {
+                    pArma = 0;
+                    c=IAgetCoordenadas(cualCoor);
+                    if(getTablero(1).getArmamento().usarArma(pArma,0,c.getX(),c.getY()))
+                    {
+                        atacado=true;
                     }
-                    Jturno = true;
+                    break;
+                }
+                case 6: //MISIL 10%
+                {
+                    pArma = 1;
+                    if (getTablero(1).getArmamento().existeMunicion(pArma))
+                    {
+                        c=IAgetCoordenadas(cualCoor);
+                        if(getTablero(1).getArmamento().usarArma(pArma,0,c.getX(),c.getY()))
+                        {
+                            atacado=true;
+                        }
+                    }
+                    else
+                    {
+                        if (!Shop.getTienda().comprarMisil(1))
+                        {
+                            tipoAtaque = getRandomInteger(10, 0);
+                        }
+                    }
+                    break;
+                }
+                case 7: //RADAR 10%
+                {
+                    pArma = 2;
+                    if (getTablero(1).getArmamento().existeMunicion(pArma))
+                    {
+                        c=IAgetCoordenadas(1);
+                        if(getTablero(1).getArmamento().usarArma(pArma,0,c.getX(),c.getY()))
+                        {
+                            atacado=true;
+                        }
+                    }
+                    else
+                    {
+                        if (!Shop.getTienda().comprarRadar(1))
+                        {
+                            tipoAtaque = getRandomInteger(10, 0);
+                        }
+                    }
+                    break;
+                }
+                case 8: //ESCUDO 10%
+                {
+                    pArma = 3;
+                    if (getTablero(1).getArmamento().existeMunicion(pArma))
+                    {
+                        c=IAgetCoordenadas(1);
+                        if(getTablero(1).getIfBarcoByPos(c.getX(),c.getY(),false)) {
+                            if (getTablero(1).getArmamento().usarArma(pArma, 1, c.getX(), c.getY())) {
+                                atacado = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!Shop.getTienda().comprarEscudo(1))
+                        {
+                            tipoAtaque = getRandomInteger(10, 0);
+                        }
+                    }
+                    break;
+                }
+                case 9: //REPARACION 10%
+                {
+                    pArma = 4;
+                    if (getTablero(1).getArmamento().existeMunicion(pArma))
+                    {
+                        c=IAgetCoordenadas(1);
+                        if(getTablero(1).getIfBarcoByPos(c.getX(),c.getY(),false)) {
+                            if (getTablero(1).getArmamento().usarArma(pArma, 1, c.getX(), c.getY())) {
+                                atacado = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!Shop.getTienda().comprarReparacion(1))
+                        {
+                            tipoAtaque = getRandomInteger(10, 0);
+                        }
+                    }
+                    break;
                 }
             }
         }
+        if (getTablero(0).getIfEndGame()) {
+            JFrame winMess = new JFrame();
+            JOptionPane.showMessageDialog(winMess, "LA IA GANA");
+            System.exit(0);
+        }
+        Jturno = true;
+    }
+
+    private Coordenada IAgetCoordenadas(int factor)
+    {
+        Coordenada c;
+        switch (factor)
+        {
+            case 0:
+            {
+                c=Tablero_Jugador.getTableroJugador().getCoordenadasDeUnBarco();
+                break;
+            }
+            default:
+            {
+                c=new Coordenada(getRandomInteger(Variables.getMisVariables().getTamanoTablero(), 0),getRandomInteger(Variables.getMisVariables().getTamanoTablero(), 0));
+                break;
+            }
+        }
+        return c;
     }
 
     /*

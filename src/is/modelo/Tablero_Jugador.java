@@ -24,4 +24,35 @@ public class Tablero_Jugador extends Tablero {
         }
         return miTableroJugador;
     }
+
+    public Coordenada getCoordenadasDeUnBarco()
+    {
+        int x,y;
+        boolean encontrado=false;
+        Coordenada c=null;
+
+        while(!encontrado)
+        {
+            x=getRandomInteger(Variables.getMisVariables().getTamanoTablero(), 0);
+            y=getRandomInteger(Variables.getMisVariables().getTamanoTablero(), 0);
+            if(tablero_barcos[x][y])
+            {
+                if(!tablero_disparos[x][y])
+                {
+                    c=new Coordenada(x,y);
+                    encontrado=true;
+                }
+            }
+        }
+        return c;
+    }
+
+    /*
+     * Da un numero aleatorio entre MAX y MIN
+     * Max no incluido!!!
+     */
+    private static int getRandomInteger(int max, int min)
+    {
+        return ((int)(Math.random()*(max-min)))+min;
+    }
 }
