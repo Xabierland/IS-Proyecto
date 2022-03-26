@@ -27,7 +27,7 @@
 <li>Coloca todos los barcos de forma aleatoria</li>
 </ul>
 <li>iddqd</li>
-<ul>Otorga al jugador alrmas infinitas</ul>
+<ul>Otorga al jugador armas infinitas</ul>
 <li>motherlode</li>
 <ul>Otorga al jugador 50.000 de oro</ul>
 </ol>
