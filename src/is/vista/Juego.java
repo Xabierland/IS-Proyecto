@@ -447,5 +447,10 @@ public class Juego extends JFrame implements Observer {
 			JLabel label = (JLabel) lista[1];
 			label.setText("GOLD: "+lista[2]);
 		}
+		if(cad.equalsIgnoreCase("ESTADO"))
+		{
+			JLabel label = (JLabel) lista[1];
+			label.setText((String) lista[2]);
+		}
 	}
 }

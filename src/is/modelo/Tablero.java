@@ -351,7 +351,6 @@ public abstract class Tablero extends Observable {
             }
             finBarco=true;
         }
-
         return hundido;
     }
 

@@ -122,7 +122,6 @@ public class Partida
         if(getTablero(0).getArmamento().existeMunicion(tipoArma))
         {
             if(getTablero(0).armamento.usarArma(tipoArma, 1, pX, pY)) {
-
                 if (getTablero(1).getIfEndGame()) {
                     JFrame winMess = new JFrame();
                     JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
