@@ -103,29 +103,37 @@ public class Bomba extends Arma
         }
         else
         {
-            for (Coordenada c: afectado.getFlota().getBarcoporPos(x,y).calcularCoordenadas())
-            {
-                if(!afectado.getIfDisparo(c.getX(),c.getY()))
-                {
-                    if(afectado instanceof Tablero_Jugador) {
+            if(afectado instanceof Tablero_Jugador) {
+                for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
+                    if (!afectado.getIfDisparo(c.getX(), c.getY())) {
                         setChanged();
                         Object[] objetos = new Object[3];
                         objetos[0] = "CASILLA";
                         objetos[1] = getTablero(pTablero).getCasilla(c.getX(), c.getY());
                         objetos[2] = Color.black;
                         this.notifyObservers(objetos);
+                    } else {
+                        setChanged();
+                        Object[] objetos = new Object[4];
+                        objetos[0] = "CASILLA";
+                        objetos[1] = getTablero(pTablero).getCasilla(c.getX(), c.getY());
+                        objetos[2] = Color.red;
+                        this.notifyObservers(objetos);
                     }
+                    afectado.setEscudo(false, c.getX(), c.getY());
                 }
-                else
-                {
-                    setChanged();
-                    Object[] objetos = new Object[4];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = getTablero(pTablero).getCasilla(c.getX(), c.getY());
-                    objetos[2] = Color.red;
-                    this.notifyObservers(objetos);
+            }
+            else
+            {
+                for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
+                    afectado.setEscudo(false, c.getX(), c.getY());
                 }
-                afectado.setEscudo(false,c.getX(),c.getY());
+                setChanged();
+                Object[] objetos = new Object[3];
+                objetos[0] = "ESTADO";
+                objetos[1] = Juego.getDisplayState();
+                objetos[2] = "ESCUDO";
+                this.notifyObservers(objetos);
             }
             atacado=true;
         }
