@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="IS-Proyecto:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Reparar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Reparar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/IS_Proyecto_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/miglayout15_swing.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/IS-Proyecto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/IS-Proyecto.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Reparar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Reparar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/main$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,9 +51,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/miglayout15-swing.jar" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resource" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
@@ -53,7 +66,7 @@
   </component>
   <component name="RunManager">
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main" />
+      <option name="MAIN_CLASS_NAME" value="is.main" />
       <module name="IS-Proyecto" />
       <method v="2">
         <option name="Make" enabled="true" />

@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="IS-Proyecto:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/IS_Proyecto_jar</output-path>
+    <root id="archive" name="IS-Proyecto.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/resource/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="IS-Proyecto" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/miglayout15-swing.jar" path-in-jar="/" />
+      <element id="library" level="project" name="miglayout15-swing" />
+    </root>
+  </artifact>
+</component>

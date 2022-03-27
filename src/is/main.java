@@ -1,3 +1,5 @@
+package is;
+
 import is.vista.Juego;
 
 import java.awt.*;
