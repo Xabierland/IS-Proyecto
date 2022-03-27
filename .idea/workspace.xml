@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Variables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Variables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Reparar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Reparar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
