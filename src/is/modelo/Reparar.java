@@ -17,15 +17,15 @@ public class Reparar extends Arma {
 
         if(afectado.getIfBarcoByPos(x,y,false))
         {
-            boolean dañado = false;
+            boolean dannado = false;
             for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
                 if (afectado.getIfDisparo(c.getX(), c.getY())) {
-                    dañado = true;
+                    dannado = true;
                     atacado = true;
                 }
             }
 
-            if (dañado) {
+            if (dannado) {
                 for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
                     if (afectado instanceof Tablero_Jugador || afectado.getIfDisparo(c.getX(), c.getY())) {
                         setChanged();
