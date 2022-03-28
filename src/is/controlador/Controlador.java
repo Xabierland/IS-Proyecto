@@ -146,7 +146,6 @@ public class Controlador implements ActionListener, MouseListener
 	public void casillaJugadorClick(int x, int y)
 	{
 		System.out.printf("PLAYER|x:%d|y:%d\n",x,y);
-		Jugador.getIfBarcoByPos(x,y,true);
 
 		partida.jugar(0,x,y);
 	}
@@ -154,7 +153,7 @@ public class Controlador implements ActionListener, MouseListener
 	public void casillaIAClick(int x, int y)
 	{
 		System.out.printf("IA    |x:%d|y:%d\n",x,y);
-		IA.getIfBarcoByPos(x,y,true);
+		IA.getIfBarcoByPos(x,y);
 
 		partida.jugar(1,x,y);
 	}

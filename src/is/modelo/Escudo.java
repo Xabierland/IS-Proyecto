@@ -16,7 +16,7 @@ public class Escudo extends Arma{
 
         if(!afectado.getIfEscudo(x, y))
         {
-            if(afectado.getIfBarcoByPos(x,y,false))
+            if(afectado.getIfBarcoByPos(x,y))
             {
                 if(!afectado.barcoHundido(x, y)) {
                     for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {

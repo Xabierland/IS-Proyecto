@@ -38,10 +38,11 @@ public class Cheats
                 System.out.println("CheatCode: "+cheatCode);
                 Tablero_Jugador.getTableroJugador().addBarcoAutomatico(false);
                 Tablero_IA.getTableroIA().addBarcoAutomatico(true);
+                Tablero_Jugador.getTableroJugador().getIfPosibleIniciarJuego();
                 Partida.getMiPartida().setDisparando(true);
                 break;
             }
-            case "iddqd" : //ARMAS INFINITAS
+            case "idkfa" : //ARMAS INFINITAS
             {
                 System.out.println("CheatCode: "+cheatCode);
                 for(int i=1;i<Variables.getMisVariables().getNumArmas();i++)

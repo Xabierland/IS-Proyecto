@@ -1,5 +1,7 @@
 package is.modelo;
 
+import is.vista.Juego;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -27,13 +29,18 @@ public class Tablero_IA extends Tablero
         return miTableroIA;
     }
 
+    public void setDinero(int pDinero)
+    {
+        dinero=pDinero;
+    }
+
     public void mostrarTablero()
     {
         int i,j;
         for(i=0;i<tTablero;i++)
             for(j=0; j<tTablero;j++)
             {
-                if(getIfBarcoByPos(i,j,false))
+                if(getIfBarcoByPos(i,j))
                 {
                 	if(tablero_disparos[i][j])
                 	{

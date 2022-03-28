@@ -15,7 +15,7 @@ public class Reparar extends Arma {
         Tablero afectado;
         afectado = getTablero(pTablero);
 
-        if(afectado.getIfBarcoByPos(x,y,false))
+        if(afectado.getIfBarcoByPos(x,y))
         {
             boolean dannado = false;
             for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {

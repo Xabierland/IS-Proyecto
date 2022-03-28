@@ -1,5 +1,7 @@
 package is.modelo;
 
+import is.vista.Juego;
+
 import javax.swing.*;
 
 public class Tablero_Jugador extends Tablero {
@@ -45,6 +47,18 @@ public class Tablero_Jugador extends Tablero {
             }
         }
         return c;
+    }
+
+    public void setDinero(int pDinero)
+    {
+        dinero=pDinero;
+
+        setChanged();
+        Object[] lista=new Object[3];
+        lista[0] = "DINERO";
+        lista[1] = Juego.getLblDinero();
+        lista[2] = dinero;
+        notifyObservers(lista);
     }
 
     /*

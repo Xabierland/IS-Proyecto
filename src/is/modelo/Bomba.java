@@ -30,7 +30,7 @@ public class Bomba extends Arma
         if (!afectado.getIfEscudo(x, y))
         {
             if(!afectado.getIfDisparo(x,y)) {
-                if (afectado.getIfBarcoByPos(x, y, false))
+                if (afectado.getIfBarcoByPos(x, y))
                 {
                     setChanged();
                     Object[] objetos = new Object[3];

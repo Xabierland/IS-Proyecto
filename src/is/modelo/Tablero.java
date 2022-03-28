@@ -20,7 +20,7 @@ public abstract class Tablero extends Observable {
 
     //Variables armas
     protected Armamento armamento;
-    private int dinero=Variables.getMisVariables().getDineroInicial();
+    protected int dinero=Variables.getMisVariables().getDineroInicial();
 
     //Barcos
     protected Flota flota;
@@ -259,6 +259,7 @@ public abstract class Tablero extends Observable {
     {
         return flota;
     }
+
     public Armamento getArmamento()
     {
         return armamento;
@@ -287,15 +288,8 @@ public abstract class Tablero extends Observable {
      * Nos dice si en la posicion que se le pasa hay un barco o no
      * El print es para imprimir o no por consola
      */
-    public boolean getIfBarcoByPos(int x, int y, boolean print)
+    public boolean getIfBarcoByPos(int x, int y)
     {
-        if(print) {
-            if (tablero_barcos[x][y]) {
-                System.out.println("BARCO\n");
-            } else {
-                System.out.println("AGUA\n");
-            }
-        }
         return tablero_barcos[x][y];
     }
 
@@ -308,6 +302,12 @@ public abstract class Tablero extends Observable {
         if(totalBarcos<=0)
         {
             res=true;
+            setChanged();
+            Object[] lista=new Object[3];
+            lista[0]="ESTADO";
+            lista[1]=Juego.getDisplayState();
+            lista[2]="BOMBARDEA A TU ENEMIGO";
+            notifyObservers(lista);
         }
         return res;
     }
@@ -369,7 +369,7 @@ public abstract class Tablero extends Observable {
                 {
                     if (y - i >= 0)
                     {
-                        if (!getIfBarcoByPos(x, y - i,false))
+                        if (!getIfBarcoByPos(x, y - i))
                             if (aguaAlrededor(x,y-i))
                                 posible = true;
                             else
@@ -387,7 +387,7 @@ public abstract class Tablero extends Observable {
                 {
                     if (x + i <= tTablero-1)
                     {
-                        if (!getIfBarcoByPos(x + i, y,false))
+                        if (!getIfBarcoByPos(x + i, y))
                             if(aguaAlrededor(x+i,y))
                                 posible = true;
                             else
@@ -404,7 +404,7 @@ public abstract class Tablero extends Observable {
                 case 2: {
                     if (y + i <= tTablero-1)
                     {
-                        if (!getIfBarcoByPos(x, y + i,false))
+                        if (!getIfBarcoByPos(x, y + i))
                         {
                             if(aguaAlrededor(x,y+i))
                                 posible = true;
@@ -424,7 +424,7 @@ public abstract class Tablero extends Observable {
                 }
                 case 3: {
                     if (x - i >= 0) {
-                        if (!getIfBarcoByPos(x - i, y,false)) {
+                        if (!getIfBarcoByPos(x - i, y)) {
                             if(aguaAlrededor(x-i,y))
                                 posible = true;
                             else
@@ -458,87 +458,87 @@ public abstract class Tablero extends Observable {
 
         if(x==0&&y==0)
         {
-            if (!getIfBarcoByPos(x, y,false))
-                if (!getIfBarcoByPos(x + 1, y,false))
-                    if (!getIfBarcoByPos(x, y + 1,false))
-                        if (!getIfBarcoByPos(x + 1, y + 1,false))
+            if (!getIfBarcoByPos(x, y))
+                if (!getIfBarcoByPos(x + 1, y))
+                    if (!getIfBarcoByPos(x, y + 1))
+                        if (!getIfBarcoByPos(x + 1, y + 1))
                             sinAgua = true;
         }
         else if(x==0&&y==tTablero-1)
         {
-            if (!getIfBarcoByPos(x, y,false))
-                if (!getIfBarcoByPos(x + 1, y,false))
-                    if (!getIfBarcoByPos(x, y - 1,false))
-                        if (!getIfBarcoByPos(x + 1, y - 1,false))
+            if (!getIfBarcoByPos(x, y))
+                if (!getIfBarcoByPos(x + 1, y))
+                    if (!getIfBarcoByPos(x, y - 1))
+                        if (!getIfBarcoByPos(x + 1, y - 1))
                             sinAgua = true;
         }
         else if(x==tTablero-1&&y==0)
         {
-            if (!getIfBarcoByPos(x, y,false))
-                if (!getIfBarcoByPos(x, y + 1,false))
-                    if (!getIfBarcoByPos(x - 1, y,false))
-                        if (!getIfBarcoByPos(x - 1, y + 1,false))
+            if (!getIfBarcoByPos(x, y))
+                if (!getIfBarcoByPos(x, y + 1))
+                    if (!getIfBarcoByPos(x - 1, y))
+                        if (!getIfBarcoByPos(x - 1, y + 1))
                             sinAgua = true;
         }
         else if(x==tTablero-1&&y==tTablero-1)
         {
-            if (!getIfBarcoByPos(x, y,false))
-                if (!getIfBarcoByPos(x - 1, y,false))
-                    if (!getIfBarcoByPos(x, y - 1,false))
-                        if (!getIfBarcoByPos(x - 1, y - 1,false))
+            if (!getIfBarcoByPos(x, y))
+                if (!getIfBarcoByPos(x - 1, y))
+                    if (!getIfBarcoByPos(x, y - 1))
+                        if (!getIfBarcoByPos(x - 1, y - 1))
                             sinAgua = true;
         }
         else if(x==0)
         {
-            if (!getIfBarcoByPos(x, y,false))
-                if (!getIfBarcoByPos(x + 1, y,false))
-                    if (!getIfBarcoByPos(x, y + 1,false))
-                        if (!getIfBarcoByPos(x + 1, y + 1,false))
-                            if (!getIfBarcoByPos(x, y - 1,false))
-                                if (!getIfBarcoByPos(x + 1, y - 1,false))
+            if (!getIfBarcoByPos(x, y))
+                if (!getIfBarcoByPos(x + 1, y))
+                    if (!getIfBarcoByPos(x, y + 1))
+                        if (!getIfBarcoByPos(x + 1, y + 1))
+                            if (!getIfBarcoByPos(x, y - 1))
+                                if (!getIfBarcoByPos(x + 1, y - 1))
                                     sinAgua = true;
         }
         else if(x==tTablero-1)
         {
-            if (!getIfBarcoByPos(x, y,false))
-                if (!getIfBarcoByPos(x, y + 1,false))
-                    if (!getIfBarcoByPos(x - 1, y,false))
-                        if (!getIfBarcoByPos(x, y - 1,false))
-                            if (!getIfBarcoByPos(x - 1, y - 1,false))
-                                if (!getIfBarcoByPos(x - 1, y + 1,false))
+            if (!getIfBarcoByPos(x, y))
+                if (!getIfBarcoByPos(x, y + 1))
+                    if (!getIfBarcoByPos(x - 1, y))
+                        if (!getIfBarcoByPos(x, y - 1))
+                            if (!getIfBarcoByPos(x - 1, y - 1))
+                                if (!getIfBarcoByPos(x - 1, y + 1))
                                     sinAgua = true;
         }
         else if(y==0)
         {
-            if (!getIfBarcoByPos(x, y,false))
-                if (!getIfBarcoByPos(x + 1, y,false))
-                    if (!getIfBarcoByPos(x, y + 1,false))
-                        if (!getIfBarcoByPos(x + 1, y + 1,false))
-                            if (!getIfBarcoByPos(x - 1, y,false))
-                                if (!getIfBarcoByPos(x - 1, y + 1,false))
+            if (!getIfBarcoByPos(x, y))
+                if (!getIfBarcoByPos(x + 1, y))
+                    if (!getIfBarcoByPos(x, y + 1))
+                        if (!getIfBarcoByPos(x + 1, y + 1))
+                            if (!getIfBarcoByPos(x - 1, y))
+                                if (!getIfBarcoByPos(x - 1, y + 1))
                                     sinAgua = true;
         }
         else if(y==tTablero-1)
         {
-            if (!getIfBarcoByPos(x, y,false))
-                if (!getIfBarcoByPos(x + 1, y,false))
-                    if (!getIfBarcoByPos(x - 1, y,false))
-                        if (!getIfBarcoByPos(x, y - 1,false))
-                            if (!getIfBarcoByPos(x - 1, y - 1,false))
-                                if (!getIfBarcoByPos(x + 1, y - 1,false))
+            if (!getIfBarcoByPos(x, y))
+                if (!getIfBarcoByPos(x + 1, y))
+                    if (!getIfBarcoByPos(x - 1, y))
+                        if (!getIfBarcoByPos(x, y - 1))
+                            if (!getIfBarcoByPos(x - 1, y - 1))
+                                if (!getIfBarcoByPos(x + 1, y - 1))
                                     sinAgua = true;
         }
         else
         {
-            if (!getIfBarcoByPos(x, y,false))
-                if (!getIfBarcoByPos(x + 1, y,false))
-                    if (!getIfBarcoByPos(x, y + 1,false))
-                        if (!getIfBarcoByPos(x + 1, y + 1,false))
-                            if (!getIfBarcoByPos(x - 1, y,false))
-                                if (!getIfBarcoByPos(x, y - 1,false))
-                                    if (!getIfBarcoByPos(x - 1, y - 1,false))
-                                        if (!getIfBarcoByPos(x + 1, y - 1,false))
-                                            if (!getIfBarcoByPos(x - 1, y + 1,false))
+            if (!getIfBarcoByPos(x, y))
+                if (!getIfBarcoByPos(x + 1, y))
+                    if (!getIfBarcoByPos(x, y + 1))
+                        if (!getIfBarcoByPos(x + 1, y + 1))
+                            if (!getIfBarcoByPos(x - 1, y))
+                                if (!getIfBarcoByPos(x, y - 1))
+                                    if (!getIfBarcoByPos(x - 1, y - 1))
+                                        if (!getIfBarcoByPos(x + 1, y - 1))
+                                            if (!getIfBarcoByPos(x - 1, y + 1))
                                                 sinAgua = true;
         }
         return sinAgua;
@@ -549,16 +549,7 @@ public abstract class Tablero extends Observable {
         return dinero;
     }
 
-    public void setDinero(int pDinero)
-    {
-        dinero=pDinero;
-        setChanged();
-        Object[] lista=new Object[3];
-        lista[0] = "DINERO";
-        lista[1] = Juego.getLblDinero();
-        lista[2] = dinero;
-        notifyObservers(lista);
-    }
+    public abstract void setDinero(int pDinero);
 
     /*
      * Da un numero aleatorio entre MAX y MIN

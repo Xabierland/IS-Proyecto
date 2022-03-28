@@ -137,7 +137,7 @@ public class Partida
 
     private void defenderJugador(int pX, int pY)
     {
-        if(getTablero(0).getIfBarcoByPos(pX,pY,false)) {
+        if(getTablero(0).getIfBarcoByPos(pX,pY)) {
             if (getTablero(0).getArmamento().existeMunicion(tipoArma)) {
                 if (getTablero(0).armamento.usarArma(tipoArma, 0, pX, pY,false)) {
                     Jturno = false;
@@ -213,7 +213,7 @@ public class Partida
                     if (getTablero(1).getArmamento().existeMunicion(pArma))
                     {
                         c=IAgetCoordenadas(1);
-                        if(getTablero(1).getIfBarcoByPos(c.getX(),c.getY(),false)) {
+                        if(getTablero(1).getIfBarcoByPos(c.getX(),c.getY())) {
                             if (getTablero(1).getArmamento().usarArma(pArma, 1, c.getX(), c.getY(),true)) {
                                 atacado = true;
                             }
@@ -234,7 +234,7 @@ public class Partida
                     if (getTablero(1).getArmamento().existeMunicion(pArma))
                     {
                         c=IAgetCoordenadas(1);
-                        if(getTablero(1).getIfBarcoByPos(c.getX(),c.getY(),false)) {
+                        if(getTablero(1).getIfBarcoByPos(c.getX(),c.getY())) {
                             if (getTablero(1).getArmamento().usarArma(pArma, 1, c.getX(), c.getY(),true)) {
                                 atacado = true;
                             }

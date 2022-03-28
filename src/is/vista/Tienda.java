@@ -45,8 +45,8 @@ public class Tienda extends JFrame implements Observer {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Tienda.class.getResource("/resource/tienda.png")));
 		setTitle("Tienda");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setAlwaysOnTop(true);
-		setBounds(100, 100, 457, 357);
+		setAlwaysOnTop(false);
+		setBounds(100, 100, 460, 360);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
