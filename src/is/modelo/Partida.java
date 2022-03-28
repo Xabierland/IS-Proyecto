@@ -123,7 +123,7 @@ public class Partida
     {
         if(getTablero(0).getArmamento().existeMunicion(tipoArma))
         {
-            if(getTablero(0).armamento.usarArma(tipoArma, 1, pX, pY)) {
+            if(getTablero(0).armamento.usarArma(tipoArma, 1, pX, pY,false)) {
                 if (getTablero(1).getIfEndGame()) {
                     JFrame winMess = new JFrame();
                     JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
@@ -139,7 +139,7 @@ public class Partida
     {
         if(getTablero(0).getIfBarcoByPos(pX,pY,false)) {
             if (getTablero(0).getArmamento().existeMunicion(tipoArma)) {
-                if (getTablero(0).armamento.usarArma(tipoArma, 0, pX, pY)) {
+                if (getTablero(0).armamento.usarArma(tipoArma, 0, pX, pY,false)) {
                     Jturno = false;
                     ataqueIA();
                 }
@@ -161,7 +161,7 @@ public class Partida
                 {
                     pArma = 0;
                     c=IAgetCoordenadas(cualCoor);
-                    if(getTablero(1).getArmamento().usarArma(pArma,0,c.getX(),c.getY()))
+                    if(getTablero(1).getArmamento().usarArma(pArma,0,c.getX(),c.getY(),true))
                     {
                         atacado=true;
                     }
@@ -173,7 +173,7 @@ public class Partida
                     if (getTablero(1).getArmamento().existeMunicion(pArma))
                     {
                         c=IAgetCoordenadas(cualCoor);
-                        if(getTablero(1).getArmamento().usarArma(pArma,0,c.getX(),c.getY()))
+                        if(getTablero(1).getArmamento().usarArma(pArma,0,c.getX(),c.getY(),true))
                         {
                             atacado=true;
                         }
@@ -193,7 +193,7 @@ public class Partida
                     if (getTablero(1).getArmamento().existeMunicion(pArma))
                     {
                         c=IAgetCoordenadas(1);
-                        if(getTablero(1).getArmamento().usarArma(pArma,0,c.getX(),c.getY()))
+                        if(getTablero(1).getArmamento().usarArma(pArma,0,c.getX(),c.getY(),true))
                         {
                             atacado=true;
                         }
@@ -214,7 +214,7 @@ public class Partida
                     {
                         c=IAgetCoordenadas(1);
                         if(getTablero(1).getIfBarcoByPos(c.getX(),c.getY(),false)) {
-                            if (getTablero(1).getArmamento().usarArma(pArma, 1, c.getX(), c.getY())) {
+                            if (getTablero(1).getArmamento().usarArma(pArma, 1, c.getX(), c.getY(),true)) {
                                 atacado = true;
                             }
                         }
@@ -235,7 +235,7 @@ public class Partida
                     {
                         c=IAgetCoordenadas(1);
                         if(getTablero(1).getIfBarcoByPos(c.getX(),c.getY(),false)) {
-                            if (getTablero(1).getArmamento().usarArma(pArma, 1, c.getX(), c.getY())) {
+                            if (getTablero(1).getArmamento().usarArma(pArma, 1, c.getX(), c.getY(),true)) {
                                 atacado = true;
                             }
                         }

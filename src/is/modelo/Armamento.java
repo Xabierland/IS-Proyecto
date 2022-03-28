@@ -29,10 +29,11 @@ public class Armamento extends Observable {
         }
     }
 
-    public boolean usarArma(int tipoArma, int pTablero, int x, int y)
+    public boolean usarArma(int tipoArma, int pTablero, int x, int y, boolean ia)
     {
         Arma nArma=getArma(tipoArma);
-        actualizarArmamento(tipoArma);
+        if(!ia)
+            actualizarArmamento(tipoArma);
         return nArma.atacar(pTablero,x,y);
     }
 

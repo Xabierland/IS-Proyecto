@@ -552,6 +552,12 @@ public abstract class Tablero extends Observable {
     public void setDinero(int pDinero)
     {
         dinero=pDinero;
+        setChanged();
+        Object[] lista=new Object[3];
+        lista[0] = "DINERO";
+        lista[1] = Juego.getLblDinero();
+        lista[2] = dinero;
+        notifyObservers(lista);
     }
 
     /*
