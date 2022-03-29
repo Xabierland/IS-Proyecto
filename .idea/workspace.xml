@@ -11,19 +11,15 @@
   <component name="ChangeListManager">
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Reparar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Reparar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/IS_Proyecto_jar/IS-Proyecto.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IS_Proyecto_jar/IS-Proyecto.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Partida.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Partida.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Shop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Shop.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/controlador/Controlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Bomba.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Bomba.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Cheats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Cheats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Escudo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Escudo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Misil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Misil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Partida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Radar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Radar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Reparar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Reparar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Shop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Tablero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Tablero_IA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Tablero_IA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Tablero_Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Tablero_Jugador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/vista/Tienda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Tienda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/vista/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Juego.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

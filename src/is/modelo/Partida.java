@@ -180,7 +180,7 @@ public class Partida
                     }
                     else
                     {
-                        if (!Shop.getTienda().comprarMisil(1))
+                        if (!Shop.getTienda().comprarMisil(1,true))
                         {
                             tipoAtaque = getRandomInteger(10, 0);
                         }
@@ -200,7 +200,7 @@ public class Partida
                     }
                     else
                     {
-                        if (!Shop.getTienda().comprarRadar(1))
+                        if (!Shop.getTienda().comprarRadar(1,true))
                         {
                             tipoAtaque = getRandomInteger(10, 0);
                         }
@@ -221,7 +221,7 @@ public class Partida
                     }
                     else
                     {
-                        if (!Shop.getTienda().comprarEscudo(1))
+                        if (!Shop.getTienda().comprarEscudo(1,true))
                         {
                             tipoAtaque = getRandomInteger(10, 0);
                         }
@@ -242,7 +242,7 @@ public class Partida
                     }
                     else
                     {
-                        if (!Shop.getTienda().comprarReparacion(1))
+                        if (!Shop.getTienda().comprarReparacion(1,true))
                         {
                             tipoAtaque = getRandomInteger(10, 0);
                         }

@@ -5,12 +5,14 @@ import is.vista.Juego;
 import javax.swing.*;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.Observable;
 
 
 public abstract class Tablero extends Observable {
 
     //Variable tablero
+    protected HashMap<Object,Coordenada> coordenadasObjetos = new HashMap<>();
     protected int tTablero=Variables.getMisVariables().getTamanoTablero();
     protected JLabel[][] tablero_casilla;
     protected boolean[][] tablero_barcos;
@@ -38,6 +40,7 @@ public abstract class Tablero extends Observable {
     public void addCasilla(JLabel casilla, int x, int y)
     {
         tablero_casilla[x][y]=casilla;
+        coordenadasObjetos.put(casilla,new Coordenada(x,y));
     }
 
     /*
@@ -253,6 +256,11 @@ public abstract class Tablero extends Observable {
     public JLabel getCasilla(int x, int y)
     {
         return tablero_casilla[x][y];
+    }
+
+    public Coordenada getCoordenadasDeCasilla(JLabel casilla)
+    {
+        return coordenadasObjetos.get(casilla);
     }
 
     public Flota getFlota()

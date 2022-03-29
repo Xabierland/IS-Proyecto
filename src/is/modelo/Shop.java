@@ -35,13 +35,13 @@ public class Shop extends Observable {
         }
     }
 
-    public boolean comprarMisil(int pTablero)
+    public boolean comprarMisil(int pTablero, boolean ia)
     {
         boolean exito=true;
         if(getTablero(pTablero).getDinero() >= var.getPrecioMisil())
         {
             getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioMisil());
-            getTablero(pTablero).getArmamento().addArma(1, true,false);
+            getTablero(pTablero).getArmamento().addArma(1, true,ia);
         }
         else
         {
@@ -53,13 +53,13 @@ public class Shop extends Observable {
         return exito;
     }
 
-    public boolean comprarRadar(int pTablero)
+    public boolean comprarRadar(int pTablero, boolean ia)
     {
         boolean exito=true;
         if(getTablero(pTablero).getDinero() >= var.getPrecioRadar())
         {
             getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioRadar());
-            getTablero(pTablero).getArmamento().addArma(2, true,false);
+            getTablero(pTablero).getArmamento().addArma(2, true,ia);
         }
         else
         {
@@ -71,13 +71,13 @@ public class Shop extends Observable {
         return exito;
     }
 
-    public boolean comprarEscudo(int pTablero)
+    public boolean comprarEscudo(int pTablero, boolean ia)
     {
         boolean exito=true;
         if(getTablero(pTablero).getDinero() >= var.getPrecioEscudo())
         {
             getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioEscudo());
-            getTablero(pTablero).getArmamento().addArma(3, true,false);
+            getTablero(pTablero).getArmamento().addArma(3, true,ia);
         }
         else
         {
@@ -89,13 +89,13 @@ public class Shop extends Observable {
         return exito;
     }
 
-    public boolean comprarReparacion(int pTablero)
+    public boolean comprarReparacion(int pTablero, boolean ia)
     {
         boolean exito=true;
         if(getTablero(pTablero).getDinero() >= var.getPrecioReparacion())
         {
             getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioReparacion());
-            getTablero(pTablero).getArmamento().addArma(4, true,false);
+            getTablero(pTablero).getArmamento().addArma(4, true,ia);
         }
         else
         {

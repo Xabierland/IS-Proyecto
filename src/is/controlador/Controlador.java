@@ -1,24 +1,20 @@
 package is.controlador;
-import is.modelo.*;
 
+import is.modelo.*;
+import is.vista.*;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Observable;
 
 import javax.swing.*;
-
-import is.vista.Tienda;
-import is.vista.Juego;
 
 public class Controlador implements ActionListener, MouseListener
 {
 	private static Controlador controler =null;
 
-	private Tablero Jugador=Tablero_Jugador.getTableroJugador();
-	private Tablero IA=Tablero_IA.getTableroIA();
-	private Variables var=Variables.getMisVariables();
 	private Partida partida=Partida.getMiPartida();
 
 	private Controlador() {};
@@ -35,6 +31,7 @@ public class Controlador implements ActionListener, MouseListener
 	/*
 	 * Se activa al pulsar un boton en la vista
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		//ARMAS ===============================================================================================================================================================
@@ -92,19 +89,19 @@ public class Controlador implements ActionListener, MouseListener
 		}
 		if(e.getSource().equals(Tienda.getBtn_misil()))
 		{
-			Shop.getTienda().comprarMisil(0);
+			Shop.getTienda().comprarMisil(0,false);
 		}
 		if(e.getSource().equals(Tienda.getBtn_radar()))
 		{
-			Shop.getTienda().comprarRadar(0);
+			Shop.getTienda().comprarRadar(0,false);
 		}
 		if(e.getSource().equals(Tienda.getBtn_escudo()))
 		{
-			Shop.getTienda().comprarEscudo(0);
+			Shop.getTienda().comprarEscudo(0,false);
 		}
 		if(e.getSource().equals(Tienda.getBtn_reparacion()))
 		{
-			Shop.getTienda().comprarReparacion(0);
+			Shop.getTienda().comprarReparacion(0,false);
 		}
 		//CHEATS ===============================================================================================================================================================
 		if(e.getSource().equals(Juego.getCheatConsole()))
@@ -115,6 +112,7 @@ public class Controlador implements ActionListener, MouseListener
 		}
 	}
 
+	@Override
 	public void mouseClicked(MouseEvent e)
 	{
 		if(e.getSource().equals(Juego.getFlecha()))
@@ -138,29 +136,42 @@ public class Controlador implements ActionListener, MouseListener
 					Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_arr.png")));System.out.println("DEFAULT");break;}
 			}
 		}
+
+
 	}
 
-	/*
-	 * Se activa al hacer click en una casilla del tablero del Jugador
-	 */
-	public void casillaJugadorClick(int x, int y)
-	{
-		System.out.printf("PLAYER|x:%d|y:%d\n",x,y);
-
-		partida.jugar(0,x,y);
+	@Override
+	public void mousePressed(MouseEvent e) {
+		if(perteneceJugador(e.getSource()))
+		{
+			Coordenada coor=Tablero_Jugador.getTableroJugador().getCoordenadasDeCasilla((JLabel) e.getSource());
+			int x=coor.getX();
+			int y=coor.getY();
+			System.out.printf("PLAYER|x:%d|y:%d\n",x,y);
+			partida.jugar(0,x,y);
+		}
+		if(perteneceIA(e.getSource()))
+		{
+			Coordenada coor=Tablero_IA.getTableroIA().getCoordenadasDeCasilla((JLabel) e.getSource());
+			int x=coor.getX();
+			int y=coor.getY();
+			System.out.printf("IA    |x:%d|y:%d\n",x,y);
+			partida.jugar(1,x,y);
+		}
 	}
 
-	public void casillaIAClick(int x, int y)
+	private boolean perteneceJugador(Object obj)
 	{
-		System.out.printf("IA    |x:%d|y:%d\n",x,y);
-		IA.getIfBarcoByPos(x,y);
-
-		partida.jugar(1,x,y);
+		JLabel label=(JLabel) obj;
+		return label.getParent()==Juego.getTablero_jugador();
+	}
+	private boolean perteneceIA(Object obj)
+	{
+		JLabel label=(JLabel) obj;
+		return label.getParent()==Juego.getTablero_ia();
 	}
 
 	//ME OBLIGA A PONER LAS CABECERAS :(
-	@Override
-	public void mousePressed(MouseEvent e) {}
 	@Override
 	public void mouseReleased(MouseEvent e) {}
 	@Override

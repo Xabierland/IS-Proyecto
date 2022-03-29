@@ -46,8 +46,8 @@ public class Juego extends JFrame implements Observer {
 	private static JButton btn_misil;
 	private static JButton btn_radar;
 	private static JButton btn_escudo;
-	private JPanel tablero_jugador;
-	private JPanel tablero_ia;
+	private static JPanel tablero_jugador;
+	private static JPanel tablero_ia;
 	private JPanel barco_panel;
 	private JPanel relleno_abajo;
 	private JPanel relleno_arriba;
@@ -108,41 +108,25 @@ public class Juego extends JFrame implements Observer {
 		return miJuego;
 	}
 	
-	public JLabel getCasillaJugador(int x, int y)
+	public static JLabel getCasillaJugador(int x, int y)
 	{
 		JLabel casillaJugador = new JLabel();
-		int pos_x=x;
-		int pos_y=y;
 		casillaJugador.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		casillaJugador.setOpaque(true);
 		casillaJugador.setBackground(Color.blue);
 
-		casillaJugador.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent arg0)
-			{
-				Controlador.getControlador().casillaJugadorClick(pos_x,pos_y);
-			}
-		});
+		casillaJugador.addMouseListener(Controlador.getControlador());
 		return casillaJugador;
 	}
 
-	public JLabel getCasillaIA(int x, int y)
+	public static JLabel getCasillaIA(int x, int y)
 	{
 		JLabel casillaIA = new JLabel();
-		int pos_x=x;
-		int pos_y=y;
 		casillaIA.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		casillaIA.setOpaque(true);
 		casillaIA.setBackground(Color.blue);
 
-		casillaIA.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent arg0)
-			{
-				Controlador.getControlador().casillaIAClick(pos_x,pos_y);
-			}
-		});
+		casillaIA.addMouseListener(Controlador.getControlador());
 		return casillaIA;
 	}
 	
@@ -208,7 +192,7 @@ public class Juego extends JFrame implements Observer {
 		}
 		return btn_reparacion;
 	}
-	private JPanel getTablero_jugador() {
+	public static JPanel getTablero_jugador() {
 		if (tablero_jugador == null) {
 			tablero_jugador = new JPanel();
 			tablero_jugador.setLayout(new GridLayout(Variables.getMisVariables().getTamanoTablero(), Variables.getMisVariables().getTamanoTablero(), 0, 0));
@@ -223,7 +207,7 @@ public class Juego extends JFrame implements Observer {
 		}
 		return tablero_jugador;
 	}
-	private JPanel getTablero_ia() {
+	public static JPanel getTablero_ia() {
 		if (tablero_ia == null) {
 			tablero_ia = new JPanel();
 			tablero_ia.setLayout(new GridLayout(Variables.getMisVariables().getTamanoTablero(), Variables.getMisVariables().getTamanoTablero(), 0, 0));
