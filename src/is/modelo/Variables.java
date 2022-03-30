@@ -4,7 +4,7 @@ public class Variables
 {
     private static Variables misVariables=null;
     // TamanoTablero x TamanoTablero
-    private final int TamanoTablero = 10;
+    private int TamanoTablero = 10;
     //IA - Cuanto mas grande el numero mas facil - Simpre mayor que 0
     private final int dificultadIA=3;
     // 0 - Bomba | 1 - Misil | 2 - Radar | 3 - Escudo | 4 - Reparar
@@ -37,6 +37,7 @@ public class Variables
     //Getters
     //TABLERO
     public int getTamanoTablero() {return TamanoTablero;}
+    public void setTamanoTablero(int i) {TamanoTablero=i;}
     //IA
     public int getDificultadIA() {return dificultadIA;}
     //ARMAS

@@ -33,51 +33,43 @@ public class Config extends JFrame {
 	private JPanel pnl_configuracion;
 	private JLabel lbl_TamanoTablero;
 	private JPanel pnl_start;
-	private JButton btn_start;
+	private static JButton btn_start;
 	private JLabel lbl_dificultad;
 	private JSlider slider;
 	private JLabel lbl_multiplicadorBarcos;
 	private JLabel lblNewLabel;
-	private JTextField textField;
-	private JTextField textField_1;
+	private static JTextField textField;
+	private static JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JLabel lblNewLabel_1;
 	private JLabel lbl_num_Dificult;
 	private JLabel lbl_cheats;
 	private JCheckBox chckbxNewCheckBox;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Config frame = new Config();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private static Config miConfig=null;
 	/**
 	 * Create the frame.
 	 */
-	public Config() {
+	private Config() {
 		setResizable(false);
 		setTitle("Configuracion");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Config.class.getResource("/resource/ajustes.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 433, 395);
+		setBounds(500, 100, 440, 400);
 		pnl_main = new JPanel();
 		pnl_main.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pnl_main);
 		pnl_main.setLayout(new BorderLayout(0, 0));
 		pnl_main.add(getPnl_configuracion(), BorderLayout.CENTER);
 		pnl_main.add(getPnl_start(), BorderLayout.SOUTH);
+	}
+	public static Config getMiConfig()
+	{
+		if(miConfig==null)
+		{
+			miConfig=new Config();
+		}
+		return miConfig;
 	}
 	private JPanel getPnl_configuracion() {
 		if (pnl_configuracion == null) {
@@ -112,7 +104,7 @@ public class Config extends JFrame {
 		}
 		return pnl_start;
 	}
-	private JButton getBtn_start() {
+	public static JButton getBtn_start() {
 		if (btn_start == null) {
 			btn_start = new JButton("EMPIEZA");
 			btn_start.addActionListener(Controlador.getControlador());
@@ -148,7 +140,7 @@ public class Config extends JFrame {
 		}
 		return lblNewLabel;
 	}
-	private JTextField getTextField() {
+	public static JTextField getTextField() {
 		if (textField == null) {
 			textField = new JTextField();
 			textField.setText("1");
@@ -157,7 +149,7 @@ public class Config extends JFrame {
 		}
 		return textField;
 	}
-	private JTextField getTextField_1() {
+	public static JTextField getTextField_1() {
 		if (textField_1 == null) {
 			textField_1 = new JTextField();
 			textField_1.addFocusListener(Controlador.getControlador());

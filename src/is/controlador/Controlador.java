@@ -112,6 +112,17 @@ public class Controlador implements ActionListener, MouseListener, FocusListener
 			Juego.getCheatConsole().setText(null);
 			Cheats.getMyCheats().execute(cad);
 		}
+		//CONFIG ===================================================================
+		if(e.getSource().equals(Config.getBtn_start()))
+		{
+			Config.getMiConfig().setVisible(false);
+			try {
+				Juego frame = Juego.getMiJuego();
+				frame.setVisible(true);
+			} catch (Exception i) {
+				i.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -152,19 +163,23 @@ public class Controlador implements ActionListener, MouseListener, FocusListener
 			System.out.printf("PLAYER|x:%d|y:%d\n",x,y);
 			partida.jugar(0,x,y);
 		}
-		if(perteneceIA(e.getSource()))
-		{
-			Coordenada coor=Tablero_IA.getTableroIA().getCoordenadasDeCasilla((JLabel) e.getSource());
-			int x=coor.getX();
-			int y=coor.getY();
-			System.out.printf("IA    |x:%d|y:%d\n",x,y);
-			partida.jugar(1,x,y);
+		if(perteneceIA(e.getSource())) {
+			Coordenada coor = Tablero_IA.getTableroIA().getCoordenadasDeCasilla((JLabel) e.getSource());
+			int x = coor.getX();
+			int y = coor.getY();
+			System.out.printf("IA    |x:%d|y:%d\n", x, y);
+			partida.jugar(1, x, y);
 		}
 	}
 	
 	@Override
 	public void focusLost(FocusEvent e) {
-		
+		if(e.getSource().equals(Config.getTextField_1()))
+		{
+			JTextField tf=(JTextField) e.getSource();
+			String cad = tf.getText();
+			Variables.getMisVariables().setTamanoTablero(Integer.parseInt(cad));
+		}
 	}
 
 	private boolean perteneceJugador(Object obj)

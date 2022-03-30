@@ -10,7 +10,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Cheats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Cheats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Barco.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Barco.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/BarcosFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/BarcosFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Destructor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Destructor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Fragata.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Fragata.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Portavion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Portavion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Submarino.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/Modelo/Submarino.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Arma.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Arma.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/ArmaFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/ArmaFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Armamento.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Armamento.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Bomba.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Bomba.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Cheats.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Cheats.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Coordenada.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Coordenada.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Escudo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Escudo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Flota.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Flota.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Misil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Misil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Partida.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Partida.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Radar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Radar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Reparar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Reparar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Shop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Shop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero_IA.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero_IA.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero_Jugador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Tablero_Jugador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Variables.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Variables.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Tienda.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Tienda.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/controlador/Controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Variables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Variables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/vista/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Config.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +89,20 @@
       <recent name="C:\Users\xabie\Documents\GitHub\IS-Proyecto\src\is\modelo" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.main">
+    <configuration name="Config" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="is.vista.Config" />
+      <module name="IS-Proyecto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="is.vista.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="is.main" />
       <module name="IS-Proyecto" />
@@ -67,6 +113,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.main" />
+        <item itemvalue="Application.Config" />
       </list>
     </recent_temporary>
   </component>

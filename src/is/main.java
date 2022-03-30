@@ -1,6 +1,6 @@
 package is;
 
-import is.vista.Juego;
+import is.vista.*;
 
 import java.awt.*;
 
@@ -13,7 +13,7 @@ public class main
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Juego frame = Juego.getMiJuego();
+                    Config frame = Config.getMiConfig();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
