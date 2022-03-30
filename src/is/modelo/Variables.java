@@ -21,6 +21,7 @@ public class Variables
     private final int precioRadar=1000;
     private final int precioEscudo =1000;
     private final int precioReparacion=1000;
+    
 
     private Variables(){}
 

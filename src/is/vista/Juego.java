@@ -425,6 +425,7 @@ public class Juego extends JFrame implements Observer {
 			JButton btn = (JButton) lista[1];
 			boolean enable = (boolean) lista[2];
 			btn.setEnabled(enable);
+			btn.setText((String) lista[3]+" "+(int)lista[4]);
 		}
 		if(cad.equalsIgnoreCase("DINERO"))
 		{
