@@ -13,11 +13,12 @@ import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-public class Controlador implements ActionListener, MouseListener, FocusListener
+public class Controlador implements ActionListener, MouseListener
 {
 	private static Controlador controler =null;
 
 	private Partida partida=Partida.getMiPartida();
+	private Variables var=Variables.getMisVariables();
 
 	private Controlador() {};
 	
@@ -115,6 +116,18 @@ public class Controlador implements ActionListener, MouseListener, FocusListener
 		//CONFIG ===================================================================
 		if(e.getSource().equals(Config.getBtn_start()))
 		{
+			//RECOGER PARAMETROS
+			var.setEscala(Config.getSlider_escala().getValue());
+			var.setDificultadIA(Config.getSlider_ia().getValue());
+			var.setCheats(Config.getBtn_cheats().isSelected());
+			try {
+				var.setDineroInicial(Integer.parseInt(Config.getText_money().getText()));
+			}catch (Exception i){}
+			try {
+				var.setDineroPorHundir(Integer.parseInt(Config.getTxt_regard().getText()));
+			}catch (Exception ii){}
+
+			//INICIAR JUEGO
 			Config.getMiConfig().setVisible(false);
 			try {
 				Juego frame = Juego.getMiJuego();
@@ -171,16 +184,6 @@ public class Controlador implements ActionListener, MouseListener, FocusListener
 			partida.jugar(1, x, y);
 		}
 	}
-	
-	@Override
-	public void focusLost(FocusEvent e) {
-		if(e.getSource().equals(Config.getTextField_1()))
-		{
-			JTextField tf=(JTextField) e.getSource();
-			String cad = tf.getText();
-			Variables.getMisVariables().setTamanoTablero(Integer.parseInt(cad));
-		}
-	}
 
 	private boolean perteneceJugador(Object obj)
 	{
@@ -200,8 +203,6 @@ public class Controlador implements ActionListener, MouseListener, FocusListener
 	public void mouseEntered(MouseEvent e) {}
 	@Override
 	public void mouseExited(MouseEvent e) {}
-	@Override
-	public void focusGained(FocusEvent e) {}
 
 	
 }

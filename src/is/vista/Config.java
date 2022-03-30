@@ -15,6 +15,8 @@ import javax.swing.JFormattedTextField;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JButton;
+
+import is.modelo.Variables;
 import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,27 +28,28 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class Config extends JFrame {
 
-	private JPanel pnl_main;
+	private static JPanel pnl_main;
 	private JPanel pnl_configuracion;
 	private JLabel lbl_TamanoTablero;
 	private JPanel pnl_start;
 	private static JButton btn_start;
 	private JLabel lbl_dificultad;
-	private JSlider slider;
-	private JLabel lbl_multiplicadorBarcos;
-	private JLabel lblNewLabel;
-	private static JTextField textField;
-	private static JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JLabel lblNewLabel_1;
-	private JLabel lbl_num_Dificult;
+	private static JSlider slider_ia;
+	private JLabel lbl_dinero_init;
+	private static JTextField text_money;
+	private static JTextField txt_regard;
+	private JLabel lbl_dinero_barco;
+	private static JLabel lbl_num_Dificult;
 	private JLabel lbl_cheats;
-	private JCheckBox chckbxNewCheckBox;
+	private static JCheckBox btn_cheats;
 	private static Config miConfig=null;
+	private static JSlider slider_escala;
+	private static JLabel lbl_escala;
 	/**
 	 * Create the frame.
 	 */
@@ -55,7 +58,7 @@ public class Config extends JFrame {
 		setTitle("Configuracion");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Config.class.getResource("/resource/ajustes.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(500, 100, 440, 400);
+		setBounds(500, 100, 397, 400);
 		pnl_main = new JPanel();
 		pnl_main.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pnl_main);
@@ -74,26 +77,25 @@ public class Config extends JFrame {
 	private JPanel getPnl_configuracion() {
 		if (pnl_configuracion == null) {
 			pnl_configuracion = new JPanel();
-			pnl_configuracion.setLayout(new MigLayout("", "[142px,grow][30px,grow,right][142px,center]", "[230][230px,grow][230,grow][230][230][230]"));
+			pnl_configuracion.setLayout(new MigLayout("", "[50px,grow][30px,grow,center][142px,center]", "[230][230px,grow][230][230][230]"));
 			pnl_configuracion.add(getLbl_TamanoTablero(), "cell 0 0,grow");
-			pnl_configuracion.add(getTextField_1(), "cell 2 0,growx");
+			pnl_configuracion.add(getLbl_escala(), "cell 1 0");
+			pnl_configuracion.add(getSlider_escala(), "cell 2 0");
 			pnl_configuracion.add(getLbl_dificultad(), "cell 0 1");
 			pnl_configuracion.add(getLbl_num_Dificult(), "cell 1 1");
-			pnl_configuracion.add(getSlider(), "cell 2 1");
-			pnl_configuracion.add(getLbl_multiplicadorBarcos(), "cell 0 2");
-			pnl_configuracion.add(getTextField(), "cell 2 2,growx");
-			pnl_configuracion.add(getLblNewLabel(), "cell 0 3");
-			pnl_configuracion.add(getTextField_2(), "cell 2 3,growx");
-			pnl_configuracion.add(getLblNewLabel_1(), "cell 0 4");
-			pnl_configuracion.add(getTextField_3(), "cell 2 4,growx");
-			pnl_configuracion.add(getLbl_cheats(), "cell 0 5");
-			pnl_configuracion.add(getChckbxNewCheckBox(), "cell 2 5");
+			pnl_configuracion.add(getSlider_ia(), "cell 2 1");
+			pnl_configuracion.add(getLbl_dinero_init(), "cell 0 2");
+			pnl_configuracion.add(getText_money(), "cell 2 2,growx");
+			pnl_configuracion.add(getLbl_dinero_barco(), "cell 0 3");
+			pnl_configuracion.add(getTxt_regard(), "cell 2 3,growx");
+			pnl_configuracion.add(getLbl_cheats(), "cell 0 4");
+			pnl_configuracion.add(getBtn_cheats(), "cell 2 4");
 		}
 		return pnl_configuracion;
 	}
 	private JLabel getLbl_TamanoTablero() {
 		if (lbl_TamanoTablero == null) {
-			lbl_TamanoTablero = new JLabel("Tama\u00F1o del tablero:");
+			lbl_TamanoTablero = new JLabel("Escala del juego");
 		}
 		return lbl_TamanoTablero;
 	}
@@ -117,73 +119,54 @@ public class Config extends JFrame {
 		}
 		return lbl_dificultad;
 	}
-	private JSlider getSlider() {
-		if (slider == null) {
-			slider = new JSlider();
-			slider.setPaintTicks(true);
-			slider.setMinorTickSpacing(1);
-			slider.setValue(10);
-			slider.setMinimum(1);
-			slider.setMaximum(10);
+	public static JSlider getSlider_ia() {
+		if (slider_ia == null) {
+			slider_ia = new JSlider();
+			slider_ia.setSnapToTicks(true);
+			slider_ia.addChangeListener(new ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					getLbl_num_Dificult().setText(String.valueOf(11-slider_ia.getValue()));
+				}
+			});
+			slider_ia.setPaintTicks(true);
+			slider_ia.setMinorTickSpacing(1);
+			slider_ia.setValue(10);
+			slider_ia.setMinimum(1);
+			slider_ia.setMaximum(10);
 		}
-		return slider;
+		return slider_ia;
 	}
-	private JLabel getLbl_multiplicadorBarcos() {
-		if (lbl_multiplicadorBarcos == null) {
-			lbl_multiplicadorBarcos = new JLabel("Multiplicar numero de barcos por:");
+	private JLabel getLbl_dinero_init() {
+		if (lbl_dinero_init == null) {
+			lbl_dinero_init = new JLabel("Dinero inicial:");
 		}
-		return lbl_multiplicadorBarcos;
+		return lbl_dinero_init;
 	}
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("Dinero inicial:");
+	public static JTextField getText_money() {
+		if (text_money == null) {
+			text_money = new JTextField();
+			text_money.setHorizontalAlignment(SwingConstants.RIGHT);
+			text_money.setText(String.valueOf(Variables.getMisVariables().getDineroInicial()));
+			text_money.setColumns(10);
 		}
-		return lblNewLabel;
+		return text_money;
 	}
-	public static JTextField getTextField() {
-		if (textField == null) {
-			textField = new JTextField();
-			textField.setText("1");
-			textField.setHorizontalAlignment(SwingConstants.RIGHT);
-			textField.setColumns(10);
+	public static JTextField getTxt_regard() {
+		if (txt_regard == null) {
+			txt_regard = new JTextField();
+			txt_regard.setText(String.valueOf(Variables.getMisVariables().getDineroPorHundir()));
+			txt_regard.setHorizontalAlignment(SwingConstants.RIGHT);
+			txt_regard.setColumns(10);
 		}
-		return textField;
+		return txt_regard;
 	}
-	public static JTextField getTextField_1() {
-		if (textField_1 == null) {
-			textField_1 = new JTextField();
-			textField_1.addFocusListener(Controlador.getControlador());
-			textField_1.setHorizontalAlignment(SwingConstants.RIGHT);
-			textField_1.setText("10");
-			textField_1.setColumns(10);
+	private JLabel getLbl_dinero_barco() {
+		if (lbl_dinero_barco == null) {
+			lbl_dinero_barco = new JLabel("Dinero por barco hundido");
 		}
-		return textField_1;
+		return lbl_dinero_barco;
 	}
-	private JTextField getTextField_2() {
-		if (textField_2 == null) {
-			textField_2 = new JTextField();
-			textField_2.setHorizontalAlignment(SwingConstants.RIGHT);
-			textField_2.setText("3000");
-			textField_2.setColumns(10);
-		}
-		return textField_2;
-	}
-	private JTextField getTextField_3() {
-		if (textField_3 == null) {
-			textField_3 = new JTextField();
-			textField_3.setText("500");
-			textField_3.setHorizontalAlignment(SwingConstants.RIGHT);
-			textField_3.setColumns(10);
-		}
-		return textField_3;
-	}
-	private JLabel getLblNewLabel_1() {
-		if (lblNewLabel_1 == null) {
-			lblNewLabel_1 = new JLabel("Dinero por barco hundido");
-		}
-		return lblNewLabel_1;
-	}
-	private JLabel getLbl_num_Dificult() {
+	private static JLabel getLbl_num_Dificult() {
 		if (lbl_num_Dificult == null) {
 			lbl_num_Dificult = new JLabel("10");
 			lbl_num_Dificult.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -197,10 +180,36 @@ public class Config extends JFrame {
 		}
 		return lbl_cheats;
 	}
-	private JCheckBox getChckbxNewCheckBox() {
-		if (chckbxNewCheckBox == null) {
-			chckbxNewCheckBox = new JCheckBox("");
+	public static JCheckBox getBtn_cheats() {
+		if (btn_cheats == null) {
+			btn_cheats = new JCheckBox("");
+			btn_cheats.setSelected(true);
 		}
-		return chckbxNewCheckBox;
+		return btn_cheats;
+	}
+	public static JSlider getSlider_escala() {
+		if (slider_escala == null) {
+			slider_escala = new JSlider();
+			slider_escala.setToolTipText("");
+			slider_escala.setSnapToTicks(true);
+			slider_escala.addChangeListener(new ChangeListener() {
+				public void stateChanged(ChangeEvent arg0) {
+					getLbl_escala().setText("x"+slider_escala.getValue());
+				}
+			});
+			slider_escala.setMinorTickSpacing(1);
+			slider_escala.setPaintTicks(true);
+			slider_escala.setValue(1);
+			slider_escala.setMaximum(3);
+			slider_escala.setMinimum(1);
+		}
+		return slider_escala;
+	}
+	private static JLabel getLbl_escala() {
+		if (lbl_escala == null) {
+			lbl_escala = new JLabel("1");
+			lbl_escala.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		}
+		return lbl_escala;
 	}
 }

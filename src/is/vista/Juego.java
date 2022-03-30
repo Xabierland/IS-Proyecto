@@ -36,6 +36,7 @@ import is.modelo.Variables;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
+import java.awt.Font;
 
 public class Juego extends JFrame implements Observer {
 	private static Juego miJuego=null;
@@ -316,9 +317,12 @@ public class Juego extends JFrame implements Observer {
 	public static JTextField getCheatConsole() {
 		if (cheatConsole == null) {
 			cheatConsole = new JTextField();
-			cheatConsole.setForeground(UIManager.getColor("Button.background"));
-			cheatConsole.setBackground(UIManager.getColor("Button.background"));
+			cheatConsole.setFont(new Font("Consolas", Font.PLAIN, 12));
+			cheatConsole.setForeground(Color.GREEN);
+			cheatConsole.setBackground(Color.BLACK);
 			cheatConsole.setColumns(10);
+			cheatConsole.setEnabled(Variables.getMisVariables().getCheats());
+			cheatConsole.setVisible(Variables.getMisVariables().getCheats());
 			cheatConsole.addActionListener(Controlador.getControlador());
 		}
 		return cheatConsole;

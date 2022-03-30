@@ -3,10 +3,12 @@ package is.modelo;
 public class Variables
 {
     private static Variables misVariables=null;
+    //ESCALA
+    private int escala=1;
     // TamanoTablero x TamanoTablero
     private int TamanoTablero = 10;
     //IA - Cuanto mas grande el numero mas facil - Simpre mayor que 0
-    private final int dificultadIA=3;
+    private int dificultadIA=3;
     // 0 - Bomba | 1 - Misil | 2 - Radar | 3 - Escudo | 4 - Reparar
     private final int NumArmas = 5;
     //Barcos
@@ -16,11 +18,14 @@ public class Variables
     private final int NumSubmarino = 2;
     private final int NumPortavion = 1;
     //Tienda
-    private final int dineroInicial = 3000;
+    private int dineroInicial = 3000;
+    private int dineroPorHundir = 500;
     private final int precioMisil=500;
     private final int precioRadar=1000;
     private final int precioEscudo =1000;
     private final int precioReparacion=1000;
+    //Cheats
+    private boolean cheats=true;
     
 
     private Variables(){}
@@ -35,23 +40,31 @@ public class Variables
     }
 
     //Getters
+    //ESCALA
+    public void setEscala(int i) {escala=i;}
     //TABLERO
-    public int getTamanoTablero() {return TamanoTablero;}
-    public void setTamanoTablero(int i) {TamanoTablero=i;}
+    public int getTamanoTablero() {return TamanoTablero*escala;}
     //IA
     public int getDificultadIA() {return dificultadIA;}
+    public void setDificultadIA(int i) {dificultadIA=i;}
     //ARMAS
     public int getNumArmas() {return NumArmas;}
     //BARCOS
-    public int getNumBarcos() {return NumBarcos;}
-    public int getNumFragata() {return NumFragata;}
-    public int getNumSubmarino(){return NumSubmarino;}
-    public int getNumDestructor(){return NumDestructor;}
-    public int getNumPortavion(){return NumPortavion;}
+    public int getNumBarcos() {return NumBarcos*escala;}
+    public int getNumFragata() {return NumFragata*escala;}
+    public int getNumSubmarino(){return NumSubmarino*escala;}
+    public int getNumDestructor(){return NumDestructor*escala;}
+    public int getNumPortavion(){return NumPortavion*escala;}
     //TIENDA
     public int getDineroInicial() {return dineroInicial;}
+    public void setDineroInicial(int i) {dineroInicial=i;}
+    public int getDineroPorHundir() {return dineroPorHundir;}
+    public void setDineroPorHundir(int i) {dineroPorHundir=i;}
     public int getPrecioMisil(){return precioMisil;}
     public int getPrecioRadar(){return precioRadar;}
     public int getPrecioEscudo(){return precioEscudo;}
     public int getPrecioReparacion(){return precioReparacion;}
+    //CHEATS
+    public boolean getCheats() {return cheats;}
+    public void setCheats(boolean b) {cheats=b;}
 }
