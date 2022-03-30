@@ -8,10 +8,7 @@ public class Cheats
 {
     private static Cheats myCheats=null;
 
-    private Cheats()
-    {
-
-    }
+    private Cheats() {}
 
     public static Cheats getMyCheats()
     {

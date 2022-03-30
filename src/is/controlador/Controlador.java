@@ -6,12 +6,14 @@ import is.vista.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-public class Controlador implements ActionListener, MouseListener
+public class Controlador implements ActionListener, MouseListener, FocusListener
 {
 	private static Controlador controler =null;
 
@@ -159,6 +161,11 @@ public class Controlador implements ActionListener, MouseListener
 			partida.jugar(1,x,y);
 		}
 	}
+	
+	@Override
+	public void focusLost(FocusEvent e) {
+		
+	}
 
 	private boolean perteneceJugador(Object obj)
 	{
@@ -178,4 +185,8 @@ public class Controlador implements ActionListener, MouseListener
 	public void mouseEntered(MouseEvent e) {}
 	@Override
 	public void mouseExited(MouseEvent e) {}
+	@Override
+	public void focusGained(FocusEvent e) {}
+
+	
 }
