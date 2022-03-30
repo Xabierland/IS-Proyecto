@@ -5,7 +5,7 @@
  <li>Francisco González</li>
  <li>Estefania Oñate</li>
  <li>Javier Criado</li>
- <li>Asier Samurott</li>
+ <li>Asier Santesteban</li>
  <li>Diego García</li>
  <li>Xabier Gabiña</li>
 </ul>
