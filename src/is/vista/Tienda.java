@@ -37,7 +37,7 @@ public class Tienda extends JFrame implements Observer {
 	private JLabel lblReparacion;
 	private JLabel fotoReparacion;
 	private static JButton btn_reparacion;
-
+	
 	/**
 	 * Create the frame.
 	 */
