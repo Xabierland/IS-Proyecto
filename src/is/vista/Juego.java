@@ -321,8 +321,8 @@ public class Juego extends JFrame implements Observer {
 			cheatConsole.setForeground(Color.GREEN);
 			cheatConsole.setBackground(Color.BLACK);
 			cheatConsole.setColumns(10);
-			cheatConsole.setEnabled(Variables.getMisVariables().getCheats());
-			cheatConsole.setVisible(Variables.getMisVariables().getCheats());
+			cheatConsole.setEnabled(Config.getBtn_cheats().isSelected());
+			cheatConsole.setVisible(Config.getBtn_cheats().isSelected());
 			cheatConsole.addActionListener(Controlador.getControlador());
 		}
 		return cheatConsole;

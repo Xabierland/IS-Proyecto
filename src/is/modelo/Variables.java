@@ -24,8 +24,6 @@ public class Variables
     private final int precioRadar=1000;
     private final int precioEscudo =1000;
     private final int precioReparacion=1000;
-    //Cheats
-    private boolean cheats=true;
     
 
     private Variables(){}
@@ -64,7 +62,4 @@ public class Variables
     public int getPrecioRadar(){return precioRadar;}
     public int getPrecioEscudo(){return precioEscudo;}
     public int getPrecioReparacion(){return precioReparacion;}
-    //CHEATS
-    public boolean getCheats() {return cheats;}
-    public void setCheats(boolean b) {cheats=b;}
 }

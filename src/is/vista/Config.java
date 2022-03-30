@@ -30,6 +30,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Config extends JFrame {
 
@@ -54,17 +56,19 @@ public class Config extends JFrame {
 	 * Create the frame.
 	 */
 	private Config() {
+
 		setResizable(false);
 		setTitle("Configuracion");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Config.class.getResource("/resource/ajustes.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(500, 100, 397, 400);
+		setBounds(750, 300, 400, 400);
 		pnl_main = new JPanel();
 		pnl_main.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pnl_main);
 		pnl_main.setLayout(new BorderLayout(0, 0));
 		pnl_main.add(getPnl_configuracion(), BorderLayout.CENTER);
 		pnl_main.add(getPnl_start(), BorderLayout.SOUTH);
+		pnl_main.addKeyListener(Controlador.getControlador());
 	}
 	public static Config getMiConfig()
 	{
@@ -183,7 +187,7 @@ public class Config extends JFrame {
 	public static JCheckBox getBtn_cheats() {
 		if (btn_cheats == null) {
 			btn_cheats = new JCheckBox("");
-			btn_cheats.setSelected(true);
+			btn_cheats.setSelected(false);
 		}
 		return btn_cheats;
 	}

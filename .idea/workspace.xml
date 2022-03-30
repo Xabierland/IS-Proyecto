@@ -15,6 +15,7 @@
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Variables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Variables.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/vista/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/vista/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/vista/Tienda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Tienda.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -4,16 +4,11 @@ import is.modelo.*;
 import is.vista.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 import javax.swing.*;
 
-public class Controlador implements ActionListener, MouseListener
+public class Controlador implements ActionListener, MouseListener, KeyListener
 {
 	private static Controlador controler =null;
 
@@ -116,25 +111,16 @@ public class Controlador implements ActionListener, MouseListener
 		//CONFIG ===================================================================
 		if(e.getSource().equals(Config.getBtn_start()))
 		{
-			//RECOGER PARAMETROS
-			var.setEscala(Config.getSlider_escala().getValue());
-			var.setDificultadIA(Config.getSlider_ia().getValue());
-			var.setCheats(Config.getBtn_cheats().isSelected());
-			try {
-				var.setDineroInicial(Integer.parseInt(Config.getText_money().getText()));
-			}catch (Exception i){}
-			try {
-				var.setDineroPorHundir(Integer.parseInt(Config.getTxt_regard().getText()));
-			}catch (Exception ii){}
+			start();
+		}
+	}
 
-			//INICIAR JUEGO
-			Config.getMiConfig().setVisible(false);
-			try {
-				Juego frame = Juego.getMiJuego();
-				frame.setVisible(true);
-			} catch (Exception i) {
-				i.printStackTrace();
-			}
+	@Override
+	public void keyPressed(KeyEvent e)
+	{
+		if(e.getKeyCode()==KeyEvent.VK_E)
+		{
+			start();
 		}
 	}
 
@@ -185,6 +171,28 @@ public class Controlador implements ActionListener, MouseListener
 		}
 	}
 
+	private void start()
+	{
+		//RECOGER PARAMETROS
+		var.setEscala(Config.getSlider_escala().getValue());
+		var.setDificultadIA(Config.getSlider_ia().getValue());
+		try {
+			var.setDineroInicial(Integer.parseInt(Config.getText_money().getText()));
+		}catch (Exception i){}
+		try {
+			var.setDineroPorHundir(Integer.parseInt(Config.getTxt_regard().getText()));
+		}catch (Exception ii){}
+
+		//INICIAR JUEGO
+		Config.getMiConfig().setVisible(false);
+		try {
+			Juego frame = Juego.getMiJuego();
+			frame.setVisible(true);
+		} catch (Exception i) {
+			i.printStackTrace();
+		}
+	}
+
 	private boolean perteneceJugador(Object obj)
 	{
 		JLabel label=(JLabel) obj;
@@ -196,6 +204,8 @@ public class Controlador implements ActionListener, MouseListener
 		return label.getParent()==Juego.getTablero_ia();
 	}
 
+
+
 	//ME OBLIGA A PONER LAS CABECERAS :(
 	@Override
 	public void mouseReleased(MouseEvent e) {}
@@ -203,6 +213,8 @@ public class Controlador implements ActionListener, MouseListener
 	public void mouseEntered(MouseEvent e) {}
 	@Override
 	public void mouseExited(MouseEvent e) {}
-
-	
+	@Override
+	public void keyTyped(KeyEvent e) {}
+	@Override
+	public void keyReleased(KeyEvent e) {}
 }
