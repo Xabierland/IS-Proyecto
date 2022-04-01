@@ -2,17 +2,14 @@ package is.vista;
 
 import is.controlador.*;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JScrollBar;
 import javax.swing.JFormattedTextField;
-import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JButton;
 
@@ -21,9 +18,7 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSlider;
-import java.awt.Font;
 import javax.swing.SwingConstants;
-import java.awt.Toolkit;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import java.awt.event.FocusAdapter;
@@ -56,12 +51,17 @@ public class Config extends JFrame {
 	 * Create the frame.
 	 */
 	private Config() {
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int a_width = 400;
+		int a_height = 400;
+		int height = pantalla.height/2-a_height/2;
+		int width = pantalla.width/2-a_width/2;
 
 		setResizable(false);
 		setTitle("Configuracion");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Config.class.getResource("/resource/ajustes.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(750, 300, 400, 400);
+		setBounds(width, height, a_width, a_height);
 		pnl_main = new JPanel();
 		pnl_main.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pnl_main);

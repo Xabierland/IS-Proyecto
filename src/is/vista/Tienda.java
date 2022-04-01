@@ -7,13 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
+import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
-import java.awt.Toolkit;
 import javax.swing.BoxLayout;
-import java.awt.BorderLayout;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.event.ActionListener;
@@ -42,11 +40,18 @@ public class Tienda extends JFrame implements Observer {
 	 * Create the frame.
 	 */
 	private Tienda() {
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int a_width = 460;
+		int a_height = 360;
+		int height = pantalla.height/2-a_height/2;
+		int width = pantalla.width/2-a_width/2;
+
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Tienda.class.getResource("/resource/tienda.png")));
 		setTitle("Tienda");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setAlwaysOnTop(false);
-		setBounds(1380, 100, 460, 360);
+		setBounds(width, height, a_width, a_height);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

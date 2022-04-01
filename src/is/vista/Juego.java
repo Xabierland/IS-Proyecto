@@ -82,11 +82,17 @@ public class Juego extends JFrame implements Observer {
 	 * Create the frame.
 	 */
 	private Juego() {
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int a_width = 1280;
+		int a_height = 720;
+		int height = pantalla.height/2-a_height/2;
+		int width = pantalla.width/2-a_width/2;
+
 		setAlwaysOnTop(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Juego.class.getResource("/resource/icon.png")));
 		setTitle("Hundir la flota");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1280, 720);
+		setBounds(width, height, a_width, a_height);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -114,7 +120,7 @@ public class Juego extends JFrame implements Observer {
 		JLabel casillaJugador = new JLabel();
 		casillaJugador.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		casillaJugador.setOpaque(true);
-		casillaJugador.setBackground(Color.blue);
+		casillaJugador.setBackground(new Color(0,153,204));
 
 		casillaJugador.addMouseListener(Controlador.getControlador());
 		return casillaJugador;
@@ -125,7 +131,7 @@ public class Juego extends JFrame implements Observer {
 		JLabel casillaIA = new JLabel();
 		casillaIA.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		casillaIA.setOpaque(true);
-		casillaIA.setBackground(Color.blue);
+		casillaIA.setBackground(new Color(0,153,204));
 
 		casillaIA.addMouseListener(Controlador.getControlador());
 		return casillaIA;

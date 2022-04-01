@@ -84,6 +84,7 @@ public class Controlador implements ActionListener, MouseListener, KeyListener
 		{
 			Tienda tienda = Tienda.getTienda();
 			tienda.setVisible(true);
+
 		}
 		if(e.getSource().equals(Tienda.getBtn_misil()))
 		{

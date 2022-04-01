@@ -101,6 +101,7 @@ public class Armamento extends Observable {
                     lista[2]=false;
                     lista[3]="Misil";
                     lista[4]=numDeUnArma(tipoArma);
+                    notifyObservers(lista);
                     Partida.getMiPartida().setTipoArma(0);
                 }
                 else
