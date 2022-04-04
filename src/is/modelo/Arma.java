@@ -37,11 +37,6 @@ public abstract class Arma extends Observable {
         return tipoArma;
     }
 
-    public boolean getIfFiniti()
-    {
-        return finita;
-    }
-
     public void setChanged()
     {
         changed=true;

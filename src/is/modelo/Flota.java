@@ -14,7 +14,6 @@ public class Flota {
         System.out.printf("Se ha añadido a la flota un %s\n",nBarco.name);
         }
 
-    //todo optimizar
     public Barco getBarcoporPos(int x, int y){
         Coordenada c= new Coordenada(x, y);
         Barco nBarco=null;
