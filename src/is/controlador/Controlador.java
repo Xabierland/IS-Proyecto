@@ -4,18 +4,16 @@ import is.modelo.*;
 import is.vista.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 import javax.swing.*;
 
-public class Controlador implements ActionListener, MouseListener
+public class Controlador implements ActionListener, MouseListener, KeyListener
 {
 	private static Controlador controler =null;
 
 	private Partida partida=Partida.getMiPartida();
+	private Variables var=Variables.getMisVariables();
 
 	private Controlador() {};
 	
@@ -86,6 +84,7 @@ public class Controlador implements ActionListener, MouseListener
 		{
 			Tienda tienda = Tienda.getTienda();
 			tienda.setVisible(true);
+
 		}
 		if(e.getSource().equals(Tienda.getBtn_misil()))
 		{
@@ -109,6 +108,20 @@ public class Controlador implements ActionListener, MouseListener
 			String cad = Juego.getCheatConsole().getText();
 			Juego.getCheatConsole().setText(null);
 			Cheats.getMyCheats().execute(cad);
+		}
+		//CONFIG ===================================================================
+		if(e.getSource().equals(Config.getBtn_start()))
+		{
+			start();
+		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e)
+	{
+		if(e.getKeyCode()==KeyEvent.VK_E)
+		{
+			start();
 		}
 	}
 
@@ -150,13 +163,34 @@ public class Controlador implements ActionListener, MouseListener
 			System.out.printf("PLAYER|x:%d|y:%d\n",x,y);
 			partida.jugar(0,x,y);
 		}
-		if(perteneceIA(e.getSource()))
-		{
-			Coordenada coor=Tablero_IA.getTableroIA().getCoordenadasDeCasilla((JLabel) e.getSource());
-			int x=coor.getX();
-			int y=coor.getY();
-			System.out.printf("IA    |x:%d|y:%d\n",x,y);
-			partida.jugar(1,x,y);
+		if(perteneceIA(e.getSource())) {
+			Coordenada coor = Tablero_IA.getTableroIA().getCoordenadasDeCasilla((JLabel) e.getSource());
+			int x = coor.getX();
+			int y = coor.getY();
+			System.out.printf("IA    |x:%d|y:%d\n", x, y);
+			partida.jugar(1, x, y);
+		}
+	}
+
+	private void start()
+	{
+		//RECOGER PARAMETROS
+		var.setEscala(Config.getSlider_escala().getValue());
+		var.setDificultadIA(Config.getSlider_ia().getValue());
+		try {
+			var.setDineroInicial(Integer.parseInt(Config.getText_money().getText()));
+		}catch (Exception i){}
+		try {
+			var.setDineroPorHundir(Integer.parseInt(Config.getTxt_regard().getText()));
+		}catch (Exception ii){}
+
+		//INICIAR JUEGO
+		Config.getMiConfig().setVisible(false);
+		try {
+			Juego frame = Juego.getMiJuego();
+			frame.setVisible(true);
+		} catch (Exception i) {
+			i.printStackTrace();
 		}
 	}
 
@@ -171,6 +205,8 @@ public class Controlador implements ActionListener, MouseListener
 		return label.getParent()==Juego.getTablero_ia();
 	}
 
+
+
 	//ME OBLIGA A PONER LAS CABECERAS :(
 	@Override
 	public void mouseReleased(MouseEvent e) {}
@@ -178,4 +214,8 @@ public class Controlador implements ActionListener, MouseListener
 	public void mouseEntered(MouseEvent e) {}
 	@Override
 	public void mouseExited(MouseEvent e) {}
+	@Override
+	public void keyTyped(KeyEvent e) {}
+	@Override
+	public void keyReleased(KeyEvent e) {}
 }

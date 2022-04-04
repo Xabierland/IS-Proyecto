@@ -42,7 +42,7 @@ public class Bomba extends Arma
 
                     if (afectado.barcoHundido(x, y))
                     {
-                        efectuante.setDinero(efectuante.getDinero() + 500);
+                        efectuante.setDinero(efectuante.getDinero() + Variables.getMisVariables().getDineroPorHundir());
                         if(efectuante instanceof Tablero_Jugador)
                         {
                             setChanged();

@@ -212,7 +212,7 @@ public abstract class Tablero extends Observable {
             {
                 if(destructor<=0)
                 {
-                    Partida.getMiPartida().setTipoBarco(1);
+                    Partida.getMiPartida().setTipoBarco(0);
                     setChanged();
                     Object[] lista=new Object[3];
                     lista[0]="BARCO";
@@ -226,7 +226,7 @@ public abstract class Tablero extends Observable {
             {
                 if(submarino<=0)
                 {
-                    Partida.getMiPartida().setTipoBarco(2);
+                    Partida.getMiPartida().setTipoBarco(0);
                     setChanged();
                     Object[] lista=new Object[3];
                     lista[0]="BARCO";
@@ -240,7 +240,7 @@ public abstract class Tablero extends Observable {
             {
                 if(portavion<=0)
                 {
-                    Partida.getMiPartida().setTipoBarco(3);
+                    Partida.getMiPartida().setTipoBarco(0);
                     setChanged();
                     Object[] lista=new Object[3];
                     lista[0]="BARCO";

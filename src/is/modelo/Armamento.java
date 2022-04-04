@@ -95,21 +95,26 @@ public class Armamento extends Observable {
                 if(numDeUnArma(tipoArma) == 0)
                 {
                     setChangedJuego();
-                    Object[] lista= new Object[3];
+                    Object[] lista= new Object[5];
                     lista[0]="ARMA";
                     lista[1]=Juego.getBtn_misil();
                     lista[2]=false;
+                    lista[3]="Misil";
+                    lista[4]=numDeUnArma(tipoArma);
                     notifyObservers(lista);
                     Partida.getMiPartida().setTipoArma(0);
                 }
                 else
                 {
                     setChangedJuego();
-                    Object[] lista= new Object[3];
+                    Object[] lista= new Object[5];
                     lista[0]="ARMA";
                     lista[1]=Juego.getBtn_misil();
                     lista[2]=true;
+                    lista[3]="Misil";
+                    lista[4]=numDeUnArma(tipoArma);
                     notifyObservers(lista);
+
                 }
                 break;
             }
@@ -118,20 +123,24 @@ public class Armamento extends Observable {
                 if(numDeUnArma(tipoArma) == 0)
                 {
                     setChangedJuego();
-                    Object[] lista= new Object[3];
+                    Object[] lista= new Object[5];
                     lista[0]="ARMA";
                     lista[1]=Juego.getBtn_radar();
                     lista[2]=false;
+                    lista[3]="Radar";
+                    lista[4]=numDeUnArma(tipoArma);
                     notifyObservers(lista);
                     Partida.getMiPartida().setTipoArma(0);
                 }
                 else
                 {
                     setChangedJuego();
-                    Object[] lista= new Object[3];
+                    Object[] lista= new Object[5];
                     lista[0]="ARMA";
                     lista[1]=Juego.getBtn_radar();
                     lista[2]=true;
+                    lista[3]="Radar";
+                    lista[4]=numDeUnArma(tipoArma);
                     notifyObservers(lista);
                 }
                 break;
@@ -141,20 +150,24 @@ public class Armamento extends Observable {
                 if(numDeUnArma(tipoArma) == 0)
                 {
                     setChangedJuego();
-                    Object[] lista= new Object[3];
+                    Object[] lista= new Object[5];
                     lista[0]="ARMA";
                     lista[1]=Juego.getBtn_escudo();
                     lista[2]=false;
+                    lista[3]="Escudo";
+                    lista[4]=numDeUnArma(tipoArma);
                     notifyObservers(lista);
                     Partida.getMiPartida().setTipoArma(0);
                 }
                 else
                 {
                     setChangedJuego();
-                    Object[] lista= new Object[3];
+                    Object[] lista= new Object[5];
                     lista[0]="ARMA";
                     lista[1]=Juego.getBtn_escudo();
                     lista[2]=true;
+                    lista[3]="Escudo";
+                    lista[4]=numDeUnArma(tipoArma);
                     notifyObservers(lista);
                 }
                 break;
@@ -164,20 +177,24 @@ public class Armamento extends Observable {
                 if(numDeUnArma(tipoArma) == 0)
                 {
                     setChangedJuego();
-                    Object[] lista= new Object[3];
+                    Object[] lista= new Object[5];
                     lista[0]="ARMA";
                     lista[1]=Juego.getBtn_reparacion();
                     lista[2]=false;
+                    lista[3]="Reparacion";
+                    lista[4]=numDeUnArma(tipoArma);
                     notifyObservers(lista);
                     Partida.getMiPartida().setTipoArma(0);
                 }
                 else
                 {
                     setChangedJuego();
-                    Object[] lista= new Object[3];
+                    Object[] lista= new Object[5];
                     lista[0]="ARMA";
                     lista[1]=Juego.getBtn_reparacion();
                     lista[2]=true;
+                    lista[3]="Reparacion";
+                    lista[4]=numDeUnArma(tipoArma);
                     notifyObservers(lista);
                 }
                 break;
@@ -253,12 +270,17 @@ public class Armamento extends Observable {
         if (changeJuego == true)
         {
             Juego.getMiJuego().update(this, g);
+            changeJuego = false;
+            
         }
         if (changeTienda == true)
         {
             Tienda.getTienda().update(this, g);
+            changeTienda = false;
         }
-        changeJuego = false;
-        changeTienda = false;
+        
+        
     }
+
+
 }
