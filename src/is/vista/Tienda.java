@@ -173,6 +173,7 @@ public class Tienda extends JFrame implements Observer {
 			((JLabel) lista[1]).setText((String) lista[2]);
 		}
 	}
+
 	private JLabel getLblReparacion() {
 		if (lblReparacion == null) {
 			lblReparacion = new JLabel("\u00A0\u00A0Reparacion");
