@@ -1,4 +1,4 @@
-# IS-Proyecto - Hundir la flota <img src=/src/resource/icon32.png/>
+# IS-Proyecto - Hundir la flota <img src=./Proyecto/src/resource/icon32.png/>
 
 ### Programadores
 <ul>
@@ -27,8 +27,21 @@
 <li>Coloca todos los barcos de forma aleatoria</li>
 </ul>
 <li>idkfa</li>
-<ul>Otorga al jugador armas infinitas</ul>
+<ul>
+<li>Otorga al jugador armas infinitas</li>
+</ul>
 <li>motherlode</li>
-<ul>Otorga al jugador 50.000 de oro</ul>
+<ul>
+<li>Otorga al jugador 50.000 de oro</li>
+</ul>
 </ol>
 </ol>
+
+### ToDo
+<ul>
+<li>Poner el numero de barcos restantes</li>
+<li>Abstraer las funciones que deberia hacer un usuario del tablero asi como su armamento</li>
+<li>Arreglar el diagrama de clases y de secuencias</li>
+<li>Meter un numero de maximo de compras posibles en la tienda</li>
+<li>Meter sonidos a los disparos</li>
+</ul>
