@@ -21,7 +21,7 @@ public class Tienda extends JFrame implements Observer {
 	private static Tienda miTienda=null;
 
 	private JPanel contentPane;
-	private JLabel lbl_misil;
+	private static JLabel lbl_misil;
 	private JLabel lbl_radar;
 	private JLabel lbl_escudo;
 	private static JButton btn_misil;
@@ -71,19 +71,19 @@ public class Tienda extends JFrame implements Observer {
 
 	private JLabel getLbl_misil() {
 		if (lbl_misil == null) {
-			lbl_misil = new JLabel("\u00A0\u00A0\u00A0Misil");
+			lbl_misil = new JLabel("\u00A0\u00A0\u00A0Misil (5)");
 		}
 		return lbl_misil;
 	}
 	private JLabel getLbl_radar() {
 		if (lbl_radar == null) {
-			lbl_radar = new JLabel("\u00A0\u00A0\u00A0Radar");
+			lbl_radar = new JLabel("\u00A0\u00A0\u00A0Radar (3)");
 		}
 		return lbl_radar;
 	}
 	private JLabel getLbl_escudo() {
 		if (lbl_escudo == null) {
-			lbl_escudo = new JLabel("\u00A0\u00A0\u00A0Escudo");
+			lbl_escudo = new JLabel("\u00A0\u00A0\u00A0Escudo (3)");
 		}
 		return lbl_escudo;
 	}
@@ -172,11 +172,20 @@ public class Tienda extends JFrame implements Observer {
 		{
 			((JLabel) lista[1]).setText((String) lista[2]);
 		}
+		else if(cad.equalsIgnoreCase("DESACTIVAR")){
+			JButton botton=(JButton) lista[1];
+			botton.setEnabled(false);
+		}
+		else if(cad.equalsIgnoreCase("reducir")){
+			JLabel botton=(JLabel) lista[1];
+			String t=(String) lista[2];
+			botton.setText(t);
+		}
 	}
 
 	private JLabel getLblReparacion() {
 		if (lblReparacion == null) {
-			lblReparacion = new JLabel("\u00A0\u00A0Reparacion");
+			lblReparacion = new JLabel("\u00A0\u00A0Reparacion (3)");
 		}
 		return lblReparacion;
 	}
@@ -187,5 +196,7 @@ public class Tienda extends JFrame implements Observer {
 		}
 		return fotoReparacion;
 	}
-
+	public static JLabel getLblMisil(){
+		return lbl_misil;
+	}
 }
