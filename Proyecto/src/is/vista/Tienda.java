@@ -190,11 +190,7 @@ public class Tienda extends JFrame implements Observer {
 		}
 		else if(cad.equalsIgnoreCase("REDUCIR"))
 		{
-			((JButton) lista[1]).setText((String) lista[2]);
+			((JLabel) lista[1]).setText((String) lista[2]);
 		}
 	}
-
-
-
-
 }

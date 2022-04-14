@@ -85,19 +85,19 @@ public class Controlador implements ActionListener, MouseListener, KeyListener
 		}
 		if(e.getSource().equals(Tienda.getBtn_misil()))
 		{
-			Shop.getTienda().comprarArma(0,0);
+			Shop.getTienda().comprarArma(0,1);
 		}
 		if(e.getSource().equals(Tienda.getBtn_radar()))
 		{
-			Shop.getTienda().comprarArma(0,1);
+			Shop.getTienda().comprarArma(0,2);
 		}
 		if(e.getSource().equals(Tienda.getBtn_escudo()))
 		{
-			Shop.getTienda().comprarArma(0,2);
+			Shop.getTienda().comprarArma(0,3);
 		}
 		if(e.getSource().equals(Tienda.getBtn_reparacion()))
 		{
-			Shop.getTienda().comprarArma(0,3);
+			Shop.getTienda().comprarArma(0,4);
 		}
 		//CHEATS ===============================================================================================================================================================
 		if(e.getSource().equals(Juego.getCheatConsole()))

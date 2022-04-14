@@ -25,21 +25,40 @@ public class Shop extends Observable {
         return miShop;
     }
 
+    public int getNArma(int pArma)
+    {
+        int i=0;
+        switch (pArma)
+        {
+            case 1: i=nmisil;break;
+            case 2: i=nradar;break;
+            case 3: i=nescudo;break;
+            case 4: i=nreparacion;break;
+        }
+        return i;
+    }
+
     public boolean comprarArma(int pJugador, int pArma)
     {
         Jugador j=Partida.getMiPartida().getJugador(pJugador);
         boolean exito=true;
-        if(j.getDinero() >= var.getPrecioMisil())
-        {
-            j.setDinero(j.getDinero()-var.getPrecioMisil());
-            j.getArmamento().addArma(pArma, true, j.getIfIa());
-            reducirInventario(pArma);
-        }
+        if(getNArma(pArma)>0)
+            if(j.getDinero() >= var.getPrecioMisil())
+            {
+                j.setDinero(j.getDinero()-var.getPrecioMisil());
+                j.getArmamento().addArma(pArma, true, j.getIfIa());
+                reducirInventario(pArma);
+            }
+            else
+            {
+                if(!j.getIfIa()) {
+                    dineroInsuficiente();
+                }
+                exito=false;
+            }
         else
         {
-            if(!j.getIfIa()) {
-                dineroInsuficiente();
-            }
+            System.out.println("No queda de esta arma");
             exito=false;
         }
         return exito;
@@ -55,8 +74,9 @@ public class Shop extends Observable {
             case 1:
             {
                 nmisil--;
+                setChanged();
                 Object[] list = new Object[3];
-                list[1]=Tienda.getBtn_misil();
+                list[1]=Tienda.getLbl_misil();
                 list[0]="reducir";
                 list[2]="\u00A0\u00A0\u00A0Misil ("+this.nmisil+")";
                 notifyObservers(list);
@@ -72,15 +92,16 @@ public class Shop extends Observable {
             case 2:
             {
                 nradar--;
+                setChanged();
                 Object[] list = new Object[3];
-                list[1]=Tienda.getBtn_radar();
+                list[1]=Tienda.getLbl_radar();
                 list[0]="reducir";
                 list[2]="\u00A0\u00A0\u00A0Radar ("+this.nradar+")";
                 notifyObservers(list);
                 if(nradar==0){//desactivar compra
                     setChanged();
                     Object[] lista = new Object[2];
-                    lista[1]=Tienda.getBtn_misil();
+                    lista[1]=Tienda.getBtn_radar();
                     lista[0]="desactivar";
                     notifyObservers(lista);
                 }
@@ -90,16 +111,17 @@ public class Shop extends Observable {
             case 3:
             {
                 nescudo--;
+                setChanged();
                 Object[] list = new Object[3];
-                list[1]=Tienda.getBtn_escudo();
+                list[1]=Tienda.getLbl_escudo();
                 list[0]="reducir";
                 list[2]="\u00A0\u00A0\u00A0Escudo ("+this.nescudo+")";
                 notifyObservers(list);
                 if(nescudo==0){//desactivar compra
                     setChanged();
                     Object[] lista = new Object[2];
-                    lista[1]=Tienda.getBtn_misil();
                     lista[0]="desactivar";
+                    lista[1]=Tienda.getBtn_escudo();
                     notifyObservers(lista);
                 }
                 break;
@@ -107,15 +129,16 @@ public class Shop extends Observable {
             case 4:
             {
                 nreparacion--;
+                setChanged();
                 Object[] list = new Object[3];
-                list[1]=Tienda.getBtn_reparacion();
                 list[0]="reducir";
+                list[1]=Tienda.getLblReparacion();
                 list[2]="\u00A0\u00A0\u00A0Reparacion ("+this.nreparacion+")";
                 notifyObservers(list);
                 if(nreparacion==0){//desactivar compra
                     setChanged();
                     Object[] lista = new Object[2];
-                    lista[1]=Tienda.getBtn_misil();
+                    lista[1]=Tienda.getBtn_reparacion();
                     lista[0]="desactivar";
                     notifyObservers(lista);
                 }

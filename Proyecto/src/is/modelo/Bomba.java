@@ -27,6 +27,61 @@ public class Bomba extends Arma
             efectuante = Partida.getMiPartida().getJugador(0);
         }
 
+        //Comprobar si la posicion ya ha sido atacada
+        if(!afectado.getTablero().getIfDisparo(x, y))
+        {
+            //Comprobar si barco
+            if(afectado.getTablero().getIfBarcoByPos(x, y))
+            {
+                //Comprobar si escudo
+                if(!afectado.getTablero().getIfEscudo(x,y))
+                {
+                    //Comprobar si hundido
+                    if(!afectado.getTablero().barcoHundido(x,y,afectado.getFlota()))
+                    {
+                        cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.red);
+                        afectado.getTablero().setDisparo(true, x, y);
+                        if(!efectuante.getIfIa())
+                        {
+                            cambiar("ESTADO", Juego.getDisplayState(), "TOCADO");
+                        }
+                        atacado=true;
+                    }
+                    else
+                    {
+                        cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.red);
+                        efectuante.setDinero(efectuante.getDinero() + Variables.getMisVariables().getDineroPorHundir());
+                        afectado.getTablero().setDisparo(true, x, y);
+                        if(!efectuante.getIfIa())
+                        {
+                            cambiar("ESTADO", Juego.getDisplayState(), "TOCADO Y HUNDIDO");
+                            cambiar("dinero", Juego.getDisplayState(), efectuante.getDinero());
+                        }
+                        atacado=true;
+                    }
+                }
+                else
+                {
+                    cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.black);
+                    //desactivarEscudo(x,y);
+                    atacado=true;
+                }
+            }
+            else
+            {
+                //AGUA
+                cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.white);
+                atacado=true;
+            }
+        }
+        else
+        {
+            atacado=false;
+        }
+
+
+
+        /*
         if (!afectado.getTablero().getIfEscudo(x, y))
         {
             if(!afectado.getTablero().getIfDisparo(x,y)) {
@@ -88,6 +143,7 @@ public class Bomba extends Arma
             }
             atacado=true;
         }
+        */
         return atacado;
     }
 }

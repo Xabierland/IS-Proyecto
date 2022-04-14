@@ -20,7 +20,7 @@ public class Armamento extends Observable {
     {
         Arma nArma=ArmaFactory.getBarcosFactory().hacerArma(tipoArma,finita);
         this.armamento.add(nArma);
-        System.out.printf("Se ha añadido el arma\n");
+        System.out.print("Se ha añadido el arma\n");
 
         //ACTUALIZAR BOTONES DE ARMA Y TIENDA
         if(!ia && tipoArma!=0) {
@@ -208,7 +208,7 @@ public class Armamento extends Observable {
         Object[] lista=new Object[3];
         lista[0]="DINERO";
         lista[1]=Juego.getLblDinero();
-        lista[2]=Partida.getMiPartida().getJugador(0);
+        lista[2]=Partida.getMiPartida().getJugador(0).getDinero();
         notifyObservers(lista);
         switch (tipoArma)
         {
