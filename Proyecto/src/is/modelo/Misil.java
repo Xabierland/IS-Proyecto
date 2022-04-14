@@ -13,35 +13,30 @@ public class Misil extends Arma
     @Override
     public boolean atacar(int pTablero, int x, int y) {
         boolean atacado=false;
-        Tablero efectuante,afectado;
+        Jugador efectuante,afectado;
         if(pTablero==0) {
-            efectuante = getTablero(1);
-            afectado = getTablero(0);
+            efectuante = Partida.getMiPartida().getJugador(1);
+            afectado = Partida.getMiPartida().getJugador(0);
         }
         else
         {
-            afectado = getTablero(1);
-            efectuante = getTablero(0);
+            afectado = Partida.getMiPartida().getJugador(1);
+            efectuante = Partida.getMiPartida().getJugador(0);
         }
-        if (!afectado.getIfEscudo(x, y))
+        if (!afectado.getTablero().getIfEscudo(x, y))
         {
-            if(!afectado.getIfDisparo(x,y)) {
-                if (afectado.getIfBarcoByPos(x, y))
+            if(!afectado.getTablero().getIfDisparo(x,y)) {
+                if (afectado.getTablero().getIfBarcoByPos(x, y))
                 {
                     for(Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas())
                     {
-                        setChanged();
-                        Object[] objetos = new Object[4];
-                        objetos[0] = "CASILLA";
-                        objetos[1] = getTablero(pTablero).getCasilla(c.getX(), c.getY());
-                        objetos[2] = Color.red;
-                        this.notifyObservers(objetos);
-                        afectado.setDisparo(true, c.getX(), c.getY());
+                        cambiar("CASILLA",afectado.getTablero().getCasilla(c.getX(),c.getY()),Color.red);
+                        afectado.getTablero().setDisparo(true, c.getX(), c.getY());
                     }
-                    if (afectado.barcoHundido(x, y))
+                    if (afectado.getTablero().barcoHundido(x, y, afectado.getFlota()))
                     {
                         efectuante.setDinero(efectuante.getDinero() + Variables.getMisVariables().getDineroPorHundir());
-                        if(efectuante instanceof Tablero_Jugador)
+                        if(!efectuante.getIfIa())
                         {
                             setChanged();
                             Object[] LISTA = new Object[3];
@@ -54,7 +49,7 @@ public class Misil extends Arma
                             Object[] LISTA6 = new Object[3];
                             LISTA6[0] = "dinero";
                             LISTA6[1] = Juego.getLblDinero();
-                            LISTA6[2] = getTablero(0).getDinero();
+                            LISTA6[2] = Partida.getMiPartida().getJugador(0).getDinero();
                             this.notifyObservers(LISTA6);
                         }
                     }
@@ -70,14 +65,9 @@ public class Misil extends Arma
                 }
                 else
                 {
-                    setChanged();
-                    Object[] objetos = new Object[4];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = getTablero(pTablero).getCasilla(x, y);
-                    objetos[2] = Color.white;
-                    this.notifyObservers(objetos);
+                    cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.white);
 
-                    if(afectado instanceof Tablero_IA)
+                    if(afectado.getIfIa())
                     {
                         setChanged();
                         Object[] LISTA = new Object[3];
@@ -87,7 +77,7 @@ public class Misil extends Arma
                         this.notifyObservers(LISTA);
                     }
                 }
-                afectado.setDisparo(true, x, y);
+                afectado.getTablero().setDisparo(true, x, y);
                 atacado=true;
             }
             else
@@ -97,28 +87,19 @@ public class Misil extends Arma
         }
         else
         {
+            //todo echarle un ojo a esto que creo que hay algo mal
             System.out.println("ESCUDO DESACTIVADO");
             for (Coordenada c: afectado.getFlota().getBarcoporPos(x,y).calcularCoordenadas())
             {
-                if(!afectado.getIfDisparo(c.getX(),c.getY()))
+                if(!afectado.getTablero().getIfDisparo(c.getX(),c.getY()))
                 {
-                    setChanged();
-                    Object[] objetos = new Object[4];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = getTablero(pTablero).getCasilla(x, y);
-                    objetos[2] = Color.black;
-                    this.notifyObservers(objetos);
+                    cambiar("CASILLA",afectado.getTablero().getCasilla(c.getX(),c.getY()),Color.black);
                 }
                 else
                 {
-                    setChanged();
-                    Object[] objetos = new Object[4];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = getTablero(pTablero).getCasilla(x, y);
-                    objetos[2] = Color.red;
-                    this.notifyObservers(objetos);
+                    cambiar("CASILLA",afectado.getTablero().getCasilla(c.getX(),c.getY()),Color.red);
                 }
-                afectado.setEscudo(false,x,y);
+                afectado.getTablero().setEscudo(false,x,y);
             }
             atacado=true;
         }

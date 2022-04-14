@@ -12,85 +12,51 @@ public class Bomba extends Arma
     }
 
     @Override
-    public boolean atacar(int pTablero, int x, int y)
+    public boolean atacar(int pJugador, int x, int y)
     {
         boolean atacado=false;
 
-        Tablero efectuante,afectado;
-        if(pTablero==0) {
-             efectuante = getTablero(1);
-             afectado = getTablero(0);
+        Jugador efectuante,afectado;
+        if(pJugador==0) {
+             efectuante = Partida.getMiPartida().getJugador(1);
+             afectado = Partida.getMiPartida().getJugador(0);
         }
         else
         {
-            afectado = getTablero(1);
-            efectuante = getTablero(0);
+            afectado = Partida.getMiPartida().getJugador(1);
+            efectuante = Partida.getMiPartida().getJugador(0);
         }
 
-        if (!afectado.getIfEscudo(x, y))
+        if (!afectado.getTablero().getIfEscudo(x, y))
         {
-            if(!afectado.getIfDisparo(x,y)) {
-                if (afectado.getIfBarcoByPos(x, y))
+            if(!afectado.getTablero().getIfDisparo(x,y)) {
+                if (afectado.getTablero().getIfBarcoByPos(x, y))
                 {
-                    setChanged();
-                    Object[] objetos = new Object[3];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = getTablero(pTablero).getCasilla(x, y);
-                    objetos[2] = Color.red;
-                    this.notifyObservers(objetos);
-                    afectado.setDisparo(true, x, y);
+                    cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.red);
+                    afectado.getTablero().setDisparo(true, x, y);
 
-                    if (afectado.barcoHundido(x, y))
+                    if (afectado.getTablero().barcoHundido(x, y, afectado.getFlota()))
                     {
                         efectuante.setDinero(efectuante.getDinero() + Variables.getMisVariables().getDineroPorHundir());
-                        if(efectuante instanceof Tablero_Jugador)
+                        if(!efectuante.getIfIa())
                         {
-                            setChanged();
-                            Object[] LISTA = new Object[3];
-                            LISTA[0] = "estado";
-                            LISTA[1] = Juego.getDisplayState();
-                            LISTA[2] = "TOCADO Y HUNDIDO";
-                            this.notifyObservers(LISTA);
-
-                            setChanged();
-                            Object[] LISTA6 = new Object[3];
-                            LISTA6[0] = "dinero";
-                            LISTA6[1] = Juego.getLblDinero();
-                            LISTA6[2] = getTablero(0).getDinero();
-                            this.notifyObservers(LISTA6);
+                            cambiar("ESTADO", Juego.getDisplayState(), "TOCADO Y HUNDIDO");
+                            cambiar("dinero", Juego.getDisplayState(), efectuante.getDinero());
                         }
                     }
                     else
                     {
-                        if(efectuante instanceof Tablero_Jugador) {
-                            setChanged();
-                            Object[] LISTA = new Object[3];
-                            LISTA[0] = "estado";
-                            LISTA[1] = Juego.getDisplayState();
-                            LISTA[2] = "TOCADO";
-                            this.notifyObservers(LISTA);
+                        if(!efectuante.getIfIa()) {
+                            cambiar("ESTADO", Juego.getDisplayState(), "TOCADO");
                         }
                     }
                 }
                 else
                 {
-                    setChanged();
-                    Object[] objetos = new Object[4];
-                    objetos[0] = "CASILLA";
-                    objetos[1] = getTablero(pTablero).getCasilla(x, y);
-                    objetos[2] = Color.white;
-                    this.notifyObservers(objetos);
-                    afectado.setDisparo(true, x, y);
-
-
-                    if(efectuante instanceof Tablero_Jugador)
+                    cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.white);
+                    if(!efectuante.getIfIa())
                     {
-                        setChanged();
-                        Object[] LISTA = new Object[3];
-                        LISTA[0] = "estado";
-                        LISTA[1] = Juego.getDisplayState();
-                        LISTA[2] = "AGUA";
-                        this.notifyObservers(LISTA);
+                        cambiar("ESTADO", Juego.getDisplayState(), "AGUA");
                     }
                 }
 
@@ -103,37 +69,22 @@ public class Bomba extends Arma
         }
         else
         {
-            if(afectado instanceof Tablero_Jugador) {
+            if(!afectado.getIfIa()) {
                 for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
-                    if (!afectado.getIfDisparo(c.getX(), c.getY())) {
-                        setChanged();
-                        Object[] objetos = new Object[3];
-                        objetos[0] = "CASILLA";
-                        objetos[1] = getTablero(pTablero).getCasilla(c.getX(), c.getY());
-                        objetos[2] = Color.black;
-                        this.notifyObservers(objetos);
+                    if (!afectado.getTablero().getIfDisparo(c.getX(), c.getY())) {
+                        cambiar("CASILLA",afectado.getTablero().getCasilla(c.getX(),c.getY()),Color.black);
                     } else {
-                        setChanged();
-                        Object[] objetos = new Object[4];
-                        objetos[0] = "CASILLA";
-                        objetos[1] = getTablero(pTablero).getCasilla(c.getX(), c.getY());
-                        objetos[2] = Color.red;
-                        this.notifyObservers(objetos);
+                        cambiar("CASILLA",afectado.getTablero().getCasilla(c.getX(),c.getY()),Color.red);
                     }
-                    afectado.setEscudo(false, c.getX(), c.getY());
+                    afectado.getTablero().setEscudo(false, c.getX(), c.getY());
                 }
             }
             else
             {
                 for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
-                    afectado.setEscudo(false, c.getX(), c.getY());
+                    afectado.getTablero().setEscudo(false, c.getX(), c.getY());
                 }
-                setChanged();
-                Object[] objetos = new Object[3];
-                objetos[0] = "ESTADO";
-                objetos[1] = Juego.getDisplayState();
-                objetos[2] = "ESCUDO";
-                this.notifyObservers(objetos);
+                cambiar("ESTADO", Juego.getDisplayState(), "ESCUDO");
             }
             atacado=true;
         }

@@ -208,7 +208,7 @@ public class Armamento extends Observable {
         Object[] lista=new Object[3];
         lista[0]="DINERO";
         lista[1]=Juego.getLblDinero();
-        lista[2]=Tablero_Jugador.getTableroJugador().getDinero();
+        lista[2]=Partida.getMiPartida().getJugador(0);
         notifyObservers(lista);
         switch (tipoArma)
         {

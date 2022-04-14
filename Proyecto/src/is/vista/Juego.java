@@ -3,7 +3,6 @@ import is.controlador.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,8 +17,6 @@ import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -30,12 +27,10 @@ import java.awt.Dimension;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import is.modelo.Tablero_IA;
-import is.modelo.Tablero_Jugador;
+import is.modelo.Partida;
 import is.modelo.Variables;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.UIManager;
-import java.awt.event.ActionListener;
+
 import java.awt.Font;
 
 public class Juego extends JFrame implements Observer {
@@ -209,7 +204,7 @@ public class Juego extends JFrame implements Observer {
 				{
 					JLabel unaCasilla= getCasillaJugador(j,i);
 					tablero_jugador.add(unaCasilla);
-					Tablero_Jugador.getTableroJugador().addCasilla(unaCasilla,j,i);
+					Partida.getMiPartida().getJugador(0).getTablero().addCasilla(unaCasilla,j,i);
 				}
 		}
 		return tablero_jugador;
@@ -224,7 +219,7 @@ public class Juego extends JFrame implements Observer {
 				{
 					JLabel unaCasilla=getCasillaIA(j,i);
 					tablero_ia.add(unaCasilla);
-					Tablero_IA.getTableroIA().addCasilla(unaCasilla,j,i);
+					Partida.getMiPartida().getJugador(1).getTablero().addCasilla(unaCasilla,j,i);
 				}
 		}
 		return tablero_ia;

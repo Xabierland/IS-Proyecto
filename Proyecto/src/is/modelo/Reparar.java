@@ -10,32 +10,33 @@ public class Reparar extends Arma {
     }
 
     @Override
-    public boolean atacar(int pTablero, int x, int y) {
+    public boolean atacar(int pJugador, int x, int y) {
         boolean atacado = false;
-        Tablero afectado;
-        afectado = getTablero(pTablero);
+        Jugador jugador;Tablero tablero;
+        jugador = Partida.getMiPartida().getJugador(pJugador);
+        tablero = jugador.getTablero();
 
-        if(afectado.getIfBarcoByPos(x,y))
+        if(tablero.getIfBarcoByPos(x,y))
         {
             boolean dannado = false;
-            for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
-                if (afectado.getIfDisparo(c.getX(), c.getY())) {
+            for (Coordenada c : jugador.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
+                if (tablero.getIfDisparo(c.getX(), c.getY())) {
                     dannado = true;
                     atacado = true;
                 }
             }
 
             if (dannado) {
-                for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
-                    if (afectado instanceof Tablero_Jugador || afectado.getIfDisparo(c.getX(), c.getY())) {
+                for (Coordenada c : jugador.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
+                    if (!jugador.getIfIa() || tablero.getIfDisparo(c.getX(), c.getY())) {
                         setChanged();
                         Object[] objetos = new Object[3];
                         objetos[0] = "CASILLA";
-                        objetos[1] = afectado.getCasilla(c.getX(), c.getY());
+                        objetos[1] = tablero.getCasilla(c.getX(), c.getY());
                         objetos[2] = Color.black;
                         this.notifyObservers(objetos);
                     }
-                    afectado.setDisparo(false, c.getX(), c.getY());
+                    tablero.setDisparo(false, c.getX(), c.getY());
                 }
             }
         }

@@ -9,26 +9,20 @@ public class Escudo extends Arma{
     }
 
     @Override
-    public boolean atacar(int pTablero, int x, int y) {
+    public boolean atacar(int pJugador, int x, int y) {
         boolean atacado=false;
-        Tablero afectado;
-        afectado = getTablero(pTablero);
+        Jugador afectado=Partida.getMiPartida().getJugador(pJugador);
 
-        if(!afectado.getIfEscudo(x, y))
+        if(!afectado.getTablero().getIfEscudo(x, y))
         {
-            if(afectado.getIfBarcoByPos(x,y))
+            if(afectado.getTablero().getIfBarcoByPos(x,y))
             {
-                if(!afectado.barcoHundido(x, y)) {
+                if(!afectado.getTablero().barcoHundido(x, y,afectado.getFlota())) {
                     for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
-                        afectado.setEscudo(true, c.getX(), c.getY());
+                        afectado.getTablero().setEscudo(true, c.getX(), c.getY());
 
-                        if (afectado instanceof Tablero_Jugador || afectado.getIfDisparo(c.getX(), c.getY())) {
-                            setChanged();
-                            Object[] objetos = new Object[3];
-                            objetos[0] = "CASILLA";
-                            objetos[1] = afectado.getCasilla(c.getX(), c.getY());
-                            objetos[2] = Color.magenta;
-                            this.notifyObservers(objetos);
+                        if (!afectado.getIfIa() || afectado.getTablero().getIfDisparo(c.getX(), c.getY())) {
+                            cambiar("CASILLA",afectado.getTablero().getCasilla(c.getX(),c.getY()),Color.magenta);
                         }
                     }
                     atacado = true;

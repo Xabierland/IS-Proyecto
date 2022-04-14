@@ -1,16 +1,18 @@
 package is.modelo;
 
-import is.vista.Juego;
 import is.vista.Tienda;
 
 import java.util.Observable;
 
 public class Shop extends Observable {
     private static Shop miShop =null;
-    private Tablero Jugador=Tablero_Jugador.getTableroJugador();
-    private Tablero IA=Tablero_IA.getTableroIA();
     private Variables var=Variables.getMisVariables();
     private boolean changed=false;
+    //Max compras
+    int nmisil=Variables.getMisVariables().getnMaxMisil();
+    int nradar=Variables.getMisVariables().getnMaxRadar();
+    int nescudo=Variables.getMisVariables().getnMaxEscudo();
+    int nreparacion =Variables.getMisVariables().getnMaxReparacion();
 
     private Shop(){}
 
@@ -23,29 +25,19 @@ public class Shop extends Observable {
         return miShop;
     }
 
-    private Tablero getTablero(int pTablero)
+    public boolean comprarArma(int pJugador, int pArma)
     {
-        if(pTablero==0)
-        {
-            return Jugador;
-        }
-        else
-        {
-            return IA;
-        }
-    }
-
-    public boolean comprarMisil(int pTablero, boolean ia)
-    {
+        Jugador j=Partida.getMiPartida().getJugador(pJugador);
         boolean exito=true;
-        if(getTablero(pTablero).getDinero() >= var.getPrecioMisil())
+        if(j.getDinero() >= var.getPrecioMisil())
         {
-            getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioMisil());
-            getTablero(pTablero).getArmamento().addArma(1, true,ia);
+            j.setDinero(j.getDinero()-var.getPrecioMisil());
+            j.getArmamento().addArma(pArma, true, j.getIfIa());
+            reducirInventario(pArma);
         }
         else
         {
-            if(pTablero==0) {
+            if(!j.getIfIa()) {
                 dineroInsuficiente();
             }
             exito=false;
@@ -53,60 +45,88 @@ public class Shop extends Observable {
         return exito;
     }
 
-    public boolean comprarRadar(int pTablero, boolean ia)
+    /*
+    * Este metodo se encarga de reducir el numero de unidades disponibles de un arma y en caso de ser 0 desactivar la compra de dicha arma
+     */
+    private void reducirInventario(int pArma)
     {
-        boolean exito=true;
-        if(getTablero(pTablero).getDinero() >= var.getPrecioRadar())
+        switch (pArma)
         {
-            getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioRadar());
-            getTablero(pTablero).getArmamento().addArma(2, true,ia);
-        }
-        else
-        {
-            if(pTablero==0) {
-                dineroInsuficiente();
+            case 1:
+            {
+                nmisil--;
+                Object[] list = new Object[3];
+                list[1]=Tienda.getBtn_misil();
+                list[0]="reducir";
+                list[2]="\u00A0\u00A0\u00A0Misil ("+this.nmisil+")";
+                notifyObservers(list);
+                if(nmisil==0){//desactivar compra
+                    setChanged();
+                    Object[] lista = new Object[2];
+                    lista[1]=Tienda.getBtn_misil();
+                    lista[0]="desactivar";
+                    notifyObservers(lista);
+                }
+                break;
             }
-            exito=false;
+            case 2:
+            {
+                nradar--;
+                Object[] list = new Object[3];
+                list[1]=Tienda.getBtn_radar();
+                list[0]="reducir";
+                list[2]="\u00A0\u00A0\u00A0Radar ("+this.nradar+")";
+                notifyObservers(list);
+                if(nradar==0){//desactivar compra
+                    setChanged();
+                    Object[] lista = new Object[2];
+                    lista[1]=Tienda.getBtn_misil();
+                    lista[0]="desactivar";
+                    notifyObservers(lista);
+                }
+                break;
+
+            }
+            case 3:
+            {
+                nescudo--;
+                Object[] list = new Object[3];
+                list[1]=Tienda.getBtn_escudo();
+                list[0]="reducir";
+                list[2]="\u00A0\u00A0\u00A0Escudo ("+this.nescudo+")";
+                notifyObservers(list);
+                if(nescudo==0){//desactivar compra
+                    setChanged();
+                    Object[] lista = new Object[2];
+                    lista[1]=Tienda.getBtn_misil();
+                    lista[0]="desactivar";
+                    notifyObservers(lista);
+                }
+                break;
+            }
+            case 4:
+            {
+                nreparacion--;
+                Object[] list = new Object[3];
+                list[1]=Tienda.getBtn_reparacion();
+                list[0]="reducir";
+                list[2]="\u00A0\u00A0\u00A0Reparacion ("+this.nreparacion+")";
+                notifyObservers(list);
+                if(nreparacion==0){//desactivar compra
+                    setChanged();
+                    Object[] lista = new Object[2];
+                    lista[1]=Tienda.getBtn_misil();
+                    lista[0]="desactivar";
+                    notifyObservers(lista);
+                }
+                break;
+            }
         }
-        return exito;
     }
 
-    public boolean comprarEscudo(int pTablero, boolean ia)
-    {
-        boolean exito=true;
-        if(getTablero(pTablero).getDinero() >= var.getPrecioEscudo())
-        {
-            getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioEscudo());
-            getTablero(pTablero).getArmamento().addArma(3, true,ia);
-        }
-        else
-        {
-            if(pTablero==0) {
-                dineroInsuficiente();
-            }
-            exito=false;
-        }
-        return exito;
-    }
-
-    public boolean comprarReparacion(int pTablero, boolean ia)
-    {
-        boolean exito=true;
-        if(getTablero(pTablero).getDinero() >= var.getPrecioReparacion())
-        {
-            getTablero(pTablero).setDinero(getTablero(pTablero).getDinero()-var.getPrecioReparacion());
-            getTablero(pTablero).getArmamento().addArma(4, true,ia);
-        }
-        else
-        {
-            if(pTablero==0) {
-                dineroInsuficiente();
-            }
-            exito=false;
-        }
-        return exito;
-    }
-
+    /*
+    * En caso de no tener el dinero necesario para comprar un arma se mostrara un mensaje para advertir al jugador
+     */
     private void dineroInsuficiente()
     {
         try {
@@ -132,7 +152,7 @@ public class Shop extends Observable {
      */
     public void notifyObservers(Object g)
     {
-        if (changed == true)
+        if (changed)
         {
             Tienda.getTienda().update(this, g);
         }

@@ -187,7 +187,7 @@ public class Config extends JFrame {
 	public static JCheckBox getBtn_cheats() {
 		if (btn_cheats == null) {
 			btn_cheats = new JCheckBox("");
-			btn_cheats.setSelected(false);
+			btn_cheats.setSelected(true);
 		}
 		return btn_cheats;
 	}

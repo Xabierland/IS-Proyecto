@@ -24,6 +24,10 @@ public class Variables
     private final int precioRadar=1000;
     private final int precioEscudo =1000;
     private final int precioReparacion=1000;
+    private final int nMaxMisil=5;
+    private final int nMaxRadar=3;
+    private final int nMaxEscudo=3;
+    private final int nMaxReparacion=3;
     
 
     private Variables(){}
@@ -62,4 +66,8 @@ public class Variables
     public int getPrecioRadar(){return precioRadar;}
     public int getPrecioEscudo(){return precioEscudo;}
     public int getPrecioReparacion(){return precioReparacion;}
+    public int getnMaxMisil() {return nMaxMisil*escala;}
+    public int getnMaxRadar() {return nMaxRadar*escala;}
+    public int getnMaxEscudo() {return nMaxEscudo*escala;}
+    public int getnMaxReparacion() {return nMaxReparacion*escala;}
 }

@@ -1,11 +1,10 @@
 package is.modelo;
 
-import is.vista.Juego;
-
 import java.util.Locale;
 
 public class Cheats
 {
+    private Partida partida=Partida.getMiPartida();
     private static Cheats myCheats=null;
 
     private Cheats() {}
@@ -27,29 +26,29 @@ public class Cheats
             case "see_all" : //MUESTRA EL TABLERO ENEMIGO
             {
                 System.out.println("CheatCode: "+cheatCode);
-                Tablero_IA.getTableroIA().mostrarTablero();
+                partida.getJugador(1).getTablero().mostrarTablero();
                 break;
             }
             case "random" : //COLOCA LOS BARCOS ALEATORIAMENTE
             {
                 System.out.println("CheatCode: "+cheatCode);
-                Tablero_Jugador.getTableroJugador().addBarcoAutomatico(false);
-                Tablero_IA.getTableroIA().addBarcoAutomatico(true);
-                Tablero_Jugador.getTableroJugador().getIfPosibleIniciarJuego();
-                Partida.getMiPartida().setDisparando(true);
+                partida.getJugador(0).anadirBarcoAuto();
+                partida.getJugador(1).anadirBarcoAuto();
+                partida.getJugador(0).getTablero().getIfPosibleIniciarJuego();
+                Partida.getMiPartida().setPreparado(true);
                 break;
             }
             case "idkfa" : //ARMAS INFINITAS
             {
                 System.out.println("CheatCode: "+cheatCode);
                 for(int i=1;i<Variables.getMisVariables().getNumArmas();i++)
-                    Tablero_Jugador.getTableroJugador().getArmamento().addArma(i,false,false);
+                    partida.getJugador(0).getArmamento().addArma(i,false,false);
                 break;
             }
             case "motherlode" : //50.000 DE ORO
             {
                 System.out.println("CheatCode: "+cheatCode);
-                Tablero_Jugador.getTableroJugador().setDinero(Tablero_Jugador.getTableroJugador().getDinero()+50000);
+                partida.getJugador(0).setDinero(partida.getJugador(0).getDinero()+50000);
                 break;
             }
         }

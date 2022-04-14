@@ -21,21 +21,21 @@ public class Tienda extends JFrame implements Observer {
 	private static Tienda miTienda=null;
 
 	private JPanel contentPane;
-	private JLabel lbl_misil;
-	private JLabel lbl_radar;
-	private JLabel lbl_escudo;
+	private static JLabel lbl_misil;
+	private static JLabel lbl_radar;
+	private static JLabel lbl_escudo;
+	private static JLabel lblReparacion;
 	private static JButton btn_misil;
 	private static JButton btn_radar;
 	private static JButton btn_escudo;
+	private static JButton btn_reparacion;
 	private JLabel fotoMisil;
 	private JLabel fotoRadar;
 	private JLabel fotoEscudo;
+	private JLabel fotoReparacion;
 	private static JLabel lbl_compra;
 	private JPanel panel;
-	private JLabel lblReparacion;
-	private JLabel fotoReparacion;
-	private static JButton btn_reparacion;
-	
+
 	/**
 	 * Create the frame.
 	 */
@@ -68,24 +68,35 @@ public class Tienda extends JFrame implements Observer {
 		}
 		return miTienda;
 	}
-
-	private JLabel getLbl_misil() {
+	public static JLabel getLbl_compra() {
+		if (lbl_compra == null) {
+			lbl_compra = new JLabel("Bienvenido a la tienda", SwingConstants.CENTER);
+		}
+		return lbl_compra;
+	}
+	public static JLabel getLbl_misil() {
 		if (lbl_misil == null) {
-			lbl_misil = new JLabel("\u00A0\u00A0\u00A0Misil");
+			lbl_misil = new JLabel("\u00A0\u00A0\u00A0Misil ("+Variables.getMisVariables().getnMaxMisil()+")");
 		}
 		return lbl_misil;
 	}
-	private JLabel getLbl_radar() {
+	public static JLabel getLbl_radar() {
 		if (lbl_radar == null) {
-			lbl_radar = new JLabel("\u00A0\u00A0\u00A0Radar");
+			lbl_radar = new JLabel("\u00A0\u00A0\u00A0Radar ("+Variables.getMisVariables().getnMaxRadar()+")");
 		}
 		return lbl_radar;
 	}
-	private JLabel getLbl_escudo() {
+	public static JLabel getLbl_escudo() {
 		if (lbl_escudo == null) {
-			lbl_escudo = new JLabel("\u00A0\u00A0\u00A0Escudo");
+			lbl_escudo = new JLabel("\u00A0\u00A0\u00A0Escudo ("+Variables.getMisVariables().getnMaxEscudo()+")");
 		}
 		return lbl_escudo;
+	}
+	public static JLabel getLblReparacion() {
+		if (lblReparacion == null) {
+			lblReparacion = new JLabel("\u00A0\u00A0Reparacion ("+Variables.getMisVariables().getnMaxReparacion()+")");
+		}
+		return lblReparacion;
 	}
 	public static JButton getBtn_misil() {
 		if (btn_misil == null) {
@@ -136,11 +147,12 @@ public class Tienda extends JFrame implements Observer {
 		}
 		return fotoEscudo;
 	}
-	public static JLabel getLbl_compra() {
-		if (lbl_compra == null) {
-			lbl_compra = new JLabel("Bienvenido a la tienda", SwingConstants.CENTER);
+	private JLabel getFotoReparacion() {
+		if (fotoReparacion == null) {
+			fotoReparacion = new JLabel("");
+			fotoReparacion.setIcon(new ImageIcon(Tienda.class.getResource("/resource/repair64.png")));
 		}
-		return lbl_compra;
+		return fotoReparacion;
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -172,20 +184,17 @@ public class Tienda extends JFrame implements Observer {
 		{
 			((JLabel) lista[1]).setText((String) lista[2]);
 		}
+		else if(cad.equalsIgnoreCase("DESACTIVAR"))
+		{
+			((JButton) lista[1]).setEnabled(false);
+		}
+		else if(cad.equalsIgnoreCase("REDUCIR"))
+		{
+			((JButton) lista[1]).setText((String) lista[2]);
+		}
 	}
 
-	private JLabel getLblReparacion() {
-		if (lblReparacion == null) {
-			lblReparacion = new JLabel("\u00A0\u00A0Reparacion");
-		}
-		return lblReparacion;
-	}
-	private JLabel getFotoReparacion() {
-		if (fotoReparacion == null) {
-			fotoReparacion = new JLabel("");
-			fotoReparacion.setIcon(new ImageIcon(Tienda.class.getResource("/resource/repair64.png")));
-		}
-		return fotoReparacion;
-	}
+
+
 
 }
