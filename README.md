@@ -40,8 +40,7 @@
 ### ToDo
 <ul>
 <li>Poner el numero de barcos restantes</li>
-<li>Abstraer las funciones que deberia hacer un usuario del tablero asi como su armamento</li>
 <li>Arreglar el diagrama de clases y de secuencias</li>
-<li>Meter un numero de maximo de compras posibles en la tienda (Solo queda añadirle a radar, escudo y reparación el número restante)</li>
 <li>Meter sonidos a los disparos</li>
+<li>Arreglar bug en compras de la IA</li>
 </ul>
