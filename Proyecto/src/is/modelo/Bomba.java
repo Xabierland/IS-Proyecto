@@ -36,34 +36,38 @@ public class Bomba extends Arma
                 //Comprobar si escudo
                 if(!afectado.getTablero().getIfEscudo(x,y))
                 {
+                    cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.red);
+                    afectado.getTablero().setDisparo(true, x, y);
+                    atacado=true;
                     //Comprobar si hundido
                     if(!afectado.getTablero().barcoHundido(x,y,afectado.getFlota()))
                     {
-                        cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.red);
-                        afectado.getTablero().setDisparo(true, x, y);
+                        //TOCADO
                         if(!efectuante.getIfIa())
                         {
                             cambiar("ESTADO", Juego.getDisplayState(), "TOCADO");
                         }
-                        atacado=true;
                     }
                     else
                     {
-                        cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.red);
+                        //HUNDIDO
                         efectuante.setDinero(efectuante.getDinero() + Variables.getMisVariables().getDineroPorHundir());
-                        afectado.getTablero().setDisparo(true, x, y);
                         if(!efectuante.getIfIa())
                         {
                             cambiar("ESTADO", Juego.getDisplayState(), "TOCADO Y HUNDIDO");
                             cambiar("dinero", Juego.getDisplayState(), efectuante.getDinero());
                         }
-                        atacado=true;
                     }
                 }
                 else
                 {
+                    //ESCUDO
                     cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.black);
-                    //desactivarEscudo(x,y);
+                    desactivarEscudos(afectado,x,y);
+                    if(!efectuante.getIfIa())
+                    {
+                        cambiar("ESTADO", Juego.getDisplayState(), "ESCUDO");
+                    }
                     atacado=true;
                 }
             }
@@ -71,79 +75,19 @@ public class Bomba extends Arma
             {
                 //AGUA
                 cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.white);
+                afectado.getTablero().setDisparo(true, x, y);
+                if(!efectuante.getIfIa())
+                {
+                    cambiar("ESTADO", Juego.getDisplayState(), "AGUA");
+                }
                 atacado=true;
             }
         }
         else
         {
+            //YA SE HA DISPARADO
             atacado=false;
         }
-
-
-
-        /*
-        if (!afectado.getTablero().getIfEscudo(x, y))
-        {
-            if(!afectado.getTablero().getIfDisparo(x,y)) {
-                if (afectado.getTablero().getIfBarcoByPos(x, y))
-                {
-                    cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.red);
-                    afectado.getTablero().setDisparo(true, x, y);
-
-                    if (afectado.getTablero().barcoHundido(x, y, afectado.getFlota()))
-                    {
-                        efectuante.setDinero(efectuante.getDinero() + Variables.getMisVariables().getDineroPorHundir());
-                        if(!efectuante.getIfIa())
-                        {
-                            cambiar("ESTADO", Juego.getDisplayState(), "TOCADO Y HUNDIDO");
-                            cambiar("dinero", Juego.getDisplayState(), efectuante.getDinero());
-                        }
-                    }
-                    else
-                    {
-                        if(!efectuante.getIfIa()) {
-                            cambiar("ESTADO", Juego.getDisplayState(), "TOCADO");
-                        }
-                    }
-                }
-                else
-                {
-                    cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.white);
-                    if(!efectuante.getIfIa())
-                    {
-                        cambiar("ESTADO", Juego.getDisplayState(), "AGUA");
-                    }
-                }
-
-                atacado=true;
-            }
-            else
-            {
-                atacado=false;
-            }
-        }
-        else
-        {
-            if(!afectado.getIfIa()) {
-                for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
-                    if (!afectado.getTablero().getIfDisparo(c.getX(), c.getY())) {
-                        cambiar("CASILLA",afectado.getTablero().getCasilla(c.getX(),c.getY()),Color.black);
-                    } else {
-                        cambiar("CASILLA",afectado.getTablero().getCasilla(c.getX(),c.getY()),Color.red);
-                    }
-                    afectado.getTablero().setEscudo(false, c.getX(), c.getY());
-                }
-            }
-            else
-            {
-                for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
-                    afectado.getTablero().setEscudo(false, c.getX(), c.getY());
-                }
-                cambiar("ESTADO", Juego.getDisplayState(), "ESCUDO");
-            }
-            atacado=true;
-        }
-        */
         return atacado;
     }
 }

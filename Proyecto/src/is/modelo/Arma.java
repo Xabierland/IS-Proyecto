@@ -19,12 +19,28 @@ public abstract class Arma extends Observable {
 
     public abstract boolean atacar(int pTablero, int x, int y);
 
-    public int getTipoArma()
+    protected int getTipoArma()
     {
         return tipoArma;
     }
 
-    public void cambiar(String pTipoCambio, Object pObjetivoCambio, Object pOtroParametro)
+    protected void desactivarEscudos(Jugador pJugador, int pX, int pY)
+    {
+        for (Coordenada c: pJugador.getFlota().getBarcoporPos(pX,pY).calcularCoordenadas())
+        {
+            if(!pJugador.getTablero().getIfDisparo(c.getX(),c.getY()))
+            {
+                cambiar("CASILLA",pJugador.getTablero().getCasilla(c.getX(),c.getY()),Color.black);
+            }
+            else
+            {
+                cambiar("CASILLA",pJugador.getTablero().getCasilla(c.getX(),c.getY()),Color.red);
+            }
+            pJugador.getTablero().setEscudo(false,c.getX(),c.getY());
+        }
+    }
+
+    protected void cambiar(String pTipoCambio, Object pObjetivoCambio, Object pOtroParametro)
     {
         setChanged();
         Object[] objetos = new Object[3];
@@ -34,7 +50,7 @@ public abstract class Arma extends Observable {
         this.notifyObservers(objetos);
     }
 
-    public void setChanged()
+    protected void setChanged()
     {
         changed=true;
     }

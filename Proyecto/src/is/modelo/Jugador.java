@@ -47,23 +47,7 @@ public class Jugador extends Observable {
     }
 
     // ATAQUES
-    public void atacar(int pX, int pY)
-    {
-        if(!ia)
-            ataqueJugador(pX, pY);
-        else
-            ataqueIA();
-    }
-
-    public void defender(int pX, int pY)
-    {
-        if(!ia)
-            defenderJugador(pX, pY);
-        else
-            ataqueIA();
-    }
-
-    private void ataqueJugador(int pX, int pY)
+    public void ataqueJugador(int pX, int pY)
     {
         if(armamento.existeMunicion(Partida.getMiPartida().getTipoArma()))
         {
@@ -74,16 +58,18 @@ public class Jugador extends Observable {
                     System.exit(0);
                 }
                 Partida.getMiPartida().setTurno(false);
+                ataqueIA();
             }
         }
     }
 
-    private void defenderJugador(int pX, int pY)
+    public void defenderJugador(int pX, int pY)
     {
         if(tablero.getIfBarcoByPos(pX,pY)) {
             if (armamento.existeMunicion(Partida.getMiPartida().getTipoArma())) {
                 if (armamento.usarArma(Partida.getMiPartida().getTipoArma(), 0, pX, pY,false)) {
                     Partida.getMiPartida().setTurno(false);
+                    ataqueIA();
                 }
             }
         }

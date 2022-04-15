@@ -86,8 +86,7 @@ public class Partida
                 {
                     if(tipoArma==3 || tipoArma==4) //ESCUDO & REPARAR
                     {
-                        jugadores[0].defender(pX, pY); //ATAQUE DEL JUGADOR
-                        jugadores[1].defender(pX, pY); //ATAQUE DE LA IA
+                        jugadores[0].defenderJugador(pX, pY); //ATAQUE DEL JUGADOR
                     }
                 }
                 else        //TURNO DE LA IA
@@ -101,8 +100,7 @@ public class Partida
                 {
                     if(tipoArma!=3 && tipoArma!=4) //ESCUDO & REPARAR
                     {
-                        jugadores[0].atacar(pX, pY);
-                        jugadores[1].atacar(pX, pY);
+                        jugadores[0].ataqueJugador(pX, pY);
                     }
                 }
                 else        //TURNO DE LA IA

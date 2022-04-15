@@ -11,15 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Armamento.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Armamento.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Bomba.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Bomba.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Shop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Shop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/controlador/Controlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Armamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Armamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Arma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Arma.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Bomba.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Bomba.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Shop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/vista/Tienda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Tienda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Jugador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Partida.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,16 +50,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="is.modelo" />
