@@ -58,7 +58,7 @@ public class Jugador extends Observable {
                     System.exit(0);
                 }
                 Partida.getMiPartida().setTurno(false);
-                ataqueIA();
+                Partida.getMiPartida().getJugador(1).ataqueIA();
             }
         }
     }
@@ -69,7 +69,7 @@ public class Jugador extends Observable {
             if (armamento.existeMunicion(Partida.getMiPartida().getTipoArma())) {
                 if (armamento.usarArma(Partida.getMiPartida().getTipoArma(), 0, pX, pY,false)) {
                     Partida.getMiPartida().setTurno(false);
-                    ataqueIA();
+                    Partida.getMiPartida().getJugador(1).ataqueIA();
                 }
             }
         }
@@ -165,6 +165,10 @@ public class Jugador extends Observable {
                         if(tablero.getIfBarcoByPos(c.getX(),c.getY())) {
                             if (armamento.usarArma(pArma, 1, c.getX(), c.getY(),true)) {
                                 atacado = true;
+                            }
+                            else
+                            {
+                                tipoAtaque = getRandomInteger(10, 0);
                             }
                         }
                     }

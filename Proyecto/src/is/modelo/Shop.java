@@ -48,6 +48,9 @@ public class Shop extends Observable {
                 j.setDinero(j.getDinero()-var.getPrecioMisil());
                 j.getArmamento().addArma(pArma, true, j.getIfIa());
                 reducirInventario(pArma);
+                if(!j.getIfIa()) {
+                    Sound.getMiSound().moneySound();
+                }
             }
             else
             {

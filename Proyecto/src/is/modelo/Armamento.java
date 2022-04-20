@@ -32,9 +32,16 @@ public class Armamento extends Observable {
     public boolean usarArma(int tipoArma, int pTablero, int x, int y, boolean ia)
     {
         Arma nArma=getArma(tipoArma);
-        if(!ia)
-            actualizarArmamento(tipoArma);
-        return nArma.atacar(pTablero,x,y);
+
+        boolean exito = nArma.atacar(pTablero,x,y);
+        if(exito)
+        {
+            if(!ia) {
+                actualizarArmamento(tipoArma);
+                Sound.getMiSound().bomSound();
+            }
+        }
+        return exito;
     }
 
     public void deleteArma(Arma pArma)
