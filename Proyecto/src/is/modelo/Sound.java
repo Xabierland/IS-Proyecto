@@ -27,10 +27,11 @@ public class Sound
         sonido.play();
     }
 
+    //Parece haber algun problema con el explosion.wav al bajarle de volumen, por eso uso el explosion1 a pesar de que se escuche alto
     public void bomSound()
     {
         AudioClip sonido;
-        sonido = java.applet.Applet.newAudioClip(Sound.getMiSound().getClass().getResource("/resource/explosion.wav"));
+        sonido = java.applet.Applet.newAudioClip(Sound.getMiSound().getClass().getResource("/resource/explosion1.wav"));
         sonido.play();
     }
 }
