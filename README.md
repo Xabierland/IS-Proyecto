@@ -41,6 +41,4 @@
 <ul>
 <li>Poner el numero de barcos restantes</li>
 <li>Arreglar el diagrama de clases y de secuencias</li>
-<li>Meter sonidos a los disparos</li>
-<li>Arreglar bug en compras de la IA</li>
 </ul>
