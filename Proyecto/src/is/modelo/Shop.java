@@ -184,7 +184,4 @@ public class Shop extends Observable {
         }
         changed = false;
     }
-    public int getNMisiles(){
-        return this.nmisil;
-    }
 }

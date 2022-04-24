@@ -11,10 +11,6 @@ public abstract class Barco {
         this.hundido=false;
         this.coordena =new Coordenada(px, py);
     }
-
-    protected Coordenada getCoordenadas(){
-        return this.coordena;
-    }
     
     protected Coordenada[] calcularCoordenadas(){
         Coordenada[] coor=new Coordenada[longitud];

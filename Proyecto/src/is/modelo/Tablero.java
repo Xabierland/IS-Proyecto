@@ -12,21 +12,21 @@ import java.util.Observable;
 public class Tablero extends Observable {
 
     //Variable tablero
-    protected int tTablero=Variables.getMisVariables().getTamanoTablero();
+    private int tTablero=Variables.getMisVariables().getTamanoTablero();
 
-    protected HashMap<Object,Coordenada> coordenadasObjetos = new HashMap<>();
-    protected JLabel[][] tablero_casilla;
-    protected boolean[][] tablero_barcos;
-    protected boolean[][] tablero_disparos;
-    protected boolean[][] tablero_escudo;
-    protected boolean changed=false;
+    private HashMap<Object,Coordenada> coordenadasObjetos = new HashMap<>();
+    private JLabel[][] tablero_casilla;
+    private boolean[][] tablero_barcos;
+    private boolean[][] tablero_disparos;
+    private boolean[][] tablero_escudo;
+    private boolean changed=false;
 
     //Barcos
     private int totalBarcos=Variables.getMisVariables().getNumBarcos();
-    private int fragata=Variables.getMisVariables().getNumFragata();
-    private int destructor=Variables.getMisVariables().getNumDestructor();
-    private int submarino=Variables.getMisVariables().getNumSubmarino();
-    private int portavion=Variables.getMisVariables().getNumPortavion();
+    private int nFragata =Variables.getMisVariables().getNumFragata();
+    private int nDestructor =Variables.getMisVariables().getNumDestructor();
+    private int nSubmarino =Variables.getMisVariables().getNumSubmarino();
+    private int nPortavion =Variables.getMisVariables().getNumPortavion();
 
 
     //TABLERO
@@ -128,7 +128,7 @@ public class Tablero extends Observable {
     {
         int pDir,pX,pY;
         while(totalBarcos>0){
-            while (portavion>0)
+            while (nPortavion >0)
             {
                 pDir=getRandomInteger(3,0);
                 pX=getRandomInteger(tTablero,0);
@@ -137,7 +137,7 @@ public class Tablero extends Observable {
                     addBarco(pDir, 4, pX, pY, ia, flota);
                 }
             }
-            while (submarino>0)
+            while (nSubmarino >0)
             {
                 pDir=getRandomInteger(3,0);
                 pX=getRandomInteger(tTablero,0);
@@ -146,7 +146,7 @@ public class Tablero extends Observable {
                     addBarco(pDir, 3, pX, pY, ia, flota);
                 }
             }
-            while (destructor>0)
+            while (nDestructor >0)
             {
                 pDir=getRandomInteger(3,0);
                 pX=getRandomInteger(tTablero,0);
@@ -155,7 +155,7 @@ public class Tablero extends Observable {
                     addBarco(pDir, 2, pX, pY, ia, flota);
                 }
             }
-            while (fragata>0)
+            while (nFragata >0)
             {
                 pDir=getRandomInteger(3,0);
                 pX=getRandomInteger(tTablero,0);
@@ -175,22 +175,22 @@ public class Tablero extends Observable {
         switch (type)
         {
             case 1: {
-                fragata--;
+                nFragata--;
                 totalBarcos--;
                 break;
             }
             case 2: {
-                destructor--;
+                nDestructor--;
                 totalBarcos--;
                 break;
             }
             case 3: {
-                submarino--;
+                nSubmarino--;
                 totalBarcos--;
                 break;
             }
             case 4: {
-                portavion--;
+                nPortavion--;
                 totalBarcos--;
                 break;
             }
@@ -243,7 +243,7 @@ public class Tablero extends Observable {
         {
             case 1:
             {
-                if(fragata<=0)
+                if(nFragata <=0)
                 {
                     Partida.getMiPartida().setTipoBarco(0);
                     setChanged();
@@ -257,7 +257,7 @@ public class Tablero extends Observable {
             }
             case 2:
             {
-                if(destructor<=0)
+                if(nDestructor <=0)
                 {
                     Partida.getMiPartida().setTipoBarco(0);
                     setChanged();
@@ -271,7 +271,7 @@ public class Tablero extends Observable {
             }
             case 3:
             {
-                if(submarino<=0)
+                if(nSubmarino <=0)
                 {
                     Partida.getMiPartida().setTipoBarco(0);
                     setChanged();
@@ -285,7 +285,7 @@ public class Tablero extends Observable {
             }
             case 4:
             {
-                if(portavion<=0)
+                if(nPortavion <=0)
                 {
                     Partida.getMiPartida().setTipoBarco(0);
                     setChanged();
