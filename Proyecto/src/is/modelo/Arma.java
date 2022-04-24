@@ -6,9 +6,10 @@ import java.awt.*;
 import java.util.Observable;
 
 public abstract class Arma extends Observable {
-    protected boolean changed=false;
-    protected int tipoArma;
-    protected boolean finita;
+    boolean changed=false;
+
+    int tipoArma;
+    boolean finita;
 
     public Arma(int pTipoArma, boolean pFinita)
     {

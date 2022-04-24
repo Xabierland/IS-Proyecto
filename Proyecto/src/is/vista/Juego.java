@@ -289,28 +289,28 @@ public class Juego extends JFrame implements Observer {
 	}
 	public static JRadioButton getBtn_portavion() {
 		if (btn_portavion == null) {
-			btn_portavion = new JRadioButton("Portaaviones");
+			btn_portavion = new JRadioButton("Portaaviones"+" "+Variables.getMisVariables().getNumPortavion());
 			btn_portavion.addActionListener(Controlador.getControlador());
 		}
 		return btn_portavion;
 	}
 	public static JRadioButton getBtn_submarino() {
 		if (btn_submarino == null) {
-			btn_submarino = new JRadioButton("Submarino");
+			btn_submarino = new JRadioButton("Submarino"+" "+Variables.getMisVariables().getNumSubmarino());
 			btn_submarino.addActionListener(Controlador.getControlador());
 		}
 		return btn_submarino;
 	}
 	public static JRadioButton getBtn_destructor() {
 		if (btn_destructor == null) {
-			btn_destructor = new JRadioButton("Destructor");
+			btn_destructor = new JRadioButton("Destructor"+" "+Variables.getMisVariables().getNumDestructor());
 			btn_destructor.addActionListener(Controlador.getControlador());
 		}
 		return btn_destructor;
 	}
 	public static JRadioButton getBtn_fragata() {
 		if (btn_fragata == null) {
-			btn_fragata = new JRadioButton("Fragata");
+			btn_fragata = new JRadioButton("Fragata"+" "+Variables.getMisVariables().getNumFragata());
 			btn_fragata.addActionListener(Controlador.getControlador());
 		}
 		return btn_fragata;
@@ -424,7 +424,9 @@ public class Juego extends JFrame implements Observer {
 			JRadioButton rBtn = (JRadioButton) lista[1];
 			boolean enable = (boolean) lista[2];
 			rBtn.setEnabled(enable);
+			rBtn.setText((String) lista[3]);
 		}
+
 		if(cad.equalsIgnoreCase("ARMA"))
 		{
 			JButton btn = (JButton) lista[1];
@@ -441,6 +443,11 @@ public class Juego extends JFrame implements Observer {
 		{
 			JLabel label = (JLabel) lista[1];
 			label.setText((String) lista[2]);
+		}
+		if(cad.equalsIgnoreCase("Btn"))
+		{
+			JRadioButton b =(JRadioButton) lista[2];
+			b.setText((String) lista[1]);
 		}
 	}
 }
