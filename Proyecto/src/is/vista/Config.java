@@ -47,6 +47,8 @@ public class Config extends JFrame {
 	private static Config miConfig=null;
 	private static JSlider slider_escala;
 	private static JLabel lbl_escala;
+	private JLabel lbl_sonido;
+	private static JCheckBox btn_sonido;
 	/**
 	 * Create the frame.
 	 */
@@ -81,7 +83,7 @@ public class Config extends JFrame {
 	private JPanel getPnl_configuracion() {
 		if (pnl_configuracion == null) {
 			pnl_configuracion = new JPanel();
-			pnl_configuracion.setLayout(new MigLayout("", "[50px,grow][30px,grow,center][142px,center]", "[230][230px,grow][230][230][230]"));
+			pnl_configuracion.setLayout(new MigLayout("", "[50px,grow][30px,grow,center][142px,center]", "[230][230px,grow][230][230][230][230]"));
 			pnl_configuracion.add(getLbl_TamanoTablero(), "cell 0 0,grow");
 			pnl_configuracion.add(getLbl_escala(), "cell 1 0");
 			pnl_configuracion.add(getSlider_escala(), "cell 2 0");
@@ -92,8 +94,10 @@ public class Config extends JFrame {
 			pnl_configuracion.add(getText_money(), "cell 2 2,growx");
 			pnl_configuracion.add(getLbl_dinero_barco(), "cell 0 3");
 			pnl_configuracion.add(getTxt_regard(), "cell 2 3,growx");
-			pnl_configuracion.add(getLbl_cheats(), "cell 0 4");
-			pnl_configuracion.add(getBtn_cheats(), "cell 2 4");
+			pnl_configuracion.add(getLbl_sonido(), "cell 0 4");
+			pnl_configuracion.add(getBtn_sonido(), "cell 2 4");
+			pnl_configuracion.add(getBtn_cheats(), "flowx,cell 2 5");
+			pnl_configuracion.add(getLbl_cheats(), "cell 0 5");
 		}
 		return pnl_configuracion;
 	}
@@ -178,6 +182,18 @@ public class Config extends JFrame {
 		}
 		return lbl_num_Dificult;
 	}
+	private JLabel getLbl_sonido() {
+		if (lbl_sonido == null) {
+			lbl_sonido = new JLabel("Sonido:");
+		}
+		return lbl_sonido;
+	}
+	public static JCheckBox getBtn_sonido() {
+		if (btn_sonido == null) {
+			btn_sonido = new JCheckBox("");
+		}
+		return btn_sonido;
+	}
 	private JLabel getLbl_cheats() {
 		if (lbl_cheats == null) {
 			lbl_cheats = new JLabel("Cheat Codes:");
@@ -187,7 +203,6 @@ public class Config extends JFrame {
 	public static JCheckBox getBtn_cheats() {
 		if (btn_cheats == null) {
 			btn_cheats = new JCheckBox("");
-			btn_cheats.setSelected(true);
 		}
 		return btn_cheats;
 	}

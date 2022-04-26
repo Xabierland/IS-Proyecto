@@ -53,13 +53,6 @@ public class Jugador extends Observable {
         if(armamento.existeMunicion(tipoArma))
         {
             if(armamento.usarArma(tipoArma, 1, pX, pY,false)) {
-                /*if (Partida.getMiPartida().getJugador(1).getTablero().getIfEndGame()) {
-                    JFrame winMess = new JFrame();
-                    JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
-                    System.exit(0);
-                }
-
-                 */
                 atacado=true;
             }
         }
