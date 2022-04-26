@@ -176,15 +176,10 @@ public class Shop extends Observable {
     /*
      * Notifica de los cambios a la vista
      */
-    public void notifyObservers(Object g)
-    {
-        if (changed)
-        {
+    public void notifyObservers(Object g) {
+        if (changed) {
             Tienda.getTienda().update(this, g);
         }
         changed = false;
-    }
-    public int getNMisiles(){
-        return this.nmisil;
     }
 }
