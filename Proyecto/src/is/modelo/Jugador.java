@@ -47,35 +47,39 @@ public class Jugador extends Observable {
     }
 
     // ATAQUES
-    public void ataqueJugador(int pX, int pY)
+    public boolean ataqueJugador(int pX, int pY, int tipoArma)
     {
-        if(armamento.existeMunicion(Partida.getMiPartida().getTipoArma()))
+        boolean atacado=false;
+        if(armamento.existeMunicion(tipoArma))
         {
-            if(armamento.usarArma(Partida.getMiPartida().getTipoArma(), 1, pX, pY,false)) {
-                if (Partida.getMiPartida().getJugador(1).getTablero().getIfEndGame()) {
+            if(armamento.usarArma(tipoArma, 1, pX, pY,false)) {
+                /*if (Partida.getMiPartida().getJugador(1).getTablero().getIfEndGame()) {
                     JFrame winMess = new JFrame();
                     JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
                     System.exit(0);
                 }
-                Partida.getMiPartida().setTurno(false);
-                Partida.getMiPartida().getJugador(1).ataqueIA();
+
+                 */
+                atacado=true;
             }
         }
+        return atacado;
     }
 
-    public void defenderJugador(int pX, int pY)
+    public boolean defenderJugador(int pX, int pY, int tipoArma)
     {
+        boolean defendido=false;
         if(tablero.getIfBarcoByPos(pX,pY)) {
-            if (armamento.existeMunicion(Partida.getMiPartida().getTipoArma())) {
-                if (armamento.usarArma(Partida.getMiPartida().getTipoArma(), 0, pX, pY,false)) {
-                    Partida.getMiPartida().setTurno(false);
-                    Partida.getMiPartida().getJugador(1).ataqueIA();
+            if (armamento.existeMunicion(tipoArma)) {
+                if (armamento.usarArma(tipoArma, 0, pX, pY,false)) {
+                    defendido=true;
                 }
             }
         }
+        return defendido;
     }
 
-    private void ataqueIA() {
+    public void ataqueIA() {
         int pArma, tipoAtaque, cualCoor;
         Coordenada c;
         boolean atacado = false;
@@ -183,12 +187,6 @@ public class Jugador extends Observable {
                 }
             }
         }
-        if (Partida.getMiPartida().getJugador(0).getTablero().getIfEndGame()) {
-            JFrame winMess = new JFrame();
-            JOptionPane.showMessageDialog(winMess, "LA IA GANA");
-            System.exit(0);
-        }
-        Partida.getMiPartida().setTurno(true);
     }
 
     private Coordenada IAgetCoordenadas(int factor)

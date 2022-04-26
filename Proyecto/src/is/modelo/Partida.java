@@ -1,5 +1,7 @@
 package is.modelo;
 
+import javax.swing.*;
+
 public class Partida
 {
     private static Partida miPartida=null;
@@ -86,7 +88,21 @@ public class Partida
                 {
                     if(tipoArma==3 || tipoArma==4) //ESCUDO & REPARAR
                     {
-                        jugadores[0].defenderJugador(pX, pY); //ATAQUE DEL JUGADOR
+                        if(jugadores[0].defenderJugador(pX, pY, tipoArma)) //ATAQUE DEL JUGADOR
+                        {
+                            setTurno(false);
+                            jugadores[1].ataqueIA();
+                            if(jugadores[0].getTablero().getIfEndGame())
+                            {
+                                JFrame winMess = new JFrame();
+                                JOptionPane.showMessageDialog(winMess, "LA IA GANA");
+                                System.exit(0);
+                            }
+                            else
+                            {
+                                setTurno(true);
+                            }
+                        }
                     }
                 }
                 else        //TURNO DE LA IA
@@ -100,7 +116,30 @@ public class Partida
                 {
                     if(tipoArma!=3 && tipoArma!=4) //ESCUDO & REPARAR
                     {
-                        jugadores[0].ataqueJugador(pX, pY);
+                        if(jugadores[0].ataqueJugador(pX, pY, tipoArma))
+                        {
+                            if(jugadores[1].getTablero().getIfEndGame())
+                            {
+                                JFrame winMess = new JFrame();
+                                JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
+                                System.exit(0);
+                            }
+                            else
+                            {
+                                setTurno(false);
+                                jugadores[1].ataqueIA();
+                                if(jugadores[0].getTablero().getIfEndGame())
+                                {
+                                    JFrame winMess = new JFrame();
+                                    JOptionPane.showMessageDialog(winMess, "LA IA GANA");
+                                    System.exit(0);
+                                }
+                                else
+                                {
+                                    setTurno(true);
+                                }
+                            }
+                        }
                     }
                 }
                 else        //TURNO DE LA IA
