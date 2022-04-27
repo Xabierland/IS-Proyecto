@@ -39,6 +39,5 @@
 
 ### ToDo
 <ul>
-<li>Poner el numero de barcos restantes</li>
-<li>Arreglar el diagrama de clases y de secuencias</li>
+ <li></li>
 </ul>
