@@ -11,7 +11,6 @@ import javax.swing.*;
 public class Controlador implements ActionListener, MouseListener, KeyListener
 {
 	private static Controlador controler =null;
-	private Variables var=Variables.getMisVariables();
 
 	private Controlador() {};
 	
@@ -30,6 +29,11 @@ public class Controlador implements ActionListener, MouseListener, KeyListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
+		//CONFIG ===================================================================
+		if(e.getSource().equals(Config.getBtn_start()))
+		{
+			start();
+		}
 		//ARMAS ===============================================================================================================================================================
 		if(e.getSource().equals(Juego.getBtn_bomba()))
 		{
@@ -111,11 +115,6 @@ public class Controlador implements ActionListener, MouseListener, KeyListener
 			Juego.getCheatConsole().setText(null);
 			Cheats.getMyCheats().execute(cad);
 		}
-		//CONFIG ===================================================================
-		if(e.getSource().equals(Config.getBtn_start()))
-		{
-			start();
-		}
 	}
 	@Override
 	public void keyPressed(KeyEvent e)
@@ -172,6 +171,7 @@ public class Controlador implements ActionListener, MouseListener, KeyListener
 	}
 	private void start()
 	{
+		Variables var=Variables.getMisVariables();
 		//RECOGER PARAMETROS
 		var.setEscala(Config.getSlider_escala().getValue());
 		var.setDificultadIA(Config.getSlider_ia().getValue());

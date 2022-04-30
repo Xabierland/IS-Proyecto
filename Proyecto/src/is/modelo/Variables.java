@@ -52,7 +52,7 @@ public class Variables
     public void setDificultadIA(int i) {dificultadIA=i;}
     //ARMAS
     public int getNumArmas() {return NumArmas;}
-    public int getNumCambiosRadar() {return NumCambiosRadar;}
+    public int getNumCambiosRadar() {return NumCambiosRadar*escala;}
     //BARCOS
     public int getNumBarcos() {return NumBarcos*escala;}
     public int getNumFragata() {return NumFragata*escala;}

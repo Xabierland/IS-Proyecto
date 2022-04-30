@@ -70,7 +70,6 @@ public class Config extends JFrame {
 		pnl_main.setLayout(new BorderLayout(0, 0));
 		pnl_main.add(getPnl_configuracion(), BorderLayout.CENTER);
 		pnl_main.add(getPnl_start(), BorderLayout.SOUTH);
-		pnl_main.addKeyListener(Controlador.getControlador());
 	}
 	public static Config getMiConfig()
 	{
