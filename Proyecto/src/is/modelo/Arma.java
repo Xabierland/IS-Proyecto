@@ -17,7 +17,7 @@ public abstract class Arma extends Observable {
         finita=pFinita;
     }
 
-    public abstract boolean atacar(int pTablero, int x, int y);
+    public abstract boolean usar(int pTablero, int x, int y);
 
     protected int getTipoArma()
     {

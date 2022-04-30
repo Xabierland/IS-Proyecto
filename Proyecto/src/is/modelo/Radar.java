@@ -9,7 +9,7 @@ public class Radar extends Arma
     }
 
     @Override
-    public boolean atacar(int pJugador, int pX, int pY)
+    public boolean usar(int pJugador, int pX, int pY)
     {
         Jugador jug=ListaJugadores.getMiListaJugadores().getJugador(pJugador);
         Tablero tab=jug.getTablero();

@@ -11,6 +11,7 @@ public class Variables
     private int dificultadIA=3;
     // 0 - Bomba | 1 - Misil | 2 - Radar | 3 - Escudo | 4 - Reparar
     private final int NumArmas = 5;
+    private final int NumCambiosRadar = 3;
     //Barcos
     private final int NumBarcos = 10;
     private final int NumFragata = 4;
@@ -51,6 +52,7 @@ public class Variables
     public void setDificultadIA(int i) {dificultadIA=i;}
     //ARMAS
     public int getNumArmas() {return NumArmas;}
+    public int getNumCambiosRadar() {return NumCambiosRadar;}
     //BARCOS
     public int getNumBarcos() {return NumBarcos*escala;}
     public int getNumFragata() {return NumFragata*escala;}

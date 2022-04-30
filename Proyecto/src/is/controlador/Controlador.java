@@ -56,6 +56,11 @@ public class Controlador implements ActionListener, MouseListener, KeyListener
 			System.out.println("REPARACION SELECCIONADA\n");
 			Partida.getMiPartida().setTipoArma(4);
 		}
+		if(e.getSource().equals(Juego.getBtnCambiarRadar()))
+		{
+			PC jugador = (PC) ListaJugadores.getMiListaJugadores().getJugador(0);
+			jugador.setCoorRadar();
+		}
 		//BARCOS ===============================================================================================================================================================
 		if(e.getSource().equals(Juego.getBtn_fragata()))
 		{

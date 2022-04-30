@@ -10,34 +10,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662cbbe7-1b2f-4488-a6a4-8fe8ff5033ed" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/is/modelo/ListaJugadores.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/is/modelo/NPC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/is/modelo/PC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/controlador/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/controlador/Controlador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/modelo/Arma.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/modelo/Arma.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/modelo/Armamento.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/modelo/Armamento.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/modelo/Bomba.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/modelo/Bomba.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/modelo/Cheats.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/modelo/Cheats.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/modelo/Escudo.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/modelo/Escudo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/modelo/Jugador.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/modelo/Jugador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/modelo/Misil.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/modelo/Misil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/modelo/Partida.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/modelo/Partida.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/modelo/Radar.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/modelo/Radar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/modelo/Reparar.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/modelo/Reparar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/modelo/Shop.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/modelo/Shop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/is/vista/Juego.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/is/vista/Juego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/controlador/Controlador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Arma.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Arma.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Armamento.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Armamento.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Bomba.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Bomba.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Cheats.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Cheats.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Escudo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Escudo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Jugador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Jugador.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Misil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Misil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/PC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/PC.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Partida.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Partida.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Radar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Radar.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Reparar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Reparar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Shop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Shop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/modelo/Sound.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Config$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Config$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Config$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Config$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IS-Proyecto/is/vista/Juego.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/controlador/Controlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Arma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Arma.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Armamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Armamento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Bomba.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Bomba.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Cheats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Cheats.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Escudo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Escudo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Jugador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Misil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Misil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/PC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/PC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Partida.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Radar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Radar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/is/modelo/Reparar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Reparar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/modelo/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Shop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/is/vista/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/vista/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Tablero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/modelo/Variables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/is/modelo/Variables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/is/vista/Juego.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -12,7 +12,7 @@ public class Misil extends Arma
     }
 
     @Override
-    public boolean atacar(int pTablero, int x, int y) {
+    public boolean usar(int pTablero, int x, int y) {
         boolean atacado=false;
         Jugador efectuante,afectado;
         if(pTablero==0) {

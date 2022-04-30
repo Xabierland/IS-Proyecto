@@ -33,7 +33,7 @@ public class Armamento extends Observable {
     {
         Arma nArma=getArma(tipoArma);
 
-        boolean exito = nArma.atacar(pTablero,x,y);
+        boolean exito = nArma.usar(pTablero,x,y);
         if(exito)
         {
             if(!ia) {
@@ -288,6 +288,4 @@ public class Armamento extends Observable {
         
         
     }
-
-
 }

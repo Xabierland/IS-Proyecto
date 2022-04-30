@@ -9,7 +9,7 @@ public class Escudo extends Arma{
     }
 
     @Override
-    public boolean atacar(int pJugador, int x, int y) {
+    public boolean usar(int pJugador, int x, int y) {
         boolean atacado=false;
         Jugador afectado= ListaJugadores.getMiListaJugadores().getJugador(pJugador);
 

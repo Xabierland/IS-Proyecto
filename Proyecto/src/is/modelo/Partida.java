@@ -13,6 +13,8 @@ public class Partida
     private boolean preparado;
     private boolean turno;
 
+
+
     //CONSTRUCTORA
     private Partida()
     {
@@ -67,6 +69,8 @@ public class Partida
                 if(lj.getJugador(0).getTablero().getIfPosibleIniciarJuego())
                 {
                     lj.getJugador(1).anadirBarcoAuto();
+                    PC jugador = (PC) lj.getJugador(0);
+                    jugador.setCoorRadar();
                     preparado =true;
                 }
             }
@@ -111,6 +115,15 @@ public class Partida
                 {
                     if(tipoArma!=3 && tipoArma!=4) //ESCUDO & REPARAR
                     {
+                        if(tipoArma==2)
+                        {
+                            PC jugador = (PC) lj.getJugador(0);
+                            Coordenada coor = jugador.getCoorRadar();
+                            pX=coor.getX();
+                            pY=coor.getY();
+                            jugador.setCoorRadar();
+                        }
+
                         if(lj.getJugador(0).ataque(pX, pY, tipoArma))
                         {
                             if(lj.getJugador(1).getTablero().getIfEndGame())
@@ -144,14 +157,4 @@ public class Partida
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
 }

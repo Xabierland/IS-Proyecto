@@ -662,6 +662,18 @@ public class Tablero extends Observable {
         return ((int)(Math.random()*(max-min)))+min;
     }
 
+    public void colorearRadar(Coordenada coordenada, Color color)
+    {
+        int x,y;
+        x=coordenada.getX();
+        y=coordenada.getY();
+        Object[] lista=new Object[3];
+        setChanged();
+        lista[0]="CASILLA";
+        lista[1]=tablero_casilla[x][y];
+        lista[2]=color;
+        notifyObservers(lista);
+    }
     /*
     * Cambia la flag de cambio a true
      */

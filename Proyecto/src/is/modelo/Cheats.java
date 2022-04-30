@@ -35,6 +35,8 @@ public class Cheats
                 lj.getJugador(0).anadirBarcoAuto();
                 lj.getJugador(1).anadirBarcoAuto();
                 lj.getJugador(0).getTablero().getIfPosibleIniciarJuego();
+                PC jugador = (PC) lj.getJugador(0);
+                jugador.setCoorRadar();
                 Partida.getMiPartida().setPreparado(true);
                 break;
             }

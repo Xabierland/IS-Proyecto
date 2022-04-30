@@ -12,7 +12,7 @@ public class Bomba extends Arma
     }
 
     @Override
-    public boolean atacar(int pJugador, int x, int y)
+    public boolean usar(int pJugador, int x, int y)
     {
         boolean atacado=false;
 

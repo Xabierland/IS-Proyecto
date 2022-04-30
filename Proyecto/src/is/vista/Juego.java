@@ -28,13 +28,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import is.modelo.ListaJugadores;
-import is.modelo.Partida;
 import is.modelo.Variables;
 import net.miginfocom.swing.MigLayout;
 
 import java.awt.Font;
 
 public class Juego extends JFrame implements Observer {
+	
 	private static Juego miJuego=null;
 	private JPanel contentPane;
 	private JPanel tableros;
@@ -71,6 +71,9 @@ public class Juego extends JFrame implements Observer {
 	private Component horizontalStrut_2;
 	private static JButton btn_reparacion;
 	private Component verticalStrut;
+	private static JButton btnCambiarRadar;
+	private Component horizontalStrut_3;
+	private Component horizontalStrut_4;
 
 
 
@@ -382,9 +385,12 @@ public class Juego extends JFrame implements Observer {
 	private JPanel getPanel_2() {
 		if (panel_2 == null) {
 			panel_2 = new JPanel();
+			panel_2.add(getBtnCambiarRadar());
+			panel_2.add(getHorizontalStrut_3());
 			panel_2.add(getLblDinero());
 			panel_2.add(getHorizontalStrut_1_1());
 			panel_2.add(getBtn_tienda());
+			panel_2.add(getHorizontalStrut_4());
 		}
 		return panel_2;
 	}
@@ -398,7 +404,7 @@ public class Juego extends JFrame implements Observer {
 	}
 	private Component getHorizontalStrut_2() {
 		if (horizontalStrut_2 == null) {
-			horizontalStrut_2 = Box.createHorizontalStrut(80);
+			horizontalStrut_2 = Box.createHorizontalStrut(320);
 		}
 		return horizontalStrut_2;
 	}
@@ -450,5 +456,34 @@ public class Juego extends JFrame implements Observer {
 			JRadioButton b =(JRadioButton) lista[2];
 			b.setText((String) lista[1]);
 		}
+		if(cad.equalsIgnoreCase("UPRADAR"))
+		{
+			if((int)lista[1]!=0)
+				btnCambiarRadar.setText("Cambiar posicion radar: "+lista[1]);
+			else
+			{
+				btnCambiarRadar.setText("Cambiar posicion radar: "+lista[1]);
+				btnCambiarRadar.setEnabled(false);
+			}
+		}
+	}
+	public static JButton getBtnCambiarRadar() {
+		if (btnCambiarRadar == null) {
+			btnCambiarRadar = new JButton("Cambiar posicion radar: "+Variables.getMisVariables().getNumCambiosRadar());
+			btnCambiarRadar.addActionListener(Controlador.getControlador());
+		}
+		return btnCambiarRadar;
+	}
+	private Component getHorizontalStrut_3() {
+		if (horizontalStrut_3 == null) {
+			horizontalStrut_3 = Box.createHorizontalStrut(120);
+		}
+		return horizontalStrut_3;
+	}
+	private Component getHorizontalStrut_4() {
+		if (horizontalStrut_4 == null) {
+			horizontalStrut_4 = Box.createHorizontalStrut(340);
+		}
+		return horizontalStrut_4;
 	}
 }
