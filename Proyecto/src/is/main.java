@@ -1,5 +1,6 @@
 package is;
 
+import is.modelo.Partida;
 import is.vista.*;
 
 import java.awt.*;

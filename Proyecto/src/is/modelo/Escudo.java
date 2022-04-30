@@ -11,7 +11,7 @@ public class Escudo extends Arma{
     @Override
     public boolean atacar(int pJugador, int x, int y) {
         boolean atacado=false;
-        Jugador afectado=Partida.getMiPartida().getJugador(pJugador);
+        Jugador afectado= ListaJugadores.getMiListaJugadores().getJugador(pJugador);
 
         if(!afectado.getTablero().getIfEscudo(x, y))
         {
@@ -21,7 +21,7 @@ public class Escudo extends Arma{
                     for (Coordenada c : afectado.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
                         afectado.getTablero().setEscudo(true, c.getX(), c.getY());
 
-                        if (!afectado.getIfIa() || afectado.getTablero().getIfDisparo(c.getX(), c.getY())) {
+                        if (!(afectado instanceof NPC) || afectado.getTablero().getIfDisparo(c.getX(), c.getY())) {
                             cambiar("CASILLA",afectado.getTablero().getCasilla(c.getX(),c.getY()),Color.magenta);
                         }
                     }

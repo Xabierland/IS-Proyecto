@@ -13,7 +13,7 @@ public class Reparar extends Arma {
     public boolean atacar(int pJugador, int x, int y) {
         boolean atacado = false;
         Jugador jugador;Tablero tablero;
-        jugador = Partida.getMiPartida().getJugador(pJugador);
+        jugador = ListaJugadores.getMiListaJugadores().getJugador(pJugador);
         tablero = jugador.getTablero();
 
         if(tablero.getIfBarcoByPos(x,y))
@@ -28,7 +28,7 @@ public class Reparar extends Arma {
 
             if (dannado) {
                 for (Coordenada c : jugador.getFlota().getBarcoporPos(x, y).calcularCoordenadas()) {
-                    if (!jugador.getIfIa() || tablero.getIfDisparo(c.getX(), c.getY())) {
+                    if (!(jugador instanceof NPC) || tablero.getIfDisparo(c.getX(), c.getY())) {
                         setChanged();
                         Object[] objetos = new Object[3];
                         objetos[0] = "CASILLA";

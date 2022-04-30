@@ -18,13 +18,13 @@ public class Bomba extends Arma
 
         Jugador efectuante,afectado;
         if(pJugador==0) {
-             efectuante = Partida.getMiPartida().getJugador(1);
-             afectado = Partida.getMiPartida().getJugador(0);
+             efectuante = ListaJugadores.getMiListaJugadores().getJugador(1);
+             afectado = ListaJugadores.getMiListaJugadores().getJugador(0);
         }
         else
         {
-            afectado = Partida.getMiPartida().getJugador(1);
-            efectuante = Partida.getMiPartida().getJugador(0);
+            afectado = ListaJugadores.getMiListaJugadores().getJugador(1);
+            efectuante = ListaJugadores.getMiListaJugadores().getJugador(0);
         }
 
         //Comprobar si la posicion ya ha sido atacada
@@ -43,7 +43,7 @@ public class Bomba extends Arma
                     if(!afectado.getTablero().barcoHundido(x,y,afectado.getFlota()))
                     {
                         //TOCADO
-                        if(!efectuante.getIfIa())
+                        if(!(efectuante instanceof NPC))
                         {
                             cambiar("ESTADO", Juego.getDisplayState(), "TOCADO");
                         }
@@ -52,7 +52,7 @@ public class Bomba extends Arma
                     {
                         //HUNDIDO
                         efectuante.setDinero(efectuante.getDinero() + Variables.getMisVariables().getDineroPorHundir());
-                        if(!efectuante.getIfIa())
+                        if(!(efectuante instanceof NPC))
                         {
                             cambiar("ESTADO", Juego.getDisplayState(), "TOCADO Y HUNDIDO");
                             cambiar("dinero", Juego.getDisplayState(), efectuante.getDinero());
@@ -64,7 +64,7 @@ public class Bomba extends Arma
                     //ESCUDO
                     cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.black);
                     desactivarEscudos(afectado,x,y);
-                    if(!efectuante.getIfIa())
+                    if(!(efectuante instanceof NPC))
                     {
                         cambiar("ESTADO", Juego.getDisplayState(), "ESCUDO");
                     }
@@ -76,7 +76,7 @@ public class Bomba extends Arma
                 //AGUA
                 cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.white);
                 afectado.getTablero().setDisparo(true, x, y);
-                if(!efectuante.getIfIa())
+                if(!(efectuante instanceof NPC))
                 {
                     cambiar("ESTADO", Juego.getDisplayState(), "AGUA");
                 }

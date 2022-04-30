@@ -151,14 +151,14 @@ public class Controlador implements ActionListener, MouseListener, KeyListener
 	public void mousePressed(MouseEvent e) {
 		if(perteneceJugador(e.getSource()))
 		{
-			Coordenada coor=Partida.getMiPartida().getJugador(0).getTablero().getCoordenadasDeCasilla((JLabel) e.getSource());
+			Coordenada coor=ListaJugadores.getMiListaJugadores().getJugador(0).getTablero().getCoordenadasDeCasilla((JLabel) e.getSource());
 			int x=coor.getX();
 			int y=coor.getY();
 			System.out.printf("PLAYER|x:%d|y:%d\n",x,y);
 			Partida.getMiPartida().jugar(0,x,y);
 		}
 		if(perteneceIA(e.getSource())) {
-			Coordenada coor = Partida.getMiPartida().getJugador(1).getTablero().getCoordenadasDeCasilla((JLabel) e.getSource());
+			Coordenada coor = ListaJugadores.getMiListaJugadores().getJugador(1).getTablero().getCoordenadasDeCasilla((JLabel) e.getSource());
 			int x = coor.getX();
 			int y = coor.getY();
 			System.out.printf("IA    |x:%d|y:%d\n", x, y);
@@ -180,6 +180,7 @@ public class Controlador implements ActionListener, MouseListener, KeyListener
 		//INICIAR JUEGO
 		Config.getMiConfig().setVisible(false);
 		try {
+			Partida.getMiPartida();
 			Juego frame = Juego.getMiJuego();
 			frame.setVisible(true);
 		} catch (Exception i) {

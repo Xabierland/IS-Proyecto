@@ -3,6 +3,7 @@ package is.modelo;
 import is.vista.Juego;
 
 import java.awt.*;
+import java.util.List;
 
 public class Misil extends Arma
 {
@@ -15,13 +16,13 @@ public class Misil extends Arma
         boolean atacado=false;
         Jugador efectuante,afectado;
         if(pTablero==0) {
-            efectuante = Partida.getMiPartida().getJugador(1);
-            afectado = Partida.getMiPartida().getJugador(0);
+            efectuante = ListaJugadores.getMiListaJugadores().getJugador(1);
+            afectado = ListaJugadores.getMiListaJugadores().getJugador(0);
         }
         else
         {
-            afectado = Partida.getMiPartida().getJugador(1);
-            efectuante = Partida.getMiPartida().getJugador(0);
+            afectado = ListaJugadores.getMiListaJugadores().getJugador(1);
+            efectuante = ListaJugadores.getMiListaJugadores().getJugador(0);
         }
         if (!afectado.getTablero().getIfEscudo(x, y))
         {
@@ -36,7 +37,7 @@ public class Misil extends Arma
                     if (afectado.getTablero().barcoHundido(x, y, afectado.getFlota()))
                     {
                         efectuante.setDinero(efectuante.getDinero() + Variables.getMisVariables().getDineroPorHundir());
-                        if(!efectuante.getIfIa())
+                        if(!(efectuante instanceof NPC))
                         {
                             setChanged();
                             Object[] LISTA = new Object[3];
@@ -49,7 +50,7 @@ public class Misil extends Arma
                             Object[] LISTA6 = new Object[3];
                             LISTA6[0] = "dinero";
                             LISTA6[1] = Juego.getLblDinero();
-                            LISTA6[2] = Partida.getMiPartida().getJugador(0).getDinero();
+                            LISTA6[2] = ListaJugadores.getMiListaJugadores().getJugador(0).getDinero();
                             this.notifyObservers(LISTA6);
                         }
                     }
@@ -67,7 +68,7 @@ public class Misil extends Arma
                 {
                     cambiar("CASILLA", afectado.getTablero().getCasilla(x, y),Color.white);
 
-                    if(afectado.getIfIa())
+                    if(afectado instanceof NPC)
                     {
                         setChanged();
                         Object[] LISTA = new Object[3];

@@ -10,8 +10,6 @@ public class Partida
     private int direccion =0;
     private int tipoBarco =0;
     private int tipoArma =0;
-
-    private Jugador jugadores[] = new Jugador[2];
     private boolean preparado;
     private boolean turno;
 
@@ -20,10 +18,11 @@ public class Partida
     {
         preparado =false;
         turno =true;
-        jugadores[0]=new Jugador(0,false);
-        jugadores[1]=new Jugador(1,true);
+        lj=ListaJugadores.getMiListaJugadores();
+        lj.addJugador(new PC(0));
+        lj.addJugador(new NPC(1));
     }
-
+    private ListaJugadores lj;
     //GETTERS - SETTERS
     public static Partida getMiPartida()
     {
@@ -34,8 +33,6 @@ public class Partida
         return miPartida;
     }
 
-    public Jugador getJugador(int pJugador) {return jugadores[pJugador];}
-
     public int getDireccion() {
         return direccion;
     }
@@ -43,8 +40,6 @@ public class Partida
     public void setDireccion(int direccion) {
         this.direccion = direccion;
     }
-
-    public int getTipoArma() {return tipoArma;}
 
     public void setTipoArma(int tipoArma) {
         this.tipoArma = tipoArma;
@@ -68,10 +63,10 @@ public class Partida
         {
             if(pJugador==0) //ES UN CLICK EN EL TABLERO JUGADOR
             {
-                jugadores[0].anadirBarco(pX, pY);
-                if(getJugador(0).getTablero().getIfPosibleIniciarJuego())
+                lj.getJugador(0).anadirBarco(pX, pY);
+                if(lj.getJugador(0).getTablero().getIfPosibleIniciarJuego())
                 {
-                    jugadores[1].anadirBarcoAuto();
+                    lj.getJugador(1).anadirBarcoAuto();
                     preparado =true;
                 }
             }
@@ -88,11 +83,11 @@ public class Partida
                 {
                     if(tipoArma==3 || tipoArma==4) //ESCUDO & REPARAR
                     {
-                        if(jugadores[0].defenderJugador(pX, pY, tipoArma)) //ATAQUE DEL JUGADOR
+                        if(lj.getJugador(0).defensa(pX, pY, tipoArma)) //ATAQUE DEL JUGADOR
                         {
                             setTurno(false);
-                            jugadores[1].ataqueIA();
-                            if(jugadores[0].getTablero().getIfEndGame())
+                            lj.getJugador(1).defensa();
+                            if(lj.getJugador(0).getTablero().getIfEndGame())
                             {
                                 JFrame winMess = new JFrame();
                                 JOptionPane.showMessageDialog(winMess, "LA IA GANA");
@@ -116,9 +111,9 @@ public class Partida
                 {
                     if(tipoArma!=3 && tipoArma!=4) //ESCUDO & REPARAR
                     {
-                        if(jugadores[0].ataqueJugador(pX, pY, tipoArma))
+                        if(lj.getJugador(0).ataque(pX, pY, tipoArma))
                         {
-                            if(jugadores[1].getTablero().getIfEndGame())
+                            if(lj.getJugador(1).getTablero().getIfEndGame())
                             {
                                 JFrame winMess = new JFrame();
                                 JOptionPane.showMessageDialog(winMess, "EL JUGADOR GANA");
@@ -127,8 +122,8 @@ public class Partida
                             else
                             {
                                 setTurno(false);
-                                jugadores[1].ataqueIA();
-                                if(jugadores[0].getTablero().getIfEndGame())
+                                lj.getJugador(1).ataque();
+                                if(lj.getJugador(0).getTablero().getIfEndGame())
                                 {
                                     JFrame winMess = new JFrame();
                                     JOptionPane.showMessageDialog(winMess, "LA IA GANA");

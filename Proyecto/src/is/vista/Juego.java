@@ -27,6 +27,7 @@ import java.awt.Dimension;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import is.modelo.ListaJugadores;
 import is.modelo.Partida;
 import is.modelo.Variables;
 import net.miginfocom.swing.MigLayout;
@@ -204,7 +205,7 @@ public class Juego extends JFrame implements Observer {
 				{
 					JLabel unaCasilla= getCasillaJugador(j,i);
 					tablero_jugador.add(unaCasilla);
-					Partida.getMiPartida().getJugador(0).getTablero().addCasilla(unaCasilla,j,i);
+					ListaJugadores.getMiListaJugadores().getJugador(0).getTablero().addCasilla(unaCasilla,j,i);
 				}
 		}
 		return tablero_jugador;
@@ -219,7 +220,7 @@ public class Juego extends JFrame implements Observer {
 				{
 					JLabel unaCasilla=getCasillaIA(j,i);
 					tablero_ia.add(unaCasilla);
-					Partida.getMiPartida().getJugador(1).getTablero().addCasilla(unaCasilla,j,i);
+					ListaJugadores.getMiListaJugadores().getJugador(1).getTablero().addCasilla(unaCasilla,j,i);
 				}
 		}
 		return tablero_ia;

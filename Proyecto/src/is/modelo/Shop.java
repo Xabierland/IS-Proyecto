@@ -40,21 +40,25 @@ public class Shop extends Observable {
 
     public boolean comprarArma(int pJugador, int pArma)
     {
-        Jugador j=Partida.getMiPartida().getJugador(pJugador);
+        Jugador j=ListaJugadores.getMiListaJugadores().getJugador(pJugador);
         boolean exito=true;
         if(getNArma(pArma)>0)
-            if(j.getDinero() >= var.getPrecioMisil())
+            if(j.getDinero() >= getPrecio(pArma))
             {
-                j.setDinero(j.getDinero()-var.getPrecioMisil());
-                j.getArmamento().addArma(pArma, true, j.getIfIa());
+                j.setDinero(j.getDinero()-getPrecio(pArma));
                 reducirInventario(pArma);
-                if(!j.getIfIa()) {
+                if(j instanceof PC) {
                     Sound.getMiSound().moneySound();
+                    j.getArmamento().addArma(pArma, true, false);
+                }
+                else
+                {
+                    j.getArmamento().addArma(pArma, true, true);
                 }
             }
             else
             {
-                if(!j.getIfIa()) {
+                if(j instanceof PC) {
                     dineroInsuficiente();
                 }
                 exito=false;
@@ -67,85 +71,87 @@ public class Shop extends Observable {
         return exito;
     }
 
+    private int getPrecio(int pArma)
+    {
+        return switch (pArma) {
+            case 1 -> var.getPrecioMisil();
+            case 2 -> var.getPrecioRadar();
+            case 3 -> var.getPrecioEscudo();
+            case 4 -> var.getPrecioReparacion();
+            default -> 0;
+        };
+    }
+
     /*
     * Este metodo se encarga de reducir el numero de unidades disponibles de un arma y en caso de ser 0 desactivar la compra de dicha arma
      */
     private void reducirInventario(int pArma)
     {
-        switch (pArma)
-        {
-            case 1:
-            {
+        switch (pArma) {
+            case 1 -> {
                 nmisil--;
                 setChanged();
                 Object[] list = new Object[3];
-                list[1]=Tienda.getLbl_misil();
-                list[0]="reducir";
-                list[2]="\u00A0\u00A0\u00A0Misil ("+this.nmisil+")";
+                list[1] = Tienda.getLbl_misil();
+                list[0] = "reducir";
+                list[2] = "\u00A0\u00A0\u00A0Misil (" + this.nmisil + ")";
                 notifyObservers(list);
-                if(nmisil==0){//desactivar compra
+                if (nmisil == 0) {//desactivar compra
                     setChanged();
                     Object[] lista = new Object[2];
-                    lista[1]=Tienda.getBtn_misil();
-                    lista[0]="desactivar";
+                    lista[1] = Tienda.getBtn_misil();
+                    lista[0] = "desactivar";
                     notifyObservers(lista);
                 }
-                break;
             }
-            case 2:
-            {
+            case 2 -> {
                 nradar--;
                 setChanged();
                 Object[] list = new Object[3];
-                list[1]=Tienda.getLbl_radar();
-                list[0]="reducir";
-                list[2]="\u00A0\u00A0\u00A0Radar ("+this.nradar+")";
+                list[1] = Tienda.getLbl_radar();
+                list[0] = "reducir";
+                list[2] = "\u00A0\u00A0\u00A0Radar (" + this.nradar + ")";
                 notifyObservers(list);
-                if(nradar==0){//desactivar compra
+                if (nradar == 0) {//desactivar compra
                     setChanged();
                     Object[] lista = new Object[2];
-                    lista[1]=Tienda.getBtn_radar();
-                    lista[0]="desactivar";
+                    lista[1] = Tienda.getBtn_radar();
+                    lista[0] = "desactivar";
                     notifyObservers(lista);
                 }
-                break;
 
             }
-            case 3:
-            {
+            case 3 -> {
                 nescudo--;
                 setChanged();
                 Object[] list = new Object[3];
-                list[1]=Tienda.getLbl_escudo();
-                list[0]="reducir";
-                list[2]="\u00A0\u00A0\u00A0Escudo ("+this.nescudo+")";
+                list[1] = Tienda.getLbl_escudo();
+                list[0] = "reducir";
+                list[2] = "\u00A0\u00A0\u00A0Escudo (" + this.nescudo + ")";
                 notifyObservers(list);
-                if(nescudo==0){//desactivar compra
+                if (nescudo == 0) {//desactivar compra
                     setChanged();
                     Object[] lista = new Object[2];
-                    lista[0]="desactivar";
-                    lista[1]=Tienda.getBtn_escudo();
+                    lista[0] = "desactivar";
+                    lista[1] = Tienda.getBtn_escudo();
                     notifyObservers(lista);
                 }
-                break;
             }
-            case 4:
-            {
+            case 4 -> {
                 nreparacion--;
                 setChanged();
                 Object[] list = new Object[3];
-                list[0]="reducir";
-                list[1]=Tienda.getLblReparacion();
-                list[2]="\u00A0\u00A0\u00A0Reparacion ("+this.nreparacion+")";
+                list[0] = "reducir";
+                list[1] = Tienda.getLblReparacion();
+                list[2] = "\u00A0\u00A0\u00A0Reparacion (" + this.nreparacion + ")";
                 notifyObservers(list);
-                if(nreparacion==0){//desactivar compra
+                if (nreparacion == 0) {//desactivar compra
                     setChanged();
                     Object[] lista = new Object[2];
-                    lista[1]=Tienda.getBtn_reparacion();
-                    lista[0]="desactivar";
+                    lista[1] = Tienda.getBtn_reparacion();
+                    lista[0] = "desactivar";
                     notifyObservers(lista);
                 }
-                break;
             }
         }
     }
