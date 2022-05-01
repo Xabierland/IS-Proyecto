@@ -117,7 +117,7 @@ public class Juego extends JFrame implements Observer {
 	public static JLabel getCasillaJugador(int x, int y)
 	{
 		JLabel casillaJugador = new JLabel();
-		casillaJugador.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		casillaJugador.setBorder(BorderFactory.createLineBorder(Color.WHITE,2));
 		casillaJugador.setOpaque(true);
 		casillaJugador.setBackground(new Color(0,153,204));
 
@@ -128,7 +128,7 @@ public class Juego extends JFrame implements Observer {
 	public static JLabel getCasillaIA(int x, int y)
 	{
 		JLabel casillaIA = new JLabel();
-		casillaIA.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		casillaIA.setBorder(BorderFactory.createLineBorder(Color.WHITE,2));
 		casillaIA.setOpaque(true);
 		casillaIA.setBackground(new Color(0,153,204));
 
@@ -425,6 +425,12 @@ public class Juego extends JFrame implements Observer {
 			JLabel label = (JLabel) lista[1];
 			Color color = (Color) lista[2];
 			label.setBackground(color);
+		}
+		if(cad.equalsIgnoreCase("BORDE"))
+		{
+			JLabel label = (JLabel) lista[1];
+			Color color = (Color) lista[2];
+			label.setBorder(BorderFactory.createLineBorder(color,2));
 		}
 		if(cad.equalsIgnoreCase("BARCO"))
 		{

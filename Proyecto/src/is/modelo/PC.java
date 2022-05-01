@@ -15,7 +15,7 @@ public class PC extends Jugador
     public PC(int pIndex) {
         super(pIndex);
         armamento.addArma(0,false,false);
-        coorRadar=new Coordenada(0, 0);
+        coorRadar=new Coordenada(-1, 0);
     }
 
     //Getters & Setters
@@ -35,7 +35,9 @@ public class PC extends Jugador
     }
     public void setCoorRadar()
     {
-        ListaJugadores.getMiListaJugadores().getJugador(1).getTablero().colorearRadar(coorRadar,new Color(0,153,204));
+        try {
+            ListaJugadores.getMiListaJugadores().getJugador(1).getTablero().colorearRadar(coorRadar, Color.white);
+        }catch (Exception ignore){}
         coorRadar.setX(getRandomInteger(Variables.getMisVariables().getTamanoTablero(),0));
         coorRadar.setY(getRandomInteger(Variables.getMisVariables().getTamanoTablero(),0));
         ListaJugadores.getMiListaJugadores().getJugador(1).getTablero().colorearRadar(coorRadar, Color.green);

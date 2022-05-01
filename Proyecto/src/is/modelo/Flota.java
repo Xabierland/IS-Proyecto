@@ -13,7 +13,6 @@ public class Flota {
         this.flota.add(nBarco);
         System.out.printf("Se ha añadido a la flota un %s\n",nBarco.name);
         }
-
     public Barco getBarcoporPos(int x, int y){
         Coordenada c= new Coordenada(x, y);
         Barco nBarco=null;

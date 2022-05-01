@@ -32,9 +32,9 @@ public abstract class Jugador extends Observable {
     public abstract void setDinero(int pDinero);
 
     // BARCOS
-    public void anadirBarco(int pX, int pY)
+    public void anadirBarco(int dir, int type,int pX, int pY)
     {
-        tablero.addBarco(Partida.getMiPartida().getDireccion(), Partida.getMiPartida().getTipoBarco(), pX, pY, false, flota);
+        tablero.addBarco(dir, type, pX, pY, false, flota);
     }
 
     public void anadirBarcoAuto()
@@ -42,15 +42,11 @@ public abstract class Jugador extends Observable {
         tablero.addBarcoAutomatico(false, flota);
     }
 
-
-
     //Ataque
     public abstract boolean ataque();
     public abstract boolean ataque(int pX, int pY, int tipoArma);
     public abstract boolean defensa();
     public abstract boolean defensa(int pX, int pY, int tipoArma);
-
-
 
     //Utiles
     /*
@@ -66,7 +62,7 @@ public abstract class Jugador extends Observable {
     /*
      * Cambia la flag de cambio a true
      */
-    protected void setChanged()
+    public void setChanged()
     {
         changed=true;
     }

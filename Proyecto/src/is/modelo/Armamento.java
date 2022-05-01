@@ -108,7 +108,7 @@ public class Armamento extends Observable {
                     lista[2]=false;
                     lista[3]="Misil";
                     lista[4]=numDeUnArma(tipoArma);
-                    notifyObservers(lista);
+                    notifyJuego(lista);
                     Partida.getMiPartida().setTipoArma(0);
                 }
                 else
@@ -120,7 +120,7 @@ public class Armamento extends Observable {
                     lista[2]=true;
                     lista[3]="Misil";
                     lista[4]=numDeUnArma(tipoArma);
-                    notifyObservers(lista);
+                    notifyJuego(lista);
 
                 }
                 break;
@@ -136,7 +136,7 @@ public class Armamento extends Observable {
                     lista[2]=false;
                     lista[3]="Radar";
                     lista[4]=numDeUnArma(tipoArma);
-                    notifyObservers(lista);
+                    notifyJuego(lista);
                     Partida.getMiPartida().setTipoArma(0);
                 }
                 else
@@ -148,7 +148,7 @@ public class Armamento extends Observable {
                     lista[2]=true;
                     lista[3]="Radar";
                     lista[4]=numDeUnArma(tipoArma);
-                    notifyObservers(lista);
+                    notifyJuego(lista);
                 }
                 break;
             }
@@ -163,7 +163,7 @@ public class Armamento extends Observable {
                     lista[2]=false;
                     lista[3]="Escudo";
                     lista[4]=numDeUnArma(tipoArma);
-                    notifyObservers(lista);
+                    notifyJuego(lista);
                     Partida.getMiPartida().setTipoArma(0);
                 }
                 else
@@ -175,7 +175,7 @@ public class Armamento extends Observable {
                     lista[2]=true;
                     lista[3]="Escudo";
                     lista[4]=numDeUnArma(tipoArma);
-                    notifyObservers(lista);
+                    notifyJuego(lista);
                 }
                 break;
             }
@@ -190,7 +190,7 @@ public class Armamento extends Observable {
                     lista[2]=false;
                     lista[3]="Reparacion";
                     lista[4]=numDeUnArma(tipoArma);
-                    notifyObservers(lista);
+                    notifyJuego(lista);
                     Partida.getMiPartida().setTipoArma(0);
                 }
                 else
@@ -202,7 +202,7 @@ public class Armamento extends Observable {
                     lista[2]=true;
                     lista[3]="Reparacion";
                     lista[4]=numDeUnArma(tipoArma);
-                    notifyObservers(lista);
+                    notifyJuego(lista);
                 }
                 break;
             }
@@ -216,7 +216,7 @@ public class Armamento extends Observable {
         lista[0]="DINERO";
         lista[1]=Juego.getLblDinero();
         lista[2]=ListaJugadores.getMiListaJugadores().getJugador(0).getDinero();
-        notifyObservers(lista);
+        notifyJuego(lista);
         switch (tipoArma)
         {
             case 1:
@@ -226,7 +226,7 @@ public class Armamento extends Observable {
                 lista1[0]="TIENDA";
                 lista1[1]=Tienda.getLbl_compra();
                 lista1[2]="Has comprado un misil";
-                notifyObservers(lista1);
+                notifyTienda(lista1);
                 break;
             }
             case 2:
@@ -236,7 +236,7 @@ public class Armamento extends Observable {
                 lista1[0]="TIENDA";
                 lista1[1]=Tienda.getLbl_compra();
                 lista1[2]="Has comprado un radar";
-                notifyObservers(lista1);
+                notifyTienda(lista1);
                 break;
             }
             case 3:
@@ -246,7 +246,7 @@ public class Armamento extends Observable {
                 lista1[0]="TIENDA";
                 lista1[1]=Tienda.getLbl_compra();
                 lista1[2]="Has comprado un escudo";
-                notifyObservers(lista1);
+                notifyTienda(lista1);
                 break;
             }
             case 4:
@@ -256,7 +256,7 @@ public class Armamento extends Observable {
                 lista1[0]="TIENDA";
                 lista1[1]=Tienda.getLbl_compra();
                 lista1[2]="Has comprado una reparacion";
-                notifyObservers(lista1);
+                notifyTienda(lista1);
                 break;
             }
         }
@@ -272,20 +272,21 @@ public class Armamento extends Observable {
         changeTienda=true;
     }
 
-    public void notifyObservers(Object g)
+    public void notifyTienda(Object g)
     {
-        if (changeJuego == true)
-        {
-            Juego.getMiJuego().update(this, g);
-            changeJuego = false;
-            
-        }
-        if (changeTienda == true)
+        if (changeTienda)
         {
             Tienda.getTienda().update(this, g);
             changeTienda = false;
         }
-        
-        
+    }
+    public void notifyJuego(Object g)
+    {
+        if (changeJuego)
+        {
+            Juego.getMiJuego().update(this, g);
+            changeJuego = false;
+
+        }
     }
 }

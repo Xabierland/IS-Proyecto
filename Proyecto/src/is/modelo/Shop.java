@@ -73,13 +73,14 @@ public class Shop extends Observable {
 
     private int getPrecio(int pArma)
     {
-        return switch (pArma) {
-            case 1 -> var.getPrecioMisil();
-            case 2 -> var.getPrecioRadar();
-            case 3 -> var.getPrecioEscudo();
-            case 4 -> var.getPrecioReparacion();
-            default -> 0;
-        };
+        int precio=0;
+        switch (pArma) {
+            case 1 : precio=var.getPrecioMisil();break;
+            case 2 : precio=var.getPrecioRadar();break;
+            case 3 : precio=var.getPrecioEscudo();break;
+            case 4 : precio=var.getPrecioReparacion();break;
+        }
+        return precio;
     }
 
     /*
@@ -88,7 +89,8 @@ public class Shop extends Observable {
     private void reducirInventario(int pArma)
     {
         switch (pArma) {
-            case 1 -> {
+            case 1 :
+            {
                 nmisil--;
                 setChanged();
                 Object[] list = new Object[3];
@@ -104,7 +106,8 @@ public class Shop extends Observable {
                     notifyObservers(lista);
                 }
             }
-            case 2 -> {
+            case 2 :
+            {
                 nradar--;
                 setChanged();
                 Object[] list = new Object[3];
@@ -121,7 +124,8 @@ public class Shop extends Observable {
                 }
 
             }
-            case 3 -> {
+            case 3:
+            {
                 nescudo--;
                 setChanged();
                 Object[] list = new Object[3];
@@ -137,7 +141,8 @@ public class Shop extends Observable {
                     notifyObservers(lista);
                 }
             }
-            case 4 -> {
+            case 4 :
+            {
                 nreparacion--;
                 setChanged();
                 Object[] list = new Object[3];

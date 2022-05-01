@@ -7,6 +7,7 @@ public class Partida
     private static Partida miPartida=null;
 
     //Variables Globales
+    private ListaJugadores lj;
     private int direccion =0;
     private int tipoBarco =0;
     private int tipoArma =0;
@@ -24,7 +25,7 @@ public class Partida
         lj.addJugador(new PC(0));
         lj.addJugador(new NPC(1));
     }
-    private ListaJugadores lj;
+
     //GETTERS - SETTERS
     public static Partida getMiPartida()
     {
@@ -35,10 +36,6 @@ public class Partida
         return miPartida;
     }
 
-    public int getDireccion() {
-        return direccion;
-    }
-
     public void setDireccion(int direccion) {
         this.direccion = direccion;
     }
@@ -46,8 +43,6 @@ public class Partida
     public void setTipoArma(int tipoArma) {
         this.tipoArma = tipoArma;
     }
-
-    public int getTipoBarco() {return tipoBarco;}
 
     public void setTipoBarco(int tipoBarco) {
         this.tipoBarco = tipoBarco;
@@ -65,7 +60,7 @@ public class Partida
         {
             if(pJugador==0) //ES UN CLICK EN EL TABLERO JUGADOR
             {
-                lj.getJugador(0).anadirBarco(pX, pY);
+                lj.getJugador(0).anadirBarco(direccion,tipoBarco,pX, pY);
                 if(lj.getJugador(0).getTablero().getIfPosibleIniciarJuego())
                 {
                     lj.getJugador(1).anadirBarcoAuto();

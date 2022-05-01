@@ -6,28 +6,22 @@ public class NPC extends Jugador{
         armamento.addArma(0,false,false);
     }
 
-
-
     //Getters & Setters
     public void setDinero(int pDinero)
     {
         dinero=pDinero;
     }
 
-
-
     //BARCOS
-    public void anadirBarco(int pX, int pY)
+    public void anadirBarco(int dir, int type, int pX, int pY)
     {
-        tablero.addBarco(Partida.getMiPartida().getDireccion(), Partida.getMiPartida().getTipoBarco(), pX, pY, true, flota);
+        tablero.addBarco(dir, type, pX, pY, true, flota);
     }
 
     public void anadirBarcoAuto()
     {
         tablero.addBarcoAutomatico(true, flota);
     }
-
-
 
     //Ataque
     public boolean ataque()
@@ -51,7 +45,7 @@ public class NPC extends Jugador{
         return false;
     }
 
-    public void ataqueIA() {
+    private void ataqueIA() {
         int pArma, tipoAtaque, cualCoor;
         Coordenada c;
         boolean atacado = false;

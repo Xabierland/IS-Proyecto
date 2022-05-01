@@ -28,7 +28,6 @@ public class Tablero extends Observable {
     private int numSubmarino =Variables.getMisVariables().getNumSubmarino();
     private int numPortavion =Variables.getMisVariables().getNumPortavion();
 
-
     //TABLERO
     public Tablero()
     {
@@ -37,7 +36,6 @@ public class Tablero extends Observable {
         tablero_disparos=new boolean[tTablero][tTablero];
         tablero_escudo=new boolean[tTablero][tTablero];
     }
-
 
     /*
     * Añade la casilla en su posicion
@@ -340,7 +338,6 @@ public class Tablero extends Observable {
             }
         }
     }
-
 
     public JLabel getCasilla(int x, int y)
     {
@@ -669,7 +666,7 @@ public class Tablero extends Observable {
         y=coordenada.getY();
         Object[] lista=new Object[3];
         setChanged();
-        lista[0]="CASILLA";
+        lista[0]="BORDE";
         lista[1]=tablero_casilla[x][y];
         lista[2]=color;
         notifyObservers(lista);

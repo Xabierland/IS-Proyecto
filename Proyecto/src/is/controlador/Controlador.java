@@ -12,6 +12,8 @@ public class Controlador implements ActionListener, MouseListener, KeyListener
 {
 	private static Controlador controler =null;
 
+	private int dir=0;
+
 	private Controlador() {};
 	
 	public static Controlador getControlador()
@@ -129,21 +131,22 @@ public class Controlador implements ActionListener, MouseListener, KeyListener
 	{
 		if(e.getSource().equals(Juego.getFlecha()))
 		{
-			Partida.getMiPartida().setDireccion(Partida.getMiPartida().getDireccion()+1);
-			if(Partida.getMiPartida().getDireccion() >=4)
+			Partida.getMiPartida().setDireccion(++dir);
+
+			if(dir >=4)
 			{
-				Partida.getMiPartida().setDireccion(0);
+				Partida.getMiPartida().setDireccion(dir=0);
 			}
-			switch(Partida.getMiPartida().getDireccion())
+			switch(dir)
 			{
 				case 0 : {
-					Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_arr.png")));System.out.println("ARRIBA "+ Partida.getMiPartida().getDireccion());break;}
+					Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_arr.png")));System.out.println("ARRIBA "+ dir);break;}
 				case 1 : {
-					Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_der.png")));System.out.println("DERECHA "+ Partida.getMiPartida().getDireccion());break;}
+					Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_der.png")));System.out.println("DERECHA "+ dir);break;}
 				case 2 : {
-					Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_abj.png")));System.out.println("ABAJO "+ Partida.getMiPartida().getDireccion());break;}
+					Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_abj.png")));System.out.println("ABAJO "+ dir);break;}
 				case 3 : {
-					Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_izq.png")));System.out.println("IZQUIERDA "+ Partida.getMiPartida().getDireccion());break;}
+					Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_izq.png")));System.out.println("IZQUIERDA "+ dir);break;}
 				default : {
 					Juego.getFlecha().setIcon(new ImageIcon(Juego.class.getResource("/resource/flecha_arr.png")));System.out.println("DEFAULT");break;}
 			}
