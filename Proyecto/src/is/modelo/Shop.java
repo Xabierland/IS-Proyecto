@@ -105,6 +105,7 @@ public class Shop extends Observable {
                     lista[0] = "desactivar";
                     notifyObservers(lista);
                 }
+                break;
             }
             case 2 :
             {
@@ -122,7 +123,7 @@ public class Shop extends Observable {
                     lista[0] = "desactivar";
                     notifyObservers(lista);
                 }
-
+                break;
             }
             case 3:
             {
@@ -140,6 +141,7 @@ public class Shop extends Observable {
                     lista[1] = Tienda.getBtn_escudo();
                     notifyObservers(lista);
                 }
+                break;
             }
             case 4 :
             {
@@ -157,6 +159,8 @@ public class Shop extends Observable {
                     lista[0] = "desactivar";
                     notifyObservers(lista);
                 }
+                break;
+
             }
         }
     }
