@@ -37,7 +37,5 @@
 </ol>
 </ol>
 
-### ToDo
-<ul>
- <li></li>
-</ul>
+### NOTAS:
+El patron Observer no esta correctamente implementado asi que si quieres usar este proyecto como ayuda para el tuyo ten en cuenta esto.
